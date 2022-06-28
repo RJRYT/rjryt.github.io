@@ -474,8 +474,12 @@ section .title::after{
     color: crimson;
 }
 .contact .contact-content .row a{
-    font-size: 25px;
     color: black;
+    text-decoration: none;
+}
+.contact .contact-content .row a:hover{
+    text-decoration: underline;
+    font-size: 105%;
 }
 .contact .contact-content .info .head{
     font-weight: 500;

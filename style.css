@@ -473,6 +473,10 @@ section .title::after{
     font-size: 25px;
     color: crimson;
 }
+.contact .contact-content .row a{
+    font-size: 25px;
+    color: black;
+}
 .contact .contact-content .info .head{
     font-weight: 500;
 }

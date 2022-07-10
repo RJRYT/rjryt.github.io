@@ -1,8 +1,8 @@
-ErrorDocument 400 https://rjryt.github.io/error
-ErrorDocument 401 https://rjryt.github.io/error
-ErrorDocument 403 https://rjryt.github.io/error
-ErrorDocument 404 https://rjryt.github.io/error
-ErrorDocument 503 https://rjryt.github.io/error
+ErrorDocument 400 https://rjryt.github.io/error/index.html
+ErrorDocument 401 https://rjryt.github.io/error/index.html
+ErrorDocument 403 https://rjryt.github.io/error/index.html
+ErrorDocument 404 https://rjryt.github.io/error/index.html
+ErrorDocument 503 https://rjryt.github.io/error/index.html
 
 DirectoryIndex index.html
 

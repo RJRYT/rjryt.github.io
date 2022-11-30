@@ -369,9 +369,6 @@ section .title::after{
     width: 90%;
 }
 /* teams section styling */
-.teams .title::after{
-    content: "who with me";
-}
 .teams .carousel .card{
     background: #222;
     border-radius: 6px;

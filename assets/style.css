@@ -272,14 +272,7 @@ section .title::after{
 .services .serv-content .card{
     width: calc(33% - 20px);
     background: #222;
-    text-align: center;
-
-    
-        
-          
-    
-
-        
+    text-align: center;   
     
     @@ -282,24 +286,30 @@ section .title::after{
   
@@ -310,14 +303,6 @@ section .title::after{
     font-weight: 500;
     margin: 10px 0 7px 0;
 
-    
-          
-            
-    
-
-          
-    
-    
   
 }
 /* skills section styling */
@@ -392,6 +377,56 @@ section .title::after{
 }
 .skills-content .right .mysql::before{
     width: 90%;
+}
+/* services section styling */
+.projects{
+    color:#111;
+    background: #fff;
+}
+.projects .title::before,
+.teams .title::before{
+    background: #111;
+}
+.services .title::after,
+.teams .title::after{
+    background: #fff;
+    content: "what i done";
+}
+.projects .projects-content .card{
+    width: calc(33% - 20px);
+    background: #222;
+    text-align: center;   
+    
+    @@ -282,24 +286,30 @@ section .title::after{
+  
+    border-radius: 6px;
+    padding: 50px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.projects .projects-content .card:hover{
+    background: crimson;
+}
+.projects .projects-content .card .box{
+    transition: all 0.3s ease;
+}
+.projects .projects-content .card:hover .box{
+    transform: scale(1.05);
+}
+.projects .projects-content .card i{
+    font-size: 50px;
+    color: crimson;
+    transition: color 0.3s ease;
+}
+.projects .projects-content .card:hover i{
+    color: #fff;
+}
+.projects .projects-content .card .text{
+    font-size: 25px;
+    font-weight: 500;
+    margin: 10px 0 7px 0;
+
+  
 }
 /* teams section styling */
 .teams .title::after{

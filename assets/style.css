@@ -40,21 +40,6 @@ section{
 .contact .contact-content{
     display: flex;
     flex-wrap: wrap;
-
-    
-          
-            
-    
-
-          
-          
-            
-    
-
-          
-    
-    @@ -260,20 +261,23 @@ section .title::after{
-  
     align-items: center;
     justify-content: space-between;
 }
@@ -283,16 +268,6 @@ section .title::after{
     width: calc(33% - 20px);
     background: #222;
     text-align: center;
-
-    
-        
-          
-    
-
-        
-    
-    @@ -282,24 +286,30 @@ section .title::after{
-  
     border-radius: 6px;
     padding: 50px 25px;
     cursor: pointer;
@@ -319,16 +294,6 @@ section .title::after{
     font-size: 25px;
     font-weight: 500;
     margin: 10px 0 7px 0;
-
-    
-          
-            
-    
-
-          
-    
-    
-  
 }
 /* skills section styling */
 .skills .title::after{

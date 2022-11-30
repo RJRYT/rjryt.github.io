@@ -35,12 +35,13 @@ section{
     padding: 0 80px;
     margin: auto;
 }
-.about, .services, .skills, .teams, .contact, footer{
+.about, .services, .skills, .teams, .contact, .projects footer{
     font-family: 'Poppins', sans-serif;
 }
 .about .about-content,
 .services .serv-content,
 .skills .skills-content,
+.projects-content,
 .contact .contact-content{
     display: flex;
     flex-wrap: wrap;
@@ -260,20 +261,23 @@ section .title::after{
 }
 
 /* services section styling */
-.services, .teams{
+.services, .teams, .projects{
     color:#fff;
     background: #111;
 }
 .services .title::before,
+.projects .title::before,
 .teams .title::before{
     background: #fff;
 }
 .services .title::after,
+.projects .title::after,
 .teams .title::after{
     background: #111;
     content: "what i provide";
 }
-.services .serv-content .card{
+.services .serv-content .card,
+.projects, .projects-content .card{
     width: calc(33% - 20px);
     background: #222;
     text-align: center;
@@ -282,24 +286,30 @@ section .title::after{
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.services .serv-content .card:hover{
+.services .serv-content .card:hover,
+.projects, .projects-content .card:hover{
     background: crimson;
 }
-.services .serv-content .card .box{
+.services .serv-content .card .box,
+.projects, .projects-content .card .box{
     transition: all 0.3s ease;
 }
-.services .serv-content .card:hover .box{
+.services .serv-content .card:hover .box,
+.projects, .projects-content .card:hover .box{
     transform: scale(1.05);
 }
-.services .serv-content .card i{
+.services .serv-content .card i,
+.projects, .projects-content .card i{
     font-size: 50px;
     color: crimson;
     transition: color 0.3s ease;
 }
-.services .serv-content .card:hover i{
+.services .serv-content .card:hover i,
+.projects, .projects-content .card:hover i{
     color: #fff;
 }
-.services .serv-content .card .text{
+.services .serv-content .card .text,
+.projects, .projects-content .card .text{
     font-size: 25px;
     font-weight: 500;
     margin: 10px 0 7px 0;

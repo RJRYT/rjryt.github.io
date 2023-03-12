@@ -17,6 +17,26 @@
   <lastmod>2023-03-06T04:02:28+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+ <url>
+  <loc>https://rjryt.tech/web-programming</loc>
+  <lastmod>2023-03-06T04:02:28+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+ <url>
+  <loc>https://rjryt.tech/web-programming/collegeWebsite/</loc>
+  <lastmod>2023-03-06T04:02:28+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+      <url>
+  <loc>https://rjryt.tech/docs/</loc>
+  <lastmod>2023-03-06T04:02:28+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+      <url>
+  <loc>https://rjryt.tech/docs/test/</loc>
+  <lastmod>2023-03-06T04:02:28+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
 
 
 </urlset>

@@ -5,4 +5,4 @@
 - Design by me
 
 # Check it out: 
-- [RJRYT OFFICIAL](https://rjryt.tech)
+- [RJRYT OFFICIAL](https://rjryt.me)

@@ -22,7 +22,7 @@
       </div>
     </div>
     <div id="message">
-      <h2>Happy Valentines Day My Dear</h2>
+      <h2>Happy Valentines Day <span id="name"></span></h2>
     </div>
     <div class="heart" id="heart2">
       <div id="half1">
@@ -37,6 +37,11 @@
   </div>
 </body>
 <!-- partial -->
-  
+  <script>
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const usr = urlParams.get('u') || "My Dear";
+document.getElementById("name").innerHTML = usr;
+</script>
 </body>
 </html>

@@ -4,4 +4,4 @@ Disallow: /nogooglebot/
 User-agent: *
 Allow: /
 
-Sitemap: http://rjryt.me/sitemap.xml
+Sitemap: http://rjryt.github.io/sitemap.xml

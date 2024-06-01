@@ -295,6 +295,12 @@ section .title::after{
     font-weight: 500;
     margin: 10px 0 7px 0;
 }
+.services .serv-content .card a{
+    color: inherit;
+}
+.services .serv-content .card a:hover{
+    text-decoration: underline;
+}
 /* skills section styling */
 .skills .title::after{
     content: "what i know";
@@ -397,6 +403,12 @@ section .title::after{
     font-size: 25px;
     font-weight: 500;
     margin: 10px 0 7px 0;
+}
+.teams .carousel .card a{
+    color: inherit;
+}
+.teams .carousel .card a:hover{
+    text-decoration: underline;
 }
 .teams .carousel .card img{
     height: 150px;

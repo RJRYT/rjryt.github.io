@@ -1,0 +1,44 @@
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import Navigation from '@/components/layout/Navigation';
+import SkillsSection from '@/components/sections/SkillsSection';
+import Footer from '@/components/layout/Footer';
+import ScrollToTop from '@/components/layout/ScrollToTop';
+
+const Skills = () => {
+  return (
+    <>
+      <Helmet>
+        <title>Skills | MERN Stack & Full Stack Expertise</title>
+        <meta name="description" content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices." />
+        <meta name="keywords" content="MERN skills, full stack skills, React, Node.js, MongoDB, Tailwind" />
+        <link rel="canonical" href="https://rjryt.github.io/skills" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Skills | MERN Stack & Full Stack Expertise" />
+        <meta property="og:description" content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rjryt.github.io/skills" />
+        <meta property="og:site_name" content="RJRYT Portfolio" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Skills | MERN Stack & Full Stack Expertise" />
+        <meta name="twitter:description" content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices." />
+      </Helmet>
+
+      <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">
+        <Navigation />
+        
+        <main className="pt-20">
+          <SkillsSection />
+        </main>
+        
+        <Footer />
+        <ScrollToTop />
+      </div>
+    </>
+  );
+};
+
+export default Skills;

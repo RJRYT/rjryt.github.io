@@ -1,0 +1,22 @@
+{
+  "name": "RJRYT OFFICIAL - MERN Stack Web Developer Portfolio",
+  "short_name": "RJRYT",
+  "description": "Professional Discord Bot Developer and Frontend Designer from Kerala, India",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e3c72",
+  "theme_color": "#1e3c72",
+  "display_override": ["window-controls-overlay", "minimal-ui"],
+  "icons": [
+    {
+      "src": "/images/icon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

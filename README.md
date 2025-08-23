@@ -56,6 +56,10 @@ A modern, optimized, and production-ready personal portfolio to showcase skills,
 MERN Stack Developer
 Passionate about building modern web applications, optimizing performance, and delivering engaging user experiences.
 
+## 🤖 Built with Lovable AI  
+
+This project was initially scaffolded and migrated with the help of [Lovable AI](https://lovable.dev), which accelerated development and setup.  
+
 ## 📜 License
 
 This project is licensed under the GNU GENERAL PUBLIC LICENSE.

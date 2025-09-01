@@ -1,8 +1,8 @@
 ---
 title: "School Management System — Internship Assessment"
 description: "A role-based web application to manage students, library history, and fees with RBAC for Admin, Office Staff, and Librarian."
-technologies: ["React", "Redux", "Node.js", "Express", "MongoDB"]
-category: "Internship / Web Application"
+technologies: ["React", "Redux", "Node.js", "Express.js", "MongoDB"]
+category: "Internship"
 status: "Completed"
 github: "https://github.com/RJRYT/school-management-system"
 live: "https://school-management-system-rjryt.vercel.app/"

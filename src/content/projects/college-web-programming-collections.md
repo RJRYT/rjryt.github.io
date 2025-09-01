@@ -2,7 +2,7 @@
 title: "College Web Programming Collections"
 description: "A curated collection of student web programming assignments, demos, and mini-projects developed during college coursework, covering basic web technologies."
 technologies: ["HTML", "CSS", "JavaScript"]
-category: "Education"
+category: "Academic"
 status: "Archived"
 github: "https://github.com/rjryt/college-web-collections"
 live: "https://rjryt.github.io/web-programming/"

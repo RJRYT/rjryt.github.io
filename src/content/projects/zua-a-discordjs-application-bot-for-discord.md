@@ -1,7 +1,7 @@
 ---
 title: "Zua — Application Bot"
 description: "A Discord application bot built to showcase application workflows, commands, and slash command interactions."
-technologies: ["Node.js", "discord.js", "Mongoose"]
+technologies: ["Node.js", "discord.js", "MongoDB"]
 category: "Bot"
 status: "Active"
 github: "" 

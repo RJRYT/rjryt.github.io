@@ -2,7 +2,7 @@
 title: "NCRP Documentation Website"
 description: "A static documentation website built with HTML and Bootstrap CSS to provide guides, references, and resources for NCRP projects."
 technologies: ["HTML", "Bootstrap", "CSS", "JavaScript"]
-category: "Web / Documentation"
+category: "Web"
 status: "Completed"
 github: "https://github.com/rjryt/docs"
 live: "https://rjryt.github.io/docs/"

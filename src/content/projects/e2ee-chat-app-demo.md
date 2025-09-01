@@ -1,8 +1,8 @@
 ---
 title: "E2EE Chat — End-to-End Encrypted Chat App"
 description: "A secure real-time MERN chat app with true end-to-end encryption using client-side RSA-OAEP, built as a personal project."
-technologies: ["React", "Tailwind CSS", "Node.js", "Express", "Socket.IO", "MongoDB", "Web Crypto API (RSA-OAEP)"]
-category: "Personal Project"
+technologies: ["React", "Tailwind CSS", "Node.js", "Express.js", "Socket.IO", "MongoDB", "Web Crypto API (RSA-OAEP)"]
+category: "Personal"
 status: "Completed"
 github: "https://github.com/RJRYT/e2ee-chat"
 live: "https://e2ee-chat-six.vercel.app/"

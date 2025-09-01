@@ -1,8 +1,8 @@
 ---
 title: "SAMP Music Streamer"
 description: "A Node.js-based music streaming service built for SAMP Roleplay servers, allowing players to upload, manage, and stream custom songs in-game."
-technologies: ["Node.js", "Express", "EJS", "File Uploads", "Pterodactyl", "Replit", "Heroku"]
-category: "Open Source / Gaming"
+technologies: ["Node.js", "Express.js", "EJS", "File Uploads", "Pterodactyl", "Replit", "Heroku"]
+category: "SAMP"
 status: "Completed"
 github: "https://github.com/RJRYT/SAMP-Music-Streamer"
 live: ""

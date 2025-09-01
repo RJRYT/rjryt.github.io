@@ -2,7 +2,7 @@
 title: "QuillMD — Vibecoded Markdown Blog"
 description: "A modern, markdown-powered blogging platform built with React, Vite, and Tailwind CSS. Features offline-ready PWA, client-side search, SEO optimization, and built-in admin interface."
 technologies: ["React", "Vite", "Tailwind CSS", "Fuse.js", "PWA"]
-category: "Personal Project"
+category: "Personal"
 status: "Completed"
 github: "https://github.com/RJRYT/QuillMD"
 live: "https://quillmd.netlify.app/"

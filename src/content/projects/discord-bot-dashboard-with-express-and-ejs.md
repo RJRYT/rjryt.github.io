@@ -1,8 +1,8 @@
 ---
 title: "Discord Bot Dashboard"
 description: "A web dashboard for managing Woebot, built with Node.js, Express, and EJS. Provides a user-friendly interface for bot configuration and monitoring."
-technologies: ["Node.js", "Express", "EJS", "wio.db", "dotenv", "express-session", "express-rate-limit", "morgan"]
-category: "Web Dashboard"
+technologies: ["Node.js", "Express.js", "EJS", "wio.db", "dotenv", "express-session", "express-rate-limit", "morgan"]
+category: "Web"
 status: "Completed"
 github: "https://github.com/RJRYT/web-v1"
 live: ""

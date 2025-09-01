@@ -1,13 +1,13 @@
 ---
 title: "E-Medicals — Healthcare Management System"
 description: "A comprehensive MERN-stack healthcare platform integrating hospitals, pharmacies, and laboratories with patient-centric workflows."
-technologies: ["React", "Bootstrap", "Node.js", "Express", "MongoDB", "EJS"]
-category: "Academic / Major Project"
+technologies: ["React", "Bootstrap", "Node.js", "Express.js", "MongoDB", "EJS"]
+category: "Academic"
 status: "Completed"
 github: "https://github.com/RJRYT/E-medicalsFrontend"
 live: ""
 image: "/images/projects/e-medicals.png"
-featured: true
+featured: false
 date: "2024-04-29"
 ---
 

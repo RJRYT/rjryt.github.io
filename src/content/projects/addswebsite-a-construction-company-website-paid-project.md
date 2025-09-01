@@ -2,12 +2,12 @@
 title: "AddsWebsite — Construction Company"
 description: "A paid, client-facing static website built for a construction company with service details, project showcases, and a contact section."
 technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"]
-category: "Client / Web"
-status: "Completed (Paid)"
+category: "Web"
+status: "Completed"
 github: "https://github.com/RJRYT/addswebsite"
 live: "https://rjryt.github.io/AddsWebsite/"
 image: "/images/projects/addswebsite.png"
-featured: true
+featured: false
 date: "2023-09-29"
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: "Dating App — Internship Prototype"
 description: "A prototype dating application developed during internship, featuring authentication, profile management, real-time communication, and secure media uploads."
-technologies: ["React", "Bootstrap", "Node.js", "Express", "MongoDB", "AWS S3", "Twilio", "Passport OAuth"]
-category: "Internship / Prototype"
-status: "Prototype Completed"
+technologies: ["React", "Bootstrap", "Node.js", "Express.js", "MongoDB", "AWS S3", "Twilio", "Passport OAuth"]
+category: "Internship"
+status: "Prototype"
 github: "https://github.com/RJRYT/GVR-DatingApp/"
 live: ""
 image: "/images/projects/dating-app.png"

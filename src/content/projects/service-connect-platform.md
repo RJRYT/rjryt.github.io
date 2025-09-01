@@ -1,8 +1,8 @@
 ---
 title: "Service Connect Platform"
 description: "A full-stack service provider and customer connect platform built with React (Vite) frontend and Django backend. Includes modules for service providers, customer requests, admin panel, management, franchises, and branches."
-technologies: ["React", "Vite", "Django", "REST API", "Vercel", "Tailwind"]
-category: "Company / Full-Stack"
+technologies: ["React", "Vite", "Django", "REST API", "Vercel", "Tailwind CSS"]
+category: "Full-Stack"
 status: "Completed"
 github: ""
 live: "https://service-connect-app.vercel.app/"

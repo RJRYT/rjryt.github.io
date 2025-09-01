@@ -1,9 +1,9 @@
 ---
 title: "New City Roleplay — UCP & Admin Panel"
 description: "A modern, installable user control panel and admin dashboard for the New City Roleplay SA-MP server, featuring Discord OAuth, PWA/TWA support, push notifications, and Mongo→MySQL migration utilities."
-technologies: ["React", "Tailwind CSS", "Vite", "Node.js", "Express", "MySQL", "Discord OAuth", "Web Push"]
-category: "Personal / Gaming"
-status: "Active (Maintained)"
+technologies: ["React", "Tailwind CSS", "Vite", "Node.js", "Express.js", "MySQL", "Discord OAuth", "Web Push"]
+category: "SAMP"
+status: "Active"
 github: ""
 live: "https://newcityrp.co.in"
 image: "/images/projects/ncrp-ucp.png"

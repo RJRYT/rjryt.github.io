@@ -2,7 +2,7 @@
 title: "ytsearch.js — YouTube Search Wrapper"
 description: "A lightweight npm package for searching YouTube content directly in Node.js applications."
 technologies: ["Node.js", "npm"]
-category: "Package / Library"
+category: "Package"
 status: "Maintained"
 github: "https://github.com/RJRYT/ytsearch.js"
 live: "https://www.npmjs.com/package/ytsearch.js"

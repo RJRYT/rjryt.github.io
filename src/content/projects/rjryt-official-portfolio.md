@@ -2,7 +2,7 @@
 title: "RJRYT Portfolio"
 description: "A modern, production-ready personal portfolio built with React, Vite, and Tailwind CSS featuring blogs, projects, and PWA support."
 technologies: ["React", "Vite", "Tailwind CSS", "PWA"]
-category: "Portfolio / Personal"
+category: "Personal"
 status: "Completed"
 github: "https://github.com/RJRYT/rjryt.github.io"
 live: "https://rjryt.github.io/"

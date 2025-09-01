@@ -1,8 +1,8 @@
 ---
 title: "Buddypair Community Platform"
 description: "A full-featured MERN-based community platform integrating multiple domains such as job portal, dating, study abroad, matrimony, and courses."
-technologies: ["MongoDB", "Express.js", "React", "Node.js", "Tailwind CSS", "Redux Toolkit", "Socket.IO"]
-category: "Full-Stack / Community Platform"
+technologies: ["MongoDB", "Express.js", "React", "Node.js", "Tailwind CSS", "Redux", "Socket.IO"]
+category: "Full-Stack"
 status: "Completed"
 github: ""
 live: ""

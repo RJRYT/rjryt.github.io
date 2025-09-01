@@ -2,7 +2,7 @@
 title: "SA-MP ChatBot"
 description: "A chatbot filterscript for San Andreas Multiplayer (SAMP) servers that connects with Brainshop.ai API to provide AI-powered responses in-game."
 technologies: ["Pawn (SAMP)", "Brainshop.ai API"]
-category: "Game / SAMP"
+category: "SAMP"
 status: "Completed"
 github: "https://github.com/RJRYT/SA-MP-ChatBot"
 live: ""

@@ -1,7 +1,7 @@
 ---
 title: "Diagnostic Lab Management System (DLMS)"
 description: "A college mini-project: a web-based system for booking lab test appointments, managing patient data, and displaying test results."
-technologies: ["Node.js", "Express", "EJS", "MongoDB"]
+technologies: ["Node.js", "Express.js", "EJS", "MongoDB"]
 category: "Academic"
 status: "Completed"
 github: "https://github.com/RJRYT/mini-project"

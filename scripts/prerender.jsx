@@ -60,7 +60,10 @@ function collectMarkdownRoutes(dir, basePath) {
   // HTML template (minimal, reused from Vite’s dist/index.html)
   let template;
   try {
-    template = fs.readFileSync(path.join(outputDir, "index.html"), "utf-8");
+    template = fs.readFileSync(
+      path.join(process.cwd(), "template.html"),
+      "utf-8"
+    );
   } catch (error) {
     console.error("Error reading index.html:", error.message);
     process.exit(1);
@@ -77,7 +80,7 @@ function collectMarkdownRoutes(dir, basePath) {
       // Extract Helmet data (meta tags, title, etc.)
       const { helmet } = helmetContext;
       const headContent = `
-      ${helmet.title ? helmet.title.toString() : "<title>My App</title>"}
+      ${helmet.title ? helmet.title.toString() : "<title>RJRYT Official</title>"}
       ${helmet.meta ? helmet.meta.toString() : ""}
       ${helmet.link ? helmet.link.toString() : ""}
       ${helmet.script ? helmet.script.toString() : ""}

@@ -106,9 +106,9 @@ const Footer = () => {
               RJRYT OFFICIAL
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Professional Discord Bot Developer and Frontend Designer from
-              Kerala, India. Creating amazing digital experiences and serving
-              100+ Discord communities.
+              Discover the portfolio of RJRYT, a MERN stack web developer
+              building scalable and modern applications. Explore projects,
+              blogs, and services.
             </p>
 
             {/* Social Links */}

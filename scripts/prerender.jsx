@@ -60,10 +60,7 @@ function collectMarkdownRoutes(dir, basePath) {
   // HTML template (minimal, reused from Vite’s dist/index.html)
   let template;
   try {
-    template = fs.readFileSync(
-      path.join(process.cwd(), "template.html"),
-      "utf-8"
-    );
+    template = fs.readFileSync(path.join(outputDir, "index.html"), "utf-8");
   } catch (error) {
     console.error("Error reading index.html:", error.message);
     process.exit(1);

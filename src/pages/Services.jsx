@@ -85,21 +85,43 @@ const Services = () => {
     <>
       <Helmet>
         <title>Services | Web Development by RJRYT</title>
-        <meta name="description" content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions." />
-        <meta name="keywords" content="web development services, MERN stack services, React, Node.js, MongoDB" />
+        <meta
+          name="description"
+          content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions."
+        />
+        <meta
+          name="keywords"
+          content="web development services, MERN stack services, React, Node.js, MongoDB"
+        />
         <link rel="canonical" href="https://rjryt.github.io/services" />
-        
+        <meta name="author" content="RJRYT" />
+
         {/* Open Graph */}
-        <meta property="og:title" content="Services | Web Development by RJRYT" />
-        <meta property="og:description" content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions." />
+        <meta
+          property="og:title"
+          content="Services | Web Development by RJRYT"
+        />
+        <meta
+          property="og:description"
+          content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/services" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        
+        <meta property="og:image" content="/images/seo/seo-services.png" />
+
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Services | Web Development by RJRYT" />
-        <meta name="twitter:description" content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions." />
+        <meta
+          name="twitter:title"
+          content="Services | Web Development by RJRYT"
+        />
+        <meta
+          name="twitter:description"
+          content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions."
+        />
+        <meta name="twitter:url" content="https://rjryt.github.io/services" />
+        <meta name="twitter:image" content="/images/seo/seo-services.png" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">

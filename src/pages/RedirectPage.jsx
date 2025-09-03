@@ -118,26 +118,42 @@ const RedirectPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-card to-background flex items-center justify-center">
-        <Helmet>
-          <title>Redirects | Quick Links by RJRYT</title>
-          <meta name="description" content="Custom redirect links managed by RJRYT for easy navigation. Example: /r/ncrp redirects to NCRP website." />
-          <meta name="keywords" content="redirect links, custom redirects, RJRYT" />
-          <meta name="robots" content="noindex, nofollow" />
-          
-          {/* Open Graph */}
-          <meta property="og:title" content="Redirects | Quick Links by RJRYT" />
-          <meta property="og:description" content="Custom redirect links managed by RJRYT for easy navigation." />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="RJRYT Portfolio" />
-          
-          {/* Twitter Card */}
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:title" content="Redirects | Quick Links by RJRYT" />
-          <meta name="twitter:description" content="Custom redirect links managed by RJRYT for easy navigation." />
-          
-          {/* Automatic redirect meta tag as fallback */}
-          <meta httpEquiv="refresh" content={`${countdown};url=${redirect.targetUrl}`} />
-        </Helmet>
+      <Helmet>
+        <title>Redirects | Quick Links by RJRYT</title>
+        <meta
+          name="description"
+          content="Custom redirect links managed by RJRYT for easy navigation. Example: /r/ncrp redirects to NCRP website."
+        />
+        <meta
+          name="keywords"
+          content="redirect links, custom redirects, RJRYT"
+        />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="author" content="RJRYT" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Redirects | Quick Links by RJRYT" />
+        <meta
+          property="og:description"
+          content="Custom redirect links managed by RJRYT for easy navigation."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="RJRYT Portfolio" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Redirects | Quick Links by RJRYT" />
+        <meta
+          name="twitter:description"
+          content="Custom redirect links managed by RJRYT for easy navigation."
+        />
+
+        {/* Automatic redirect meta tag as fallback */}
+        <meta
+          httpEquiv="refresh"
+          content={`${countdown};url=${redirect.targetUrl}`}
+        />
+      </Helmet>
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -166,13 +182,16 @@ const RedirectPage = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <h1 className="text-3xl font-bold gradient-text mb-4">
-            {redirecting ? 'Redirecting...' : 'You\'re being redirected'}
+            {redirecting ? "Redirecting..." : "You're being redirected"}
           </h1>
-          
+
           <p className="text-foreground/70 mb-2">
-            Destination: <strong className="text-foreground">{new URL(redirect.targetUrl).hostname}</strong>
+            Destination:{" "}
+            <strong className="text-foreground">
+              {new URL(redirect.targetUrl).hostname}
+            </strong>
           </p>
-          
+
           <p className="text-foreground/60 text-sm mb-8 wrap-anywhere">
             {redirect.targetUrl}
           </p>
@@ -195,7 +214,7 @@ const RedirectPage = () => {
               {/* Progress Bar */}
               <div className="w-full bg-muted rounded-full h-2 mb-8 overflow-hidden">
                 <motion.div
-                  initial={{ width: '100%' }}
+                  initial={{ width: "100%" }}
                   animate={{ width: `${(countdown / 5) * 100}%` }}
                   transition={{ duration: 1 }}
                   className="bg-gradient-to-r from-primary to-accent h-full rounded-full"
@@ -212,7 +231,7 @@ const RedirectPage = () => {
                   Continue Now
                   <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                 </Button>
-                
+
                 <Button
                   onClick={handleCancel}
                   variant="outline"
@@ -237,7 +256,8 @@ const RedirectPage = () => {
                       Safety Notice
                     </h3>
                     <p className="text-xs text-foreground/60">
-                      You are being redirected to an external website. Please verify the URL before entering any personal information.
+                      You are being redirected to an external website. Please
+                      verify the URL before entering any personal information.
                     </p>
                   </div>
                 </div>

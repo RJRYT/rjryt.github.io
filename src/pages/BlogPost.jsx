@@ -72,26 +72,36 @@ const BlogPost = () => {
       <Helmet>
         <title>{post.title} - RJRYT Blog</title>
         <meta name="description" content={post.excerpt} />
-        <meta name="keywords" content={`RJRYT, Blog, ${post.tags.join(", ")}, Web Development`} />
+        <meta
+          name="keywords"
+          content={`RJRYT, Blog, ${post.tags.join(", ")}, Web Development`}
+        />
         <link rel="canonical" href={`https://rjryt.github.io/blog/${slug}`} />
-        
+        <meta name="author" content="RJRYT" />
+
         {/* Open Graph */}
         <meta property="og:title" content={`${post.title} - RJRYT Blog`} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://rjryt.github.io/blog/${slug}`} />
+        <meta
+          property="og:url"
+          content={`https://rjryt.github.io/blog/${slug}`}
+        />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta property="article:author" content="RJRYT" />
         <meta property="article:published_time" content={post.date} />
         <meta property="article:tag" content={post.tags.join(", ")} />
         {post.image && <meta property="og:image" content={post.image} />}
-        
+
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${post.title} - RJRYT Blog`} />
         <meta name="twitter:description" content={post.excerpt} />
         {post.image && <meta name="twitter:image" content={post.image} />}
-        <meta property="og:type" content="article" />
+        <meta
+          name="twitter:url"
+          content={`https://rjryt.github.io/blog/${slug}`}
+        />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />

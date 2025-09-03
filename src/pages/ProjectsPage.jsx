@@ -69,21 +69,43 @@ const ProjectsPage = () => {
     <>
       <Helmet>
         <title>Projects by RJRYT | MERN Stack Creations</title>
-        <meta name="description" content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies." />
-        <meta name="keywords" content="RJRYT projects, MERN stack portfolio, web apps, React projects" />
+        <meta
+          name="description"
+          content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
+        />
+        <meta
+          name="keywords"
+          content="RJRYT projects, MERN stack portfolio, web apps, React projects"
+        />
         <link rel="canonical" href="https://rjryt.github.io/projects" />
-        
+        <meta name="author" content="RJRYT" />
+
         {/* Open Graph */}
-        <meta property="og:title" content="Projects by RJRYT | MERN Stack Creations" />
-        <meta property="og:description" content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies." />
+        <meta
+          property="og:title"
+          content="Projects by RJRYT | MERN Stack Creations"
+        />
+        <meta
+          property="og:description"
+          content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/projects" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        
+        <meta property="og:image" content="/images/seo/seo-projects.png" />
+
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Projects by RJRYT | MERN Stack Creations" />
-        <meta name="twitter:description" content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies." />
+        <meta
+          name="twitter:title"
+          content="Projects by RJRYT | MERN Stack Creations"
+        />
+        <meta
+          name="twitter:description"
+          content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
+        />
+        <meta name="twitter:url" content="https://rjryt.github.io/projects" />
+        <meta name="twitter:image" content="/images/seo/seo-projects.png" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">

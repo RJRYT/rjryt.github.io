@@ -65,6 +65,7 @@ const ProjectDetail = () => {
           rel="canonical"
           href={`https://rjryt.github.io/projects/${slug}`}
         />
+        <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
         <meta
@@ -87,6 +88,10 @@ const ProjectDetail = () => {
         />
         <meta name="twitter:description" content={project.description} />
         {project.image && <meta name="twitter:image" content={project.image} />}
+        <meta
+          name="twitter:url"
+          content={`https://rjryt.github.io/projects/${slug}`}
+        />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">

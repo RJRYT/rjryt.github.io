@@ -63,26 +63,42 @@ const Team = () => {
     <>
       <Helmet>
         <title>Team | Collaborations by RJRYT</title>
-        <meta name="description" content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products." />
-        <meta name="keywords" content="team, collaboration, RJRYT, developer group" />
+        <meta
+          name="description"
+          content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products."
+        />
+        <meta
+          name="keywords"
+          content="team, collaboration, RJRYT, developer group"
+        />
         <link rel="canonical" href="https://rjryt.github.io/team" />
-        
+        <meta name="author" content="RJRYT" />
+
         {/* Open Graph */}
         <meta property="og:title" content="Team | Collaborations by RJRYT" />
-        <meta property="og:description" content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products." />
+        <meta
+          property="og:description"
+          content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/team" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        
+        <meta property="og:image" content="/images/seo/seo-team.png" />
+
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Team | Collaborations by RJRYT" />
-        <meta name="twitter:description" content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products." />
+        <meta
+          name="twitter:description"
+          content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products."
+        />
+        <meta name="twitter:url" content="https://rjryt.github.io/team" />
+        <meta name="twitter:image" content="/images/seo/seo-team.png" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">
         <Navigation />
-        
+
         <main className="pt-20">
           {/* Hero Section */}
           <section className="py-20">
@@ -98,8 +114,9 @@ const Team = () => {
                 </h1>
                 <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6"></div>
                 <p className="text-fluid-lg text-foreground/70 max-w-3xl mx-auto">
-                  Building amazing projects through collaboration, community involvement, 
-                  and teamwork with fellow developers and organizations.
+                  Building amazing projects through collaboration, community
+                  involvement, and teamwork with fellow developers and
+                  organizations.
                 </p>
               </motion.div>
             </div>
@@ -119,7 +136,8 @@ const Team = () => {
                   Our Values
                 </h2>
                 <p className="text-fluid-lg text-foreground/70 max-w-2xl mx-auto">
-                  The principles that guide our collaborative efforts and development practices.
+                  The principles that guide our collaborative efforts and
+                  development practices.
                 </p>
               </motion.div>
 
@@ -165,7 +183,8 @@ const Team = () => {
                   Collaborations & Partnerships
                 </h2>
                 <p className="text-fluid-lg text-foreground/70 max-w-2xl mx-auto">
-                  Working with diverse teams and communities to create impactful solutions.
+                  Working with diverse teams and communities to create impactful
+                  solutions.
                 </p>
               </motion.div>
 
@@ -188,7 +207,9 @@ const Team = () => {
                         <h3 className="text-fluid-xl font-bold text-foreground">
                           {collab.name}
                         </h3>
-                        <p className="text-primary font-medium">{collab.role}</p>
+                        <p className="text-primary font-medium">
+                          {collab.role}
+                        </p>
                       </div>
                     </div>
 
@@ -197,7 +218,9 @@ const Team = () => {
                     </p>
 
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-foreground mb-3">Skills & Expertise</h4>
+                      <h4 className="text-sm font-semibold text-foreground mb-3">
+                        Skills & Expertise
+                      </h4>
                       <div className="flex flex-wrap gap-2">
                         {collab.skills.map((skill, i) => (
                           <span
@@ -219,7 +242,11 @@ const Team = () => {
                             variant="outline"
                             className="glass border-primary/50"
                           >
-                            <a href={collab.github} target="_blank" rel="noopener noreferrer">
+                            <a
+                              href={collab.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
                               <Github className="w-4 h-4" />
                             </a>
                           </Button>
@@ -231,7 +258,11 @@ const Team = () => {
                             variant="outline"
                             className="glass border-accent/50"
                           >
-                            <a href={collab.linkedin} target="_blank" rel="noopener noreferrer">
+                            <a
+                              href={collab.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
                               <Linkedin className="w-4 h-4" />
                             </a>
                           </Button>
@@ -243,7 +274,11 @@ const Team = () => {
                             variant="outline"
                             className="glass border-secondary/50"
                           >
-                            <a href={collab.website} target="_blank" rel="noopener noreferrer">
+                            <a
+                              href={collab.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
                               <Globe className="w-4 h-4" />
                             </a>
                           </Button>
@@ -277,7 +312,7 @@ const Team = () => {
                   Let's Collaborate
                 </h2>
                 <p className="text-fluid-lg text-foreground/70 mb-8 max-w-2xl mx-auto">
-                  Interested in working together? Let's build something amazing 
+                  Interested in working together? Let's build something amazing
                   and make a positive impact in the developer community.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -301,7 +336,7 @@ const Team = () => {
             </div>
           </section>
         </main>
-        
+
         <Footer />
         <ScrollToTop />
       </div>

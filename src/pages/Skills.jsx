@@ -10,30 +10,52 @@ const Skills = () => {
     <>
       <Helmet>
         <title>Skills | MERN Stack & Full Stack Expertise</title>
-        <meta name="description" content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices." />
-        <meta name="keywords" content="MERN skills, full stack skills, React, Node.js, MongoDB, Tailwind" />
+        <meta
+          name="description"
+          content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
+        />
+        <meta
+          name="keywords"
+          content="MERN skills, full stack skills, React, Node.js, MongoDB, Tailwind"
+        />
         <link rel="canonical" href="https://rjryt.github.io/skills" />
-        
+        <meta name="author" content="RJRYT" />
+
         {/* Open Graph */}
-        <meta property="og:title" content="Skills | MERN Stack & Full Stack Expertise" />
-        <meta property="og:description" content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices." />
+        <meta
+          property="og:title"
+          content="Skills | MERN Stack & Full Stack Expertise"
+        />
+        <meta
+          property="og:description"
+          content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/skills" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        
+        <meta property="og:image" content="/images/seo/seo-skills.png" />
+
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Skills | MERN Stack & Full Stack Expertise" />
-        <meta name="twitter:description" content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices." />
+        <meta
+          name="twitter:title"
+          content="Skills | MERN Stack & Full Stack Expertise"
+        />
+        <meta
+          name="twitter:description"
+          content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
+        />
+        <meta name="twitter:url" content="https://rjryt.github.io/skills" />
+        <meta name="twitter:image" content="/images/seo/seo-skills.png" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">
         <Navigation />
-        
+
         <main className="pt-20">
           <SkillsSection />
         </main>
-        
+
         <Footer />
         <ScrollToTop />
       </div>

@@ -1,34 +1,41 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Heart, Github, Youtube, Linkedin, Instagram, 
-  MessageCircle, ExternalLink, ArrowUp, Code
-} from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Heart,
+  Github,
+  Youtube,
+  Linkedin,
+  Instagram,
+  MessageCircle,
+  ExternalLink,
+  ArrowUp,
+  Code,
+} from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
 
   const footerLinks = {
-    'Quick Links': [
-      { name: 'Home', href: '#home' },
-      { name: 'About', href: '#about' },
-      { name: 'Services', href: '#services' },
-      { name: 'Projects', href: '#projects' }
+    "Quick Links": [
+      { name: "Home", href: "/" },
+      { name: "About", href: "/about" },
+      { name: "Services", href: "/services" },
+      { name: "Projects", href: "/projects" },
     ],
-    'Services': [
-      { name: 'Bot Development', href: '#services' },
-      { name: 'Web Development', href: '#services' },
-      { name: 'SA-MP Development', href: '#services' },
-      { name: 'Frontend Design', href: '#services' }
+    Services: [
+      { name: "Backend Development", href: "/services" },
+      { name: "Web Development", href: "/services" },
+      { name: "SA-MP Development", href: "/services" },
+      { name: "Frontend Design", href: "/services" },
     ],
-    'Connect': [
-      { name: 'Contact', href: '#contact' },
-      { name: 'Blog', href: '/blog' },
-      { name: 'Team', href: '#team' },
-      { name: 'Skills', href: '#skills' }
-    ]
+    Connect: [
+      { name: "Contact", href: "/contact" },
+      { name: "Blog", href: "/blog" },
+      { name: "Team", href: "/team" },
+      { name: "Skills", href: "/skills" },
+    ],
   };
 
   const socialLinks = [
@@ -71,19 +78,7 @@ const Footer = () => {
   ];
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleLinkClick = (href) => {
-    if (href.startsWith('#')) {
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate(href);
-    }
-  };
-
-  const handleSocialClick = (url) => {
-    window.open(url, '_blank', 'noopener noreferrer');
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -116,20 +111,25 @@ const Footer = () => {
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon;
                 return (
-                  <motion.button
+                  <motion.div
                     key={social.name}
-                    onClick={() => handleSocialClick(social.url)}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`w-10 h-10 bg-card hover:bg-auto border ${social.color} border-border rounded-lg flex items-center justify-center text-muted-foreground hover:text-accent transition-all duration-300`}
-                    title={social.name}
                   >
-                    <IconComponent size={18} />
-                  </motion.button>
+                    <Link
+                      to={social.url}
+                      title={social.name}
+                      aria-label={social.name}
+                      target="_blank"
+                      className={`w-10 h-10 bg-card hover:bg-auto border ${social.color} border-border rounded-lg flex items-center justify-center text-muted-foreground hover:text-accent transition-all duration-300`}
+                    >
+                      <IconComponent size={18} />
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>
@@ -138,7 +138,6 @@ const Footer = () => {
             <motion.a
               href="/r/sponsor"
               target="_blank"
-              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 bg-card hover:bg-auto border border-border px-4 py-2 rounded-lg text-red-500 hover:border-red-500/50 transition-all duration-300 text-sm font-medium"
@@ -170,12 +169,12 @@ const Footer = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: linkIndex * 0.05 }}
                     >
-                      <button
-                        onClick={() => handleLinkClick(link.href)}
+                      <Link
+                        to={link.href}
                         className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm"
                       >
                         {link.name}
-                      </button>
+                      </Link>
                     </motion.li>
                   ))}
                 </ul>
@@ -203,14 +202,17 @@ const Footer = () => {
               </p>
             </div>
             <div className="text-center">
-              <motion.button
-                onClick={() => handleLinkClick("/#contact")}
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-primary-foreground font-semibold px-6 py-3 rounded-lg transition-all duration-300"
               >
-                Get in Touch
-              </motion.button>
+                <Link
+                  to="/contact"
+                  className="bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-primary-foreground font-semibold px-6 py-3 rounded-lg transition-all duration-300"
+                >
+                  Get in Touch
+                </Link>
+              </motion.div>
             </div>
           </div>
         </motion.div>

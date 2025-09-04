@@ -33,7 +33,10 @@ const About = () => {
         <meta property="og:type" content="profile" />
         <meta property="og:url" content="https://rjryt.github.io/about" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta property="og:image" content="/images/seo/seo-about.png" />
+        <meta
+          property="og:image"
+          content="https://rjryt.github.io/images/seo/seo-about.png"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
@@ -46,7 +49,36 @@ const About = () => {
           content="Learn about RJRYT, a passionate MERN stack developer with expertise in building scalable, modern, and user-friendly web apps."
         />
         <meta name="twitter:url" content="https://rjryt.github.io/about" />
-        <meta name="twitter:image" content="/images/seo/seo-about.png" />
+        <meta
+          name="twitter:image"
+          content="https://rjryt.github.io/images/seo/seo-about.png"
+        />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://rjryt.github.io/about#webpage",
+            url: "https://rjryt.github.io/about",
+            name: "About RJRYT | MERN Stack Web Developer",
+            description:
+              "Learn about RJRYT, a passionate MERN stack developer with expertise in building scalable, modern, and user-friendly web apps.",
+            image: "https://rjryt.github.io/images/seo/seo-about.png",
+            author: {
+              "@type": "Person",
+              "@id": "https://rjryt.github.io/#person",
+            },
+            publisher: {
+              "@type": "Person",
+              "@id": "https://rjryt.github.io/#person",
+            },
+            isPartOf: {
+              "@type": "WebSite",
+              "@id": "https://rjryt.github.io/#website",
+            },
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">

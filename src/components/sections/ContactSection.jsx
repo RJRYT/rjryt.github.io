@@ -165,10 +165,6 @@ const ContactSection = () => {
     }
   };
 
-  const handleSocialClick = (url) => {
-    window.open(url, '_blank', 'noopener noreferrer');
-  };
-
   return (
     <section id="contact" className="py-20 relative">
       <div className="container mx-auto px-4">
@@ -258,9 +254,10 @@ const ContactSection = () => {
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
-                    <motion.button
+                    <motion.a
                       key={social.name}
-                      onClick={() => handleSocialClick(social.url)}
+                      href={social.url}
+                      target='_blank'
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
@@ -272,7 +269,7 @@ const ContactSection = () => {
                     >
                       <IconComponent className="w-6 h-6 mx-auto mb-2" />
                       <span className="text-xs font-medium">{social.name}</span>
-                    </motion.button>
+                    </motion.a>
                   );
                 })}
               </div>

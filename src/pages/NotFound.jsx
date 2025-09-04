@@ -23,8 +23,12 @@ const NotFound = () => {
         className="text-center glass-card p-8 rounded-2xl max-w-md mx-4"
       >
         <h1 className="text-6xl font-bold gradient-text mb-4">404</h1>
-        <h2 className="text-2xl font-semibold text-foreground mb-4">Page Not Found</h2>
-        <p className="text-foreground/70 mb-8">The page you're looking for doesn't exist.</p>
+        <h2 className="text-2xl font-semibold text-foreground mb-4">
+          Page Not Found
+        </h2>
+        <p className="text-foreground/70 mb-8">
+          The page you're looking for doesn't exist.
+        </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild className="bg-primary-gradient hover:shadow-primary">
             <Link to="/">
@@ -32,7 +36,12 @@ const NotFound = () => {
               Go Home
             </Link>
           </Button>
-          <Button variant="outline" onClick={() => window.history.back()} className="glass border-accent/50">
+          <Button
+            variant="outline"
+            onClick={() => window.history.back()}
+            className="glass border-accent/50"
+            aria-label="Go Back"
+          >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Go Back
           </Button>

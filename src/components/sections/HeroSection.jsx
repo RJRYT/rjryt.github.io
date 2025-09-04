@@ -64,7 +64,9 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="block text-foreground">Hi 👋 I'm</span>
-              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">RJRYT</span>
+              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                RJRYT
+              </span>
             </motion.h1>
 
             <motion.p
@@ -128,7 +130,7 @@ const HeroSection = () => {
               className="bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-primary-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105"
               asChild
             >
-              <a href="#about">
+              <a href="/projects">
                 <Code className="w-5 h-5 mr-2" />
                 View My Work
               </a>
@@ -140,7 +142,7 @@ const HeroSection = () => {
               className="bg-card/50 backdrop-blur-sm border-border hover:bg-auto text-foreground hover:text-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105"
               asChild
             >
-              <a href="#contact">
+              <a href="/contact">
                 <Globe className="w-5 h-5 mr-2" />
                 Let's Connect
               </a>

@@ -92,6 +92,73 @@ const ProjectDetail = () => {
           name="twitter:url"
           content={`https://rjryt.github.io/projects/${slug}`}
         />
+
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "SoftwareSourceCode",
+              "@id": `https://rjryt.github.io/projects/${slug}#code`,
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `https://rjryt.github.io/projects/${slug}#webpage`,
+              },
+              name: project.title,
+              description: project.description,
+              keywords: [
+                "RJRYT",
+                ...(project.technologies || []),
+                project.category || "",
+              ],
+              codeRepository: project.repoUrl || undefined,
+              programmingLanguage: project.technologies?.join(", "),
+              author: {
+                "@type": "Person",
+                "@id": "https://rjryt.github.io/#person",
+                name: "RJRYT",
+                url: "https://rjryt.github.io/",
+              },
+              publisher: {
+                "@type": "Organization",
+                "@id": "https://rjryt.github.io/#organization",
+                name: "RJRYT Portfolio",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://rjryt.github.io/images/profile/profile-1.jpg",
+                },
+              },
+              image: project.image ? [project.image] : undefined,
+              datePublished: project.date,
+              dateModified: project.updatedAt || project.date,
+              url: `https://rjryt.github.io/projects/${slug}`,
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "@id": `https://rjryt.github.io/projects/${slug}#breadcrumb`,
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://rjryt.github.io/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Projects",
+                  item: "https://rjryt.github.io/projects",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: project.title,
+                  item: `https://rjryt.github.io/projects/${slug}`,
+                },
+              ],
+            },
+          ])}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">
@@ -237,6 +304,7 @@ const ProjectDetail = () => {
                       variant="outline"
                       size="lg"
                       className="glass border-accent/50 text-accent hover:text-foreground/90 hover:bg-accent/50"
+                      aria-label="Share"
                     >
                       <Share2 className="w-5 h-5 mr-2" />
                       Share

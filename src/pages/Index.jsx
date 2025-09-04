@@ -36,7 +36,10 @@ const Index = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta property="og:image" content="/images/profile/profile-1.jpg" />
+        <meta
+          property="og:image"
+          content="https://rjryt.github.io/images/profile/profile-1.jpg"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -49,7 +52,51 @@ const Index = () => {
           content="Discover the portfolio of RJRYT, a MERN stack web developer building scalable and modern applications. Explore projects, blogs, and services."
         />
         <meta name="twitter:url" content="https://rjryt.github.io/" />
-        <meta name="twitter:image" content="/images/profile/profile-1.jpg" />
+        <meta
+          name="twitter:image"
+          content="https://rjryt.github.io/images/profile/profile-1.jpg"
+        />
+
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://rjryt.github.io/#website",
+              url: "https://rjryt.github.io/",
+              name: "RJRYT Portfolio",
+              description:
+                "Discover the portfolio of RJRYT, a MERN stack web developer building scalable and modern applications. Explore projects, blogs, and services.",
+              publisher: {
+                "@type": "Person",
+                "@id": "https://rjryt.github.io/#person",
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "@id": "https://rjryt.github.io/#person",
+              name: "RJRYT",
+              jobTitle: "MERN Stack Web Developer",
+              url: "https://rjryt.github.io/",
+              image: "https://rjryt.github.io/images/profile/profile-1.jpg",
+              sameAs: [
+                "https://github.com/rjryt",
+                "https://www.linkedin.com/in/robin-jr",
+                "https://www.instagram.com/rjryt_/",
+                "https://replit.com/@somaliyo",
+              ],
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  contactType: "business inquiries",
+                  url: "https://rjryt.github.io/contact",
+                  availableLanguage: ["English"],
+                },
+              ],
+            },
+          ])}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

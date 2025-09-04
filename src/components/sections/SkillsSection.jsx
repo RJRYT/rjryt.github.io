@@ -60,7 +60,7 @@ const SkillsSection = () => {
         { name: 'AWS (EC2, S3)', level: 80 },
         { name: 'NGINX', level: 85 },
         { name: 'CI/CD', level: 80 },
-        { name: 'Docker', level: 75 },
+        { name: 'Docker', level: 60 },
         { name: 'Linux Server', level: 85 },
         { name: 'GitHub Actions', level: 80 }
       ]

@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from "react";
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from "react-router-dom";
 import { 
   Search, Filter, ExternalLink, Github, 
   Calendar, Tag, Eye, ArrowRight
@@ -26,12 +26,18 @@ const ProjectsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [selectedTech, setSelectedTech] = useState('');
+  const [searchParams] = useSearchParams();
 
   // Get all data
   const allProjects = getAllProjects();
   const categories = getAllCategories();
   const technologies = getAllTechnologies();
   const statuses = getAllStatuses();
+
+  useEffect(() => {
+      const query = searchParams.get("search") || "";
+      setSearchTerm(query);
+    }, [searchParams]);
 
   // Filter and search projects
   const filteredProjects = useMemo(() => {
@@ -92,7 +98,10 @@ const ProjectsPage = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/projects" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta property="og:image" content="/images/seo/seo-projects.png" />
+        <meta
+          property="og:image"
+          content="https://rjryt.github.io/images/seo/seo-projects.png"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -105,7 +114,31 @@ const ProjectsPage = () => {
           content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
         />
         <meta name="twitter:url" content="https://rjryt.github.io/projects" />
-        <meta name="twitter:image" content="/images/seo/seo-projects.png" />
+        <meta
+          name="twitter:image"
+          content="https://rjryt.github.io/images/seo/seo-projects.png"
+        />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "@id": "https://rjryt.github.io/projects#webpage",
+            url: "https://rjryt.github.io/projects",
+            name: "Projects by RJRYT | MERN Stack Creations",
+            description:
+              "Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies.",
+            isPartOf: {
+              "@type": "WebSite",
+              "@id": "https://rjryt.github.io/#website",
+            },
+            about: {
+              "@type": "Person",
+              "@id": "https://rjryt.github.io/#person",
+              name: "RJRYT",
+            },
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">

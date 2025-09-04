@@ -19,6 +19,7 @@ import RedirectPage from "./pages/RedirectPage";
 import NotFound from "./pages/NotFound";
 import Team from "./pages/Team";
 import ErrorPage from "./pages/ErrorPage";
+import AutoScrollToTop from "./components/layout/AutoScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = ({ isServer = false, location = "/", helmetContext={} }) => {
           <Toaster />
           <Sonner />
           <ConditionRouter>
+            <AutoScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />

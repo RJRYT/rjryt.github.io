@@ -108,6 +108,62 @@ const BlogPost = () => {
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.excerpt} />
         <meta name="twitter:image" content={post.image} />
+
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "@id": `https://rjryt.github.io/blog/${slug}#blogpost`,
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `https://rjryt.github.io/blog/${slug}#webpage`,
+              },
+              headline: post.title,
+              description: post.excerpt,
+              image: post.image ? [post.image] : undefined,
+              author: {
+                "@type": "Person",
+                "@id": "https://rjryt.github.io/#person",
+              },
+              publisher: {
+                "@type": "Organization",
+                name: "RJRYT Portfolio",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://rjryt.github.io/images/profile/profile-1.jpg",
+                },
+              },
+              datePublished: post.date,
+              dateModified: post.updatedAt || post.date,
+              keywords: post.tags,
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://rjryt.github.io/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Blogs",
+                  item: "https://rjryt.github.io/blog",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: post.title,
+                  item: `https://rjryt.github.io/blog/${slug}`,
+                },
+              ],
+            },
+          ])}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-hero">
@@ -123,6 +179,7 @@ const BlogPost = () => {
                     variant="ghost"
                     size="sm"
                     className="text-foreground/70 hover:text-accent-foreground"
+                    aria-label="Back to Blog"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Blog
@@ -161,6 +218,7 @@ const BlogPost = () => {
                       size="sm"
                       onClick={handleShare}
                       className="ml-auto text-foreground/70 hover:text-accent-foreground"
+                      aria-label="Share"
                     >
                       <Share2 className="w-4 h-4 mr-2" />
                       Share
@@ -274,6 +332,7 @@ const BlogPost = () => {
                       }
                       variant="outline"
                       className="glass border-accent/50 hover:text-foreground/90 hover:bg-accent/50"
+                      aria-label="Get in Touch"
                     >
                       <ExternalLink className="w-5 h-5 mr-2" />
                       Get in Touch

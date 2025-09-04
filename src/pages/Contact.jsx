@@ -30,7 +30,10 @@ const Contact = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/contact" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta property="og:image" content="/images/seo/seo-contact.png" />
+        <meta
+          property="og:image"
+          content="https://rjryt.github.io/images/seo/seo-contact.png"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
@@ -40,7 +43,31 @@ const Contact = () => {
           content="Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection."
         />
         <meta name="twitter:url" content="https://rjryt.github.io/contact" />
-        <meta name="twitter:image" content="/images/seo/seo-contact.png" />
+        <meta
+          name="twitter:image"
+          content="https://rjryt.github.io/images/seo/seo-contact.png"
+        />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "@id": "https://rjryt.github.io/contact#webpage",
+            url: "https://rjryt.github.io/contact",
+            name: "Contact RJRYT | Get in Touch",
+            description:
+              "Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection.",
+            isPartOf: {
+              "@type": "WebSite",
+              "@id": "https://rjryt.github.io/#website",
+            },
+            mainEntity: {
+              "@type": "Person",
+              "@id": "https://rjryt.github.io/#person",
+            },
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">

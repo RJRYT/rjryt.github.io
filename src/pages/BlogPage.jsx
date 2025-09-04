@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from "react-router-dom";
 import { Calendar, Clock, Tag, Search, ArrowLeft } from 'lucide-react';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
@@ -14,11 +14,17 @@ const BlogPage = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     setPosts(getAllPosts());
     setFilteredPosts(getAllPosts());
   }, []);
+
+  useEffect(() => {
+    const query = searchParams.get("search") || "";
+    setSearchTerm(query);
+  }, [searchParams]);
 
   useEffect(() => {
     let filtered = posts;
@@ -75,7 +81,10 @@ const BlogPage = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/blog" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta property="og:image" content="/images/seo/seo-blogs.png" />
+        <meta
+          property="og:image"
+          content="https://rjryt.github.io/images/seo/seo-blogs.png"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -88,7 +97,50 @@ const BlogPage = () => {
           content="Read blogs by RJRYT on web development, MERN stack tutorials, coding tips, and industry insights."
         />
         <meta name="twitter:url" content="https://rjryt.github.io/blog" />
-        <meta name="twitter:image" content="/images/seo/seo-blogs.png" />
+        <meta
+          name="twitter:image"
+          content="https://rjryt.github.io/images/seo/seo-blogs.png"
+        />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Blog",
+              "@id": "https://rjryt.github.io/blog#blog",
+              url: "https://rjryt.github.io/blog",
+              name: "Blog by RJRYT | Web Development Insights",
+              description:
+                "Read blogs by RJRYT on web development, MERN stack tutorials, coding tips, and industry insights.",
+              publisher: {
+                "@type": "Person",
+                "@id": "https://rjryt.github.io/#person",
+              },
+              author: {
+                "@type": "Person",
+                "@id": "https://rjryt.github.io/#person",
+              },
+              image: "https://rjryt.github.io/images/seo/seo-blogs.png",
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://rjryt.github.io/blog#webpage",
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://rjryt.github.io/#website",
+              url: "https://rjryt.github.io",
+              potentialAction: {
+                "@type": "SearchAction",
+                target:
+                  "https://rjryt.github.io/blog?search={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            },
+          ])}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-hero">
@@ -104,6 +156,7 @@ const BlogPage = () => {
                     variant="ghost"
                     size="sm"
                     className="text-foreground/70 hover:text-accent-foreground"
+                    aria-label="Back to Home"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Home
@@ -151,6 +204,7 @@ const BlogPage = () => {
                       variant={selectedTag === "" ? "default" : "outline"}
                       size="sm"
                       onClick={() => setSelectedTag("")}
+                      aria-label="All"
                       className={
                         selectedTag === ""
                           ? "bg-primary-gradient"
@@ -164,6 +218,7 @@ const BlogPage = () => {
                         key={tag}
                         variant={selectedTag === tag ? "default" : "outline"}
                         size="sm"
+                        aria-label={tag}
                         onClick={() => setSelectedTag(tag)}
                         className={
                           selectedTag === tag

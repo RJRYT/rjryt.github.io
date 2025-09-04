@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { renderToString } from "react-dom/server";
-import App from "../src/App"; // Adjusted import
+import App from "../src/App"; 
+import { redirectsData } from "../src/utils/redirects.js";
 
 // Static routes shown on Home and also available as pages
 const STATIC_ROUTES = [
@@ -45,6 +46,15 @@ function collectMarkdownRoutes(dir, basePath) {
   });
 }
 
+// Redirects from redirectsData
+function collectRedirects() {
+  try {
+    return redirectsData.map((item) => item.shortUrl);
+  } catch {
+    return [];
+  }
+}
+
 // ======= Main =======
 (function main() {
   // List all routes
@@ -52,6 +62,7 @@ function collectMarkdownRoutes(dir, basePath) {
     ...STATIC_ROUTES,
     ...collectMarkdownRoutes(BLOG_DIR, "/blog"),
     ...collectMarkdownRoutes(PROJECTS_DIR, "/projects"),
+    ...collectRedirects(),
   ];
 
   // Output directory (matches Vite’s build output)

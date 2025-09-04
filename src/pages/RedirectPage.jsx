@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowRight, Clock, Shield } from 'lucide-react';
-import { performRedirect } from '@/utils/redirects';
+import { performRedirect, getLinkInfoById } from "@/utils/redirects";
 import { Button } from '@/components/ui/button';
 
 const RedirectPage = () => {
@@ -23,11 +23,13 @@ const RedirectPage = () => {
     try {
       // Get redirect information (without performing the redirect yet)
       const targetUrl = performRedirect(key);
+      const { title, description } = getLinkInfoById(key);
       setRedirect({
         key,
         targetUrl,
         title: `Redirecting to ${new URL(targetUrl).hostname}`,
-        description: 'You will be redirected automatically in a few seconds.'
+        description: 'You will be redirected automatically in a few seconds.',
+        linkInfo: { title, description }
       });
     } catch (err) {
       setError(err.message);
@@ -119,33 +121,41 @@ const RedirectPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-card to-background flex items-center justify-center">
       <Helmet>
-        <title>Redirects | Quick Links by RJRYT</title>
+        <title>Redirecting… | Quick Links by RJRYT</title>
         <meta
           name="description"
-          content="Custom redirect links managed by RJRYT for easy navigation. Example: /r/ncrp redirects to NCRP website."
-        />
-        <meta
-          name="keywords"
-          content="redirect links, custom redirects, RJRYT"
+          content={`You are being redirected to ${
+            new URL(redirect.targetUrl).hostname
+          }. Please verify the destination before continuing.`}
         />
         <meta name="robots" content="noindex, nofollow" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Redirects | Quick Links by RJRYT" />
+        <meta
+          property="og:title"
+          content="Redirecting… | Quick Links by RJRYT"
+        />
         <meta
           property="og:description"
-          content="Custom redirect links managed by RJRYT for easy navigation."
+          content={`You are being redirected to ${
+            new URL(redirect.targetUrl).hostname
+          }.`}
         />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Redirects | Quick Links by RJRYT" />
+        <meta
+          name="twitter:title"
+          content="Redirecting… | Quick Links by RJRYT"
+        />
         <meta
           name="twitter:description"
-          content="Custom redirect links managed by RJRYT for easy navigation."
+          content={`You are being redirected to ${
+            new URL(redirect.targetUrl).hostname
+          }.`}
         />
 
         {/* Automatic redirect meta tag as fallback */}
@@ -153,6 +163,32 @@ const RedirectPage = () => {
           httpEquiv="refresh"
           content={`${countdown};url=${redirect.targetUrl}`}
         />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://rjryt.github.io/redirect",
+            url: "https://rjryt.github.io/redirect",
+            name: "Redirecting… | Quick Links by RJRYT",
+            description: `You are being redirected to ${
+              new URL(redirect.targetUrl).hostname
+            }.`,
+            isPartOf: {
+              "@type": "WebSite",
+              "@id": "https://rjryt.github.io/#website",
+            },
+            publisher: {
+              "@type": "Person",
+              "@id": "https://rjryt.github.io/#person",
+            },
+            potentialAction: {
+              "@type": "ViewAction",
+              target: redirect.targetUrl,
+            },
+          })}
+        </script>
       </Helmet>
 
       <motion.div

@@ -108,7 +108,10 @@ const Services = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/services" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta property="og:image" content="/images/seo/seo-services.png" />
+        <meta
+          property="og:image"
+          content="https://rjryt.github.io/images/seo/seo-services.png"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
@@ -121,7 +124,56 @@ const Services = () => {
           content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions."
         />
         <meta name="twitter:url" content="https://rjryt.github.io/services" />
-        <meta name="twitter:image" content="/images/seo/seo-services.png" />
+        <meta
+          name="twitter:image"
+          content="https://rjryt.github.io/images/seo/seo-services.png"
+        />
+
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "@id": "https://rjryt.github.io/services#webpage",
+              url: "https://rjryt.github.io/services",
+              name: "Services | Web Development by RJRYT",
+              description:
+                "Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions.",
+              isPartOf: {
+                "@type": "WebSite",
+                "@id": "https://rjryt.github.io/#website",
+              },
+              about: {
+                "@type": "Person",
+                "@id": "https://rjryt.github.io/#person",
+                name: "RJRYT",
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "@id": "https://rjryt.github.io/services#service",
+              serviceType: "Web Development",
+              provider: {
+                "@type": "Person",
+                "@id": "https://rjryt.github.io/#person",
+                name: "RJRYT",
+                url: "https://rjryt.github.io/",
+              },
+              description:
+                "Professional web development services by RJRYT including full-stack MERN development, React apps, Node.js APIs, and scalable solutions.",
+              areaServed: {
+                "@type": "Place",
+                name: "Worldwide",
+              },
+              availableChannel: {
+                "@type": "ServiceChannel",
+                serviceUrl: "https://rjryt.github.io/contact",
+                availableLanguage: ["English"],
+              },
+            },
+          ])}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">

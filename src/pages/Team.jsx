@@ -83,7 +83,10 @@ const Team = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.github.io/team" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta property="og:image" content="/images/seo/seo-team.png" />
+        <meta
+          property="og:image"
+          content="https://rjryt.github.io/images/seo/seo-team.png"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
@@ -93,7 +96,56 @@ const Team = () => {
           content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products."
         />
         <meta name="twitter:url" content="https://rjryt.github.io/team" />
-        <meta name="twitter:image" content="/images/seo/seo-team.png" />
+        <meta
+          name="twitter:image"
+          content="https://rjryt.github.io/images/seo/seo-team.png"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "@id": "https://rjryt.github.io/team#webpage",
+              url: "https://rjryt.github.io/team",
+              name: "Team | Collaborations by RJRYT",
+              description:
+                "Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products.",
+              isPartOf: {
+                "@type": "WebSite",
+                "@id": "https://rjryt.github.io/#website",
+              },
+              about: {
+                "@type": "Person",
+                "@id": "https://rjryt.github.io/#person",
+                name: "RJRYT",
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": "https://rjryt.github.io/#organization",
+              name: "RJRYT Collaborations",
+              url: "https://rjryt.github.io/team",
+              description:
+                "Collaborative team working with RJRYT to build impactful applications and digital products.",
+              image: "https://rjryt.github.io/images/seo/seo-team.png",
+              member: [
+                {
+                  "@type": "Person",
+                  "@id": "https://rjryt.github.io/#person",
+                  name: "RJRYT",
+                  roleName: "Lead MERN Stack Developer",
+                },
+                {
+                  "@type": "Person",
+                  "@id": "https://rjryt.github.io/#person",
+                  name: "BOSS",
+                  roleName: "Web Developer",
+                },
+              ],
+            },
+          ])}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">

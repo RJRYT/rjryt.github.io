@@ -159,4 +159,15 @@ function generateRobotsTxt() {
   const robotsTxt = generateRobotsTxt();
   fs.writeFileSync(path.join(DIST_DIR, "robots.txt"), robotsTxt, "utf8");
   console.log("[sitemap] Wrote robots.txt → dist/robots.txt");
+
+  // Optional: copy sitemap.xml to sitemap-new.xml
+  try {
+      fs.copyFileSync(
+        path.join(DIST_DIR, "sitemap.xml"),
+        path.join(DIST_DIR, "sitemap-new.xml")
+      );
+      console.log("[sitemap] Copied sitemap.xml to sitemap-new.xml");
+    } catch (error) {
+      console.error("Error copying sitemap.xml:", error.message);
+    }
 })();

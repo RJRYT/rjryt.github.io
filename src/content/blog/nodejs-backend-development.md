@@ -1,10 +1,10 @@
 ---
 title: "Building Scalable Backend APIs with Node.js and Express"
-date: "2024-01-10"
+date: "2025-08-10"
 tags: ["Node.js", "Express", "Backend", "API", "JavaScript"]
 excerpt: "Learn how to build robust and scalable backend APIs using Node.js and Express.js with best practices and security considerations."
-image: 'https://rjryt.github.io/images/projects/ncrp.png'
-featured: true
+image: '/images/blog/nodejs-backend-development.png'
+featured: false
 ---
 
 # Building Scalable Backend APIs with Node.js and Express

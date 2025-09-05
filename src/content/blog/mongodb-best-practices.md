@@ -1,9 +1,9 @@
 ---
 title: "MongoDB Best Practices for Modern Web Applications"
-date: "2024-01-05"
+date: "2025-08-05"
 tags: ["MongoDB", "Database", "NoSQL", "Performance"]
 excerpt: "Learn essential MongoDB best practices for designing efficient schemas, optimizing queries, and ensuring data consistency in your applications."
-image: 'https://rjryt.github.io/images/projects/ncrp.png'
+image: '/images/blog/mongodb-best-practices.png'
 featured: false
 ---
 

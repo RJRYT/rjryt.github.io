@@ -1,10 +1,10 @@
 ---
 title: "Getting Started with React: A Beginner's Guide"
-date: "2024-01-15"
+date: "2025-08-15"
 tags: ["React", "JavaScript", "Frontend", "Tutorial"]
 excerpt: "Learn the fundamentals of React.js and start building modern user interfaces with this comprehensive beginner's guide."
-image: 'https://rjryt.github.io/images/projects/ncrp.png'
-featured: true
+image: '/images/blog/getting-started-with-react.png'
+featured: false
 ---
 
 # Getting Started with React: A Beginner's Guide

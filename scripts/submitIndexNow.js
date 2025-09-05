@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import { redirectsData } from "../src/utils/redirects.js";
 
 // IndexNow configuration
 const HOST = "rjryt.github.io";

@@ -7,7 +7,11 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      const scrollTop = window.scrollY; // how much scrolled from top
+      const windowHeight = window.innerHeight; // visible height
+      const fullHeight = document.documentElement.scrollHeight; // total page height
+
+      if (scrollTop > 300 && scrollTop + windowHeight <= fullHeight - 1) {
         setIsVisible(true);
       } else {
         setIsVisible(false);

@@ -198,6 +198,11 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  html, body {
+    overflow-x: hidden;   /* Hide horizontal scrolling */
+    overflow-y: auto;     /* Allow vertical scrolling */
+  }
+
   input::placeholder,
   textarea::placeholder {
     color: var(--color-input);
@@ -353,6 +358,7 @@
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 0; 
 }
 
 ::-webkit-scrollbar-track {
@@ -366,6 +372,13 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary));
+}
+
+/* Hide scrollbar buttons (arrows) */
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 @layer utilities {

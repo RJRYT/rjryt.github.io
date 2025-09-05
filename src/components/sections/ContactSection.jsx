@@ -264,7 +264,7 @@ const ContactSection = () => {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`bg-card/50 backdrop-blur-sm border border-border p-4 rounded-xl text-muted-foreground hover:text-accent hover:border-accent/50 transition-all duration-300 group`}
+                      className={`bg-card/50 flex flex-col justify-between items-center backdrop-blur-sm border border-border p-4 rounded-xl text-muted-foreground hover:text-accent hover:border-accent/50 transition-all duration-300 group`}
                       title={social.name}
                     >
                       <IconComponent className="w-6 h-6 mx-auto mb-2" />

@@ -10,13 +10,13 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    const currentTheme = localStorage.getItem("theme");
+    setTheme(currentTheme);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-    const currentTheme = localStorage.getItem("theme");
-    setTheme(currentTheme);
   }, []);
 
   const navigation = [
@@ -52,9 +52,9 @@ const Navigation = () => {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-gradient-to-r cursor-pointer from-primary to-accent bg-clip-text text-transparent"
           >
-            RJRYT OFFICIAL
+            <Link to="/">RJRYT OFFICIAL</Link>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -64,11 +64,12 @@ const Navigation = () => {
                 key={item.name}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="group relative"
               >
                 <Link
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-foreground/80 hover:text-accent transition-colors relative group"
+                  className="text-foreground/80 hover:text-accent transition-colors relative"
                 >
                   {item.name}
                 </Link>

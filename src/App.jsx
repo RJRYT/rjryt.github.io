@@ -32,11 +32,11 @@ const App = ({ isServer = false, location = "/", helmetContext={} }) => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/sw.js")
-        .then((registration) => {
-          console.log("SW registered: ", registration);
+        .then(() => {
+          console.log("[serviceWorker]: SW registered");
         })
-        .catch((registrationError) => {
-          console.log("SW registration failed: ", registrationError);
+        .catch(() => {
+          console.log("[serviceWorker]: SW registration failed");
         });
     }
   }, []);

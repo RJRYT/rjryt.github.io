@@ -1,7 +1,7 @@
 ---
 title: "Securing Your Express API from Common Vulnerabilities"
 date: "2025-09-05"
-tags: \["Express","Security","API","Node.js","OWASP"]
+tags: ["Express","Security","API","Node.js","OWASP"]
 excerpt: "A practical, hands-on guide to hardening Express APIs: middleware, auth patterns, input validation, rate limiting, headers, and deployment best practices."
 image: '/images/blog/securing-express-api.png'
 featured: false

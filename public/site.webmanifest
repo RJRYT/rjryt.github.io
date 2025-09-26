@@ -3,9 +3,15 @@
   "short_name": "RJRYT",
   "description": "Discover the portfolio of RJRYT, a MERN stack web developer building scalable and modern applications. Explore projects, blogs, and services.",
   "start_url": "/",
+  "id": "/",
   "display": "standalone",
   "background_color": "#1e3c72",
   "theme_color": "#1e3c72",
+  "dir": "ltr",
+  "lang": "en-US",
+  "scope": "/",
+  "orientation": "portrait",
+  "categories": ["portfolio", "developer", "blog", "services"],
   "display_override": ["window-controls-overlay", "minimal-ui"],
   "icons": [
     {
@@ -17,6 +23,50 @@
       "src": "/images/icon/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshots/homepage-desktop.png",
+      "sizes": "1024x768",
+      "form_factor": "wide",
+      "type": "image/png",
+      "label": "Homepage"
+    },
+    {
+      "src": "/images/screenshots/projects.png",
+      "sizes": "1024x768",
+      "form_factor": "wide",
+      "type": "image/png",
+      "label": "Projects"
+    },
+    {
+      "src": "/images/screenshots/blogs.png",
+      "sizes": "1024x768",
+      "form_factor": "wide",
+      "type": "image/png",
+      "label": "Blogs"
+    },
+    {
+      "src": "/images/screenshots/homepage-mobile.png",
+      "sizes": "480x800",
+      "form_factor": "narrow",
+      "type": "image/png",
+      "label": "Homepage"
+    },
+    {
+      "src": "/images/screenshots/services.png",
+      "sizes": "480x800",
+      "form_factor": "narrow",
+      "type": "image/png",
+      "label": "Services"
+    },
+    {
+      "src": "/images/screenshots/about.png",
+      "sizes": "480x800",
+      "form_factor": "narrow",
+      "type": "image/png",
+      "label": "About"
     }
   ]
 }

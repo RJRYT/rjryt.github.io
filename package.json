@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/generate-sitemap.mjs",
-    "postbuild": "vite-node scripts/prerender.jsx",
+    "postbuild": "vite-node --mode production scripts/prerender.jsx",
     "indexnow": "node scripts/submitIndexNow.js",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

@@ -1,6 +1,6 @@
 ---
 title: "ytsearch.js — YouTube Search Wrapper"
-description: "A lightweight npm package for searching YouTube content directly in Node.js applications."
+description: "A powerful Node.js package for YouTube search that supports videos, channels, playlists, movies, and live streams — all without the official API."
 technologies: ["Node.js", "npm"]
 category: "Package"
 status: "Maintained"
@@ -15,18 +15,19 @@ date: "2023-07-15"
 
 ## Overview
 
-**ytsearch.js** is a simple and lightweight **Node.js wrapper** for searching YouTube content.  
-It enables developers to quickly fetch YouTube video data (title, views, etc.) directly into their projects without relying on complex APIs.  
-Published to the **npm registry**, the package is designed to be easy-to-use and plug-and-play for any Node.js application.
+**ytsearch.js** is a powerful yet lightweight **Node.js package** that allows developers to perform YouTube searches without relying on the official YouTube Data API.
+It supports fetching **videos, channels, playlists, movies, and live streams**, complete with pagination, sorting, and extended metadata. Designed with a **developer-friendly API**, it offers a clean, fast, and efficient way to integrate YouTube search into any Node.js application.
 
 ## Features
 
-- 🔍 **Search YouTube videos** directly from Node.js.  
-- ⚡ **Lightweight & Fast** — minimal dependencies.  
-- 📦 **Easy Installation** via `npm install ytsearch.js`.  
-- 🛠️ **Beginner-Friendly API** — simple async function call.  
-- 📊 **Metadata Access** — titles, view counts, and more.  
-- 🌐 **Available on npm** with growing downloads.  
+* 🔍 **Search YouTube content** — videos, channels, playlists, movies, and live streams.
+* ⚡ **Fast & Lightweight** — optimized with minimal dependencies.
+* 📦 **Easy Installation** via `npm install ytsearch.js`.
+* 🛠️ **Developer-Friendly API** — async/await support and clean typings.
+* 📊 **Rich Metadata Access** — titles, views, channel details, and more.
+* 📑 **Pagination Support** — handle large playlists and multi-page search results.
+* 🎯 **Advanced Options** — filtering, sorting, and combined multi-type searches (`any`).
+* ✅ **Error Handling** — robust mechanisms to ensure reliability.
 
 ## Installation
 
@@ -34,38 +35,43 @@ Published to the **npm registry**, the package is designed to be easy-to-use and
 npm install ytsearch.js
 ```
 
+Requires **Node.js v14+**.
+
 ## Usage
 
 ```js
-const ytsearch = require('ytsearch.js');
+const { searchYouTube } = require("ytsearch.js");
 
-const results = await ytsearch("Black Panther");
-for (let i = 0; i < 6; i++) {
-  console.log(results[i].title, results[i].shortViewCount);
-}
+(async () => {
+  const results = await searchYouTube("Black Panther", {
+    type: "video",
+    limit: 10,
+  });
+  results.videos.forEach((item) => console.log(item.type, item.title));
+})();
 ```
 
 ### Example Output
 
 ```
-Marvel Studios Black Panther - Official Trailer 50.5M
-Wakanda Battle - I’m Not Dead Scene - Black Panther Returns - Black Panther (2018) Movie Clip 19.9M
-Hiding in the Shadows | The Real Black Panther | National Geographic Wild UK 4.2M
-Meet The K2 Black Panther – One Of The World’s Best Tanks (Not Made In the USA) 13K
-(Black Panther) Best Action Hollywood Blockbuster Movie in Hindi Full Action HD 633.7K
-Black Panther - Car Chase Scene - Movie clip Epic 4K UHD 428.8K
+video Marvel Studios Black Panther - Official Trailer
+video Wakanda Battle - I’m Not Dead Scene - Black Panther Returns
+video Hiding in the Shadows | The Real Black Panther | National Geographic Wild UK
+video Meet The K2 Black Panther – One Of The World’s Best Tanks
+video (Black Panther) Best Action Hollywood Blockbuster Movie in Hindi
+video Black Panther - Car Chase Scene - Movie clip Epic 4K UHD
 ```
 
 ## Tech Stack
 
-- **Node.js** — Core runtime environment.  
-- **npm** — Package distribution.  
+* **Node.js** — Core runtime environment.
+* **npm** — Package distribution.
 
 ## Status
 
-✅ Completed (July 15, 2023)  
-🛠️ Actively maintained with plans for new features (extended metadata, better error handling, possibly YouTube Data API v3 integration).  
+🛠️ Actively maintained with continuous updates — including **playlist pagination**, **advanced metadata fetching**, **sortable search results**, and planned **API enhancements**.
 
 ## Links
 
-- 📦 **NPM Package**: [npmjs.com/package/ytsearch.js](https://www.npmjs.com/package/ytsearch.js)  
+* 📦 **NPM Package**: [npmjs.com/package/ytsearch.js](https://www.npmjs.com/package/ytsearch.js)
+* 📖 **Documentation & Wiki**: [GitHub Wiki](https://github.com/RJRYT/ytsearch.js/wiki)

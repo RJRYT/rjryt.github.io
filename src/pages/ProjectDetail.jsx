@@ -385,18 +385,16 @@ const ProjectDetail = () => {
                             {children}
                           </blockquote>
                         ),
-                        code: ({ children, inline }) =>
-                          inline ? (
-                            <code className="px-2 py-1 bg-muted rounded text-sm font-mono text-accent">
-                              {children}
-                            </code>
-                          ) : (
-                            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mb-4">
-                              <code className="text-sm font-mono text-foreground">
-                                {children}
-                              </code>
-                            </pre>
-                          ),
+                        pre: ({ children }) => (
+                          <pre className="bg-muted p-4 rounded-lg overflow-x-auto mb-4">
+                            {children}
+                          </pre>
+                        ),
+                        code: ({ children }) => (
+                          <code className="px-2 py-1 bg-muted rounded text-sm font-mono text-foreground">
+                            {children}
+                          </code>
+                        ),
                         a: ({ href, children }) => (
                           <a
                             href={href}

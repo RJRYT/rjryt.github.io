@@ -364,12 +364,17 @@
     function resize() { confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
     addEventListener('resize', resize); resize();
 
+    function isPageVisible() {
+      return !document.hidden;
+    }
+
     // unified particles array for confetti + fireworks
     let particles = [];
     let confettiActive = true;
 
     function spawnConfetti(x, y, count = 60) {
       playConfetti();
+      if (!isPageVisible()) return;
       for (let i = 0; i < count; i++) {
         particles.push({
           type: 'confetti',
@@ -408,6 +413,7 @@
     }
 
     function confettiLoop() {
+      if (!isPageVisible()) return;
       ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
@@ -587,6 +593,7 @@
       }
     }
     function playConfetti() {
+      if (!isPageVisible()) return;
       try {
         ensureAudio();
         if (ctxAudio.state === 'suspended') ctxAudio.resume();
@@ -630,6 +637,29 @@
         console.error('Confetti error:', error);
       }
     }
+    function playClick() {
+      try {
+        ensureAudio();
+        if (ctxAudio.state === 'suspended') ctxAudio.resume();
+        const now = ctxAudio.currentTime;
+
+        // Crisp click: Short square wave with fast decay
+        const oscClick = ctxAudio.createOscillator();
+        oscClick.type = 'square';
+        oscClick.frequency.value = 800; // Sharp mid-pitch
+        const gainClick = ctxAudio.createGain();
+        oscClick.connect(gainClick).connect(ctxAudio.destination);
+        gainClick.gain.setValueAtTime(0, now);
+        gainClick.gain.linearRampToValueAtTime(0.03, now + 0.001); // Instant snap
+        gainClick.gain.exponentialRampToValueAtTime(0.0001, now + 0.05); // Ultra-quick fade
+        oscClick.start(now);
+        oscClick.stop(now + 0.05);
+
+        console.log('Button clicked—crisp!'); // For debug
+      } catch (error) {
+        console.error('Click error:', error);
+      }
+    }
 
     // ---- Controls wiring ----
     const playBtn = document.getElementById('playBtn');
@@ -638,9 +668,9 @@
     const memBtn = document.getElementById('memBtn');
     const fwBtn = document.getElementById('fwBtn');
 
-    playBtn.addEventListener('click', () => { playMelody(); spawnConfetti(undefined, undefined, 120); });
+    playBtn.addEventListener('click', () => { playClick(); playMelody(); spawnConfetti(undefined, undefined, 120); });
 
-    confettiBtn.addEventListener('click', () => { confettiActive = !confettiActive; confettiBtn.setAttribute('aria-pressed', String(confettiActive)); if (confettiActive) spawnConfetti(); });
+    confettiBtn.addEventListener('click', () => { playClick(); confettiActive = !confettiActive; confettiBtn.setAttribute('aria-pressed', String(confettiActive)); if (confettiActive) spawnConfetti(); });
 
     // balloons
     const balloonsWrap = document.getElementById('balloons');
@@ -654,10 +684,18 @@
       b.animate([{ transform: 'translateY(0) rotate(0deg)', opacity: 1 }, { transform: `translateY(-${innerHeight + 200}px) rotate(${Math.random() * 40 - 20}deg)`, opacity: 0.95 }], { duration: dur, easing: 'cubic-bezier(.17,.67,.32,1)', iterations: 1 }).onfinish = () => { playPop(); b.remove(); };
       b.addEventListener('click', () => { playPop(); b.remove(); });
     }
-    balloonBtn.addEventListener('click', () => { for (let i = 0; i < 6; i++) setTimeout(() => createBalloon(), i * 250); });
+    balloonBtn.addEventListener('click', () => { playClick(); for (let i = 0; i < 6; i++) setTimeout(() => createBalloon(), i * 250); });
 
     // click anywhere small confetti burst
     addEventListener('click', (e) => { if (confettiActive) spawnConfetti(e.clientX, e.clientY, 30); });
+
+    addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (ctxAudio) ctxAudio.suspend();
+      } else {
+        if (ctxAudio && ctxAudio.state === 'suspended') ctxAudio.resume();
+      }
+    });
 
     // Memories modal & fireworks control
     const memModal = document.getElementById('memModal');
@@ -672,11 +710,11 @@
     }
     function stopFireworksLoop() { if (fwInterval) clearInterval(fwInterval); fwInterval = null; }
 
-    memBtn.addEventListener('click', () => { memModal.classList.remove('hidden'); memModal.classList.add('flex'); startFireworksLoop(); });
-    closeMem.addEventListener('click', () => { memModal.classList.add('hidden'); memModal.classList.remove('flex'); stopFireworksLoop(); });
+    memBtn.addEventListener('click', () => { playClick(); memModal.classList.remove('hidden'); memModal.classList.add('flex'); startFireworksLoop(); });
+    closeMem.addEventListener('click', () => { playClick(); memModal.classList.add('hidden'); memModal.classList.remove('flex'); stopFireworksLoop(); });
 
     // dedicated fireworks button
-    fwBtn.addEventListener('click', () => { spawnFirework(undefined, undefined, 48); });
+    fwBtn.addEventListener('click', () => { playClick(); spawnFirework(undefined, undefined, 48); });
 
     // periodic gentle bursts
     setInterval(() => { if (Math.random() < 0.5 && confettiActive) spawnConfetti(Math.random() * innerWidth, Math.random() * innerHeight / 2, 40); }, 3500);
@@ -697,8 +735,61 @@
 
     // gentle typewriter for name
     const nameEl = document.getElementById('nameText');
-    (function typeName() { const txt = PERSON.name; let i = 0; let dir = 1; setInterval(() => { nameEl.textContent = txt.slice(0, i); i += dir; if (i > txt.length) { dir = -1; i = txt.length - 1 } if (i < 0) { dir = 1; i = 1 } }, 200); })();
+    const txt = PERSON.name;
+    let i = 0;
+    let dir = 1;
+    let isLooping = true;
+    let intervalId;
 
+    function step() {
+      nameEl.textContent = txt.slice(0, i);
+      if (!isLooping) {
+        if (dir === 1 && i === txt.length) {
+          clearInterval(intervalId);
+          return;
+        } else if (dir === -1 && i === 1) {
+          clearInterval(intervalId);
+          return;
+        }
+      }
+      i += dir;
+      if (isLooping) {
+        if (i > txt.length) {
+          dir = -1;
+          i = txt.length - 1;
+        } else if (i < 0) {
+          dir = 1;
+          i = 1;
+        }
+      }
+    }
+
+    // Start the loop
+    intervalId = setInterval(step, 200);
+
+    // Click handler: First click completes current round and stops; second restarts loop
+    nameEl.addEventListener('click', () => {
+      if (isLooping) {
+        isLooping = false;
+        // Continues in current direction until end, then stops
+      } else {
+        isLooping = true;
+        i = 0;
+        dir = 1;
+        clearInterval(intervalId);
+        intervalId = setInterval(step, 200);
+      }
+    });
+
+    // Hover effect: Pointer cursor and subtle underline
+    nameEl.style.cursor = 'pointer';
+    nameEl.style.transition = 'text-decoration 0.2s ease'; // Smooth
+    nameEl.addEventListener('mouseenter', () => {
+      nameEl.style.textDecoration = 'underline';
+    });
+    nameEl.addEventListener('mouseleave', () => {
+      nameEl.style.textDecoration = '';
+    });
   </script>
 </body>
 

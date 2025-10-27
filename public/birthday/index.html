@@ -703,10 +703,11 @@
     let fwInterval = null;
 
     function startFireworksLoop() {
+      if (!isPageVisible()) return;
       // initial bursts
       spawnFirework();
       if (fwInterval) clearInterval(fwInterval);
-      fwInterval = setInterval(() => { if (confettiActive) { spawnFirework(); } }, 1400);
+      fwInterval = setInterval(() => { if (confettiActive && isPageVisible()) { spawnFirework(); } }, 1400);
     }
     function stopFireworksLoop() { if (fwInterval) clearInterval(fwInterval); fwInterval = null; }
 

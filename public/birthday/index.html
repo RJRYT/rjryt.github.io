@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -9,49 +10,135 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --accent:#ffd84d; /* Milkybar yellow */
-      --accent-dark:#f2c94c;
-      --bg:#000000; /* Saniya's favorite: black */
+    :root {
+      --accent: #ffd84d;
+      /* Milkybar yellow */
+      --accent-dark: #f2c94c;
+      --bg: #000000;
+      /* Saniya's favorite: black */
     }
-    html,body{height:100%}
-    body{font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: radial-gradient(1000px 600px at 10% 10%, rgba(255,216,77,0.06), transparent), radial-gradient(800px 500px at 90% 90%, rgba(248,200,60,0.04), transparent), var(--bg); color: #fff;}
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1000px 600px at 10% 10%, rgba(255, 216, 77, 0.06), transparent), radial-gradient(800px 500px at 90% 90%, rgba(248, 200, 60, 0.04), transparent), var(--bg);
+      color: #fff;
+    }
 
     /* shimmering headline */
-    .shimmer{
-      background: linear-gradient(90deg, rgba(255,255,255,0.07), rgba(255,255,255,0.35), rgba(255,255,255,0.07));
+    .shimmer {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.07));
       background-size: 200% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: shimmer 3s linear infinite;
     }
-    @keyframes shimmer{ from{background-position:0%} to{background-position:200%}}
+
+    @keyframes shimmer {
+      from {
+        background-position: 0%
+      }
+
+      to {
+        background-position: 200%
+      }
+    }
 
     /* floating items */
-    .float{animation: float 6s ease-in-out infinite}
-    @keyframes float{ 0%{transform:translateY(0)} 50%{transform:translateY(-18px)} 100%{transform:translateY(0)} }
+    .float {
+      animation: float 6s ease-in-out infinite
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-18px)
+      }
+
+      100% {
+        transform: translateY(0)
+      }
+    }
 
     /* confetti canvas sits on top */
-    #confetti{position:fixed; inset:0; pointer-events:none; z-index:50}
+    #confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50
+    }
 
     /* balloons */
-    .balloon{width:60px;height:80px;border-radius:50% 50% 45% 45%; position:absolute; transform-origin:center bottom; box-shadow:0 6px 18px rgba(0,0,0,0.6);}
-    .string{width:2px;height:60px;background:rgba(255,255,255,0.06);position:absolute;left:50%;transform:translateX(-50%);bottom:-56px}
+    .balloon {
+      width: 60px;
+      height: 80px;
+      border-radius: 50% 50% 45% 45%;
+      position: absolute;
+      transform-origin: center bottom;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    }
+
+    .string {
+      width: 2px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.06);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -56px
+    }
 
     /* golden pulse button */
-    .btn-gold{background:linear-gradient(90deg,var(--accent),var(--accent-dark)); color:#111; padding:.6rem 1.1rem; border-radius:12px; font-weight:700; box-shadow:0 8px 30px rgba(242,200,76,0.18)}
+    .btn-gold {
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: #111;
+      padding: .6rem 1.1rem;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: 0 8px 30px rgba(242, 200, 76, 0.18)
+    }
 
     /* small responsive tweaks */
-    @media (max-width:640px){ .hero-title{font-size:1.6rem} .hero-sub{font-size:.95rem} .balloon{width:48px;height:64px} }
+    @media (max-width:640px) {
+      .hero-title {
+        font-size: 1.6rem
+      }
+
+      .hero-sub {
+        font-size: .95rem
+      }
+
+      .balloon {
+        width: 48px;
+        height: 64px
+      }
+    }
 
     /* fireworks (simple) */
-    .firework{position:absolute; inset:auto; pointer-events:none}
+    .firework {
+      position: absolute;
+      inset: auto;
+      pointer-events: none
+    }
 
     /* modal */
-    .glass{backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.05)}
+    .glass {
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.05)
+    }
   </style>
 </head>
+
 <body>
   <canvas id="confetti"></canvas>
   <div id="app" class="min-h-screen w-full flex items-center justify-center p-6">
@@ -71,13 +158,20 @@
         </svg>
       </div>
 
+      <!-- balloons container -->
+      <div id="balloons"></div>
+
       <section class="relative z-10 p-8 md:p-14 flex flex-col md:flex-row items-center gap-8 bg-black/50 glass">
         <!-- Left: hero content -->
         <div class="flex-1 text-center md:text-left">
           <div class="flex items-center gap-4 justify-center md:justify-start mb-4">
             <!-- logo: small heart + initials -->
-            <div class="w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br from-yellow-300 to-yellow-500 shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#111"><path d="M12 21s-7-4.35-9-6.58C1.51 12.53 2 8.5 5 6.5 7.5 5 9.5 6.1 12 8.2c2.5-2.1 4.5-3.2 7-2.3 3 2 3.49 6.03 2 8.12C19 16.65 12 21 12 21z"/></svg>
+            <div
+              class="w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br from-yellow-300 to-yellow-500 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#111">
+                <path
+                  d="M12 21s-7-4.35-9-6.58C1.51 12.53 2 8.5 5 6.5 7.5 5 9.5 6.1 12 8.2c2.5-2.1 4.5-3.2 7-2.3 3 2 3.49 6.03 2 8.12C19 16.65 12 21 12 21z" />
+              </svg>
             </div>
             <div>
               <div class="text-sm text-gray-300">Made with love for</div>
@@ -85,29 +179,53 @@
             </div>
           </div>
 
-          <h1 class="hero-title text-5xl md:text-6xl font-extrabold leading-tight tracking-tight shimmer">Happy 21st Birthday, <span id="nameText" class="text-amber-300">Saniya</span>!</h1>
-          <p class="hero-sub mt-4 text-gray-300 max-w-xl">21 years of you — bright, brave and beautiful. Today is celebration, memories, sweets and the whole sky of wishes. Get ready — there are little surprises ahead ✨</p>
+          <h1 class="hero-title text-5xl md:text-6xl font-extrabold leading-tight tracking-tight shimmer">Happy 21st
+            Birthday, <span id="nameText" class="text-amber-300">Saniya</span>!</h1>
+          <p class="hero-sub mt-4 text-gray-300 max-w-xl">21 years of you — bright, brave and beautiful. Today is
+            celebration, memories, sweets and the whole sky of wishes. Get ready — there are little surprises ahead ✨
+          </p>
 
           <div class="mt-6 flex flex-wrap gap-3 items-center">
             <!-- Icon-only buttons (accessible) -->
-            <button id="playBtn" class="w-12 h-12 rounded-full btn-gold flex items-center justify-center shadow" title="Play (m)" aria-label="Play music">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v18l15-9L5 3z" fill="#111"/></svg>
+            <button id="playBtn" class="w-12 h-12 rounded-full btn-gold flex items-center justify-center shadow"
+              title="Play (m)" aria-label="Play music">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 3v18l15-9L5 3z" fill="#111" />
+              </svg>
             </button>
 
-            <button id="confettiBtn" class="w-12 h-12 rounded-full bg-white/7 border border-white/6 flex items-center justify-center" title="Toggle Confetti (c)" aria-label="Toggle confetti" aria-pressed="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12l4-2 2-4 2 4 4 2-4 2-2 4-2-4-4-2z" fill="#fff" opacity="0.9"/></svg>
+            <button id="confettiBtn"
+              class="w-12 h-12 rounded-full bg-white/7 border border-white/6 flex items-center justify-center"
+              title="Toggle Confetti (c)" aria-label="Toggle confetti" aria-pressed="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 12l4-2 2-4 2 4 4 2-4 2-2 4-2-4-4-2z" fill="#fff" opacity="0.9" />
+              </svg>
             </button>
 
-            <button id="balloonBtn" class="w-12 h-12 rounded-full bg-white/7 border border-white/6 flex items-center justify-center" title="Release Balloons (b)" aria-label="Release balloons">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c-2.8 0-5 2-5 5 0 3 3 6 5 9 2-3 5-6 5-9 0-3-2.2-5-5-5zM11 20h2v2h-2v-2z" fill="#fff"/></svg>
+            <button id="balloonBtn"
+              class="w-12 h-12 rounded-full bg-white/7 border border-white/6 flex items-center justify-center"
+              title="Release Balloons (b)" aria-label="Release balloons">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2c-2.8 0-5 2-5 5 0 3 3 6 5 9 2-3 5-6 5-9 0-3-2.2-5-5-5zM11 20h2v2h-2v-2z" fill="#fff" />
+              </svg>
             </button>
 
-            <button id="memBtn" class="w-12 h-12 rounded-full bg-white/7 border border-white/6 flex items-center justify-center" title="Open Memories" aria-label="Open memories">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V7l-9 5L3 7z" fill="#fff"/></svg>
+            <button id="memBtn"
+              class="w-12 h-12 rounded-full bg-white/7 border border-white/6 flex items-center justify-center"
+              title="Open Memories" aria-label="Open memories">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V7l-9 5L3 7z" fill="#fff" />
+              </svg>
             </button>
 
-            <button id="fwBtn" class="w-12 h-12 rounded-full bg-white/7 border border-white/6 flex items-center justify-center" title="Fireworks (f)" aria-label="Fireworks celebration">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v4M12 18v4M4.2 4.2L6.6 6.6M17.4 17.4l2.4 2.4M2 12h4M18 12h4M4.2 19.8L6.6 17.4M17.4 6.6L19.8 4.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <button id="fwBtn"
+              class="w-12 h-12 rounded-full bg-white/7 border border-white/6 flex items-center justify-center"
+              title="Fireworks (f)" aria-label="Fireworks celebration">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2v4M12 18v4M4.2 4.2L6.6 6.6M17.4 17.4l2.4 2.4M2 12h4M18 12h4M4.2 19.8L6.6 17.4M17.4 6.6L19.8 4.2"
+                  stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
             </button>
           </div>
 
@@ -126,7 +244,8 @@
             </div>
           </div>
 
-          <div class="mt-6 text-sm text-gray-300">Days together at 21st birthday: <span id="daysTogether" class="font-semibold text-amber-300">594</span></div>
+          <div class="mt-6 text-sm text-gray-300">Days together at 21st birthday: <span id="daysTogether"
+              class="font-semibold text-amber-300">594</span></div>
         </div>
 
         <!-- Right: animated card with fav items & images -->
@@ -143,8 +262,11 @@
             <div class="mt-6 grid grid-cols-1 gap-3">
               <div class="flex items-center gap-3 p-3 rounded-xl bg-white/3">
                 <!-- chocolate SVG -->
-                <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-gradient-to-br from-yellow-200 to-yellow-400 float">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#111" xmlns="http://www.w3.org/2000/svg"><path d="M4 10v8a2 2 0 002 2h12a2 2 0 002-2v-8H4zm9-8c-1.1 0-2 .9-2 2v2h4V4c0-1.1-.9-2-2-2z"/></svg>
+                <div
+                  class="w-12 h-12 flex items-center justify-center rounded-lg bg-gradient-to-br from-yellow-200 to-yellow-400 float">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#111" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 10v8a2 2 0 002 2h12a2 2 0 002-2v-8H4zm9-8c-1.1 0-2 .9-2 2v2h4V4c0-1.1-.9-2-2-2z" />
+                  </svg>
                 </div>
                 <div>
                   <div class="text-sm text-gray-300">Favorite chocolate</div>
@@ -153,9 +275,12 @@
               </div>
 
               <div class="flex items-center gap-3 p-3 rounded-xl bg-white/3">
-                <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-500 float">
+                <div
+                  class="w-12 h-12 flex items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-500 float">
                   <!-- mango ice cream icon -->
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#111" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c-3 0-7 3-8 7 0 0 3 5 8 13 5-8 8-13 8-13-1-4-5-7-8-7z"/></svg>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#111" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2c-3 0-7 3-8 7 0 0 3 5 8 13 5-8 8-13 8-13-1-4-5-7-8-7z" />
+                  </svg>
                 </div>
                 <div>
                   <div class="text-sm text-gray-300">Favorite ice cream</div>
@@ -173,17 +298,17 @@
           <!-- little floating icons -->
           <div class="absolute -right-6 top-6 w-28 h-28">
             <div class="float w-full h-full">
-              <svg viewBox="0 0 24 24" class="w-full h-full" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="url(#g2)"/></svg>
+              <svg viewBox="0 0 24 24" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="url(#g2)" />
+              </svg>
             </div>
           </div>
         </aside>
       </section>
 
       <!-- footer small credits -->
-      <footer class="p-4 text-center text-xs text-gray-400">Made with ❤️ — Click the buttons for sounds, confetti and surprises.</footer>
-
-      <!-- balloons container -->
-      <div id="balloons"></div>
+      <footer class="p-4 text-center text-xs text-gray-400">Made with ❤️ — Click the buttons for sounds, confetti and
+        surprises.</footer>
 
       <!-- memories modal -->
       <div id="memModal" class="fixed inset-0 z-40 hidden items-center justify-center p-6">
@@ -191,24 +316,34 @@
           <div class="flex items-start justify-between gap-4">
             <div>
               <h3 class="text-2xl font-bold">Our Little Story</h3>
-              <p class="text-sm text-gray-300 mt-2">First meet: <strong>01 Nov 2022</strong> — Propose day: <strong>12 Mar 2024</strong></p>
+              <p class="text-sm text-gray-300 mt-2">First meet: <strong>01 Nov 2022</strong> — Propose day: <strong>12
+                  Mar 2024</strong></p>
             </div>
             <button id="closeMem" class="text-sm p-2" aria-label="Close memories">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
             </button>
           </div>
           <div class="mt-4 space-y-4 text-gray-100 text-sm leading-relaxed">
             <p>My dearest <strong>Saniya</strong>,</p>
-            <p>On this bright day — your 21st — I find myself thinking of every small moment that led to us. The nervous hello the first time we met, the quiet laughs over silly things, the warmth of your hand in mine. You are the kindest light I&#8217;ve ever known; you turn ordinary days into memories I treasure.</p>
-            <p>I wish for you, today and always: dreams that are gentle and bold, laughter that fills every corner, and the kind of love that makes you feel brave. May your path be sprinkled with yellow sunshine, mango-sweet surprises, and every tiny indulgence you adore.</p>
-            <p>Happy 21st birthday, my love. Thank you for being you — for your smile, your courage, your softness, and the way you make every day golden. Here&#8217;s to more adventures, more quiet evenings, and a lifetime of small wonders together.</p>
+            <p>On this bright day — your 21st — I find myself thinking of every small moment that led to us. The nervous
+              hello the first time we met, the quiet laughs over silly things, the warmth of your hand in mine. You are
+              the kindest light I&#8217;ve ever known; you turn ordinary days into memories I treasure.</p>
+            <p>I wish for you, today and always: dreams that are gentle and bold, laughter that fills every corner, and
+              the kind of love that makes you feel brave. May your path be sprinkled with yellow sunshine, mango-sweet
+              surprises, and every tiny indulgence you adore.</p>
+            <p>Happy 21st birthday, my love. Thank you for being you — for your smile, your courage, your softness, and
+              the way you make every day golden. Here&#8217;s to more adventures, more quiet evenings, and a lifetime of
+              small wonders together.</p>
             <p class="mt-2 font-semibold text-amber-200">With all my heart,<br>— Yours forever.</p>
-          </div>
           </div>
         </div>
       </div>
+  </div>
 
-    </main>
+  </main>
   </div>
 
   <script>
@@ -226,66 +361,68 @@
     // ---- Confetti & fireworks canvas ----
     const confettiCanvas = document.getElementById('confetti');
     const ctx = confettiCanvas.getContext('2d');
-    function resize(){ confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
+    function resize() { confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
     addEventListener('resize', resize); resize();
 
     // unified particles array for confetti + fireworks
     let particles = [];
     let confettiActive = true;
 
-    function spawnConfetti(x, y, count=60){
-      for(let i=0;i<count;i++){
+    function spawnConfetti(x, y, count = 60) {
+      playConfetti();
+      for (let i = 0; i < count; i++) {
         particles.push({
           type: 'confetti',
-          x: x ?? Math.random()*innerWidth,
+          x: x ?? Math.random() * innerWidth,
           y: y ?? -10,
-          vx: (Math.random()-0.5)*8,
-          vy: Math.random()*6+2,
-          size: Math.random()*8+4,
-          color: ['#ffd84d','#fff7d9','#ffefb7','#ffd19b'][Math.floor(Math.random()*4)],
-          rot: Math.random()*360,
-          vr: (Math.random()-0.5)*10,
+          vx: (Math.random() - 0.5) * 8,
+          vy: Math.random() * 6 + 2,
+          size: Math.random() * 8 + 4,
+          color: ['#ffd84d', '#fff7d9', '#ffefb7', '#ffd19b'][Math.floor(Math.random() * 4)],
+          rot: Math.random() * 360,
+          vr: (Math.random() - 0.5) * 10,
           life: 0,
           lifetime: 300
         });
       }
     }
 
-    function spawnFirework(x, y, count=36){
-      const colors = ['#ffd84d','#ff9b71','#ffd2a6','#fff7d9','#ff7ab6'];
-      for(let i=0;i<count;i++){
-        const angle = Math.random()*Math.PI*2;
-        const speed = 2 + Math.random()*6;
+    function spawnFirework(x, y, count = 36) {
+      playFirework();
+      const colors = ['#ffd84d', '#ff9b71', '#ffd2a6', '#fff7d9', '#ff7ab6'];
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 6;
         particles.push({
           type: 'fire',
-          x: x ?? (100 + Math.random()*(innerWidth-200)),
-          y: y ?? (100 + Math.random()*innerHeight/3),
-          vx: Math.cos(angle)*speed,
-          vy: Math.sin(angle)*speed,
-          size: 2 + Math.random()*4,
-          color: colors[Math.floor(Math.random()*colors.length)],
+          x: x ?? (100 + Math.random() * (innerWidth - 200)),
+          y: y ?? (100 + Math.random() * innerHeight / 3),
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          size: 2 + Math.random() * 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
           life: 0,
-          lifetime: 80 + Math.floor(Math.random()*70)
+          lifetime: 80 + Math.floor(Math.random() * 70)
         });
       }
     }
 
-    function confettiLoop(){
-      ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
-      for(let i=particles.length-1;i>=0;i--){
+    function confettiLoop() {
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.life++;
-        if(p.type==='confetti'){
+        if (p.type === 'confetti') {
           p.x += p.vx; p.y += p.vy; p.vy += 0.12; p.rot += p.vr;
-          ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
-          ctx.fillStyle = p.color; ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180);
+          ctx.fillStyle = p.color; ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
           ctx.restore();
-        } else if(p.type==='fire'){
+        } else if (p.type === 'fire') {
           p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.vx *= 0.99; p.vy *= 0.99;
           const alpha = 1 - p.life / p.lifetime;
-          ctx.beginPath(); ctx.globalAlpha = alpha; ctx.fillStyle = p.color; ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill(); ctx.globalAlpha = 1;
+          ctx.beginPath(); ctx.globalAlpha = alpha; ctx.fillStyle = p.color; ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1;
         }
-        if(p.life > p.lifetime) particles.splice(i,1);
+        if (p.life > p.lifetime) particles.splice(i, 1);
       }
       requestAnimationFrame(confettiLoop);
     }
@@ -294,32 +431,205 @@
     // ---- WebAudio melody and sound effects ----
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     let ctxAudio = null;
-    function ensureAudio(){ if(!ctxAudio) ctxAudio = new AudioCtx(); }
-    function playMelody(){
-      ensureAudio();
-      const now = ctxAudio.currentTime;
-      const notes = [
-        392.00, 392.00, 440.00, 392.00, 523.25, 493.88, 
-        392.00, 392.00, 440.00, 392.00, 587.33, 523.25, 
-        392.00, 392.00, 783.99, 698.46, 659.25, 523.25, 493.88, 440.00, 
-        392.00, 392.00, 440.00, 392.00, 523.25, 493.88  
-      ];
-      const dur = 0.35;
-      startFireworksLoop();
-      notes.forEach((f,i)=>{
+    function ensureAudio() {
+      if (!ctxAudio) ctxAudio = new AudioCtx();
+    }
+    function playMelody() {
+      try {
+        ensureAudio();
+        if (ctxAudio.state === 'suspended') {
+          ctxAudio.resume();
+        }
+        const now = ctxAudio.currentTime;
+        const tempo = 180;
+        const beatDur = 60 / tempo;
+        const notes = [
+          { freq: 392, dur: beatDur * 1, chord: true },
+          { freq: 392, dur: beatDur * 1, chord: true },
+          { freq: 440, dur: beatDur * 1, chord: false },
+          { freq: 392, dur: beatDur * 2, chord: true },
+          { freq: 523.25, dur: beatDur * 1, chord: false },
+          { freq: 493.88, dur: beatDur * 2, chord: true },
+          { freq: 392, dur: beatDur * 1, chord: true },
+          { freq: 392, dur: beatDur * 1, chord: true },
+          { freq: 440, dur: beatDur * 1, chord: false },
+          { freq: 392, dur: beatDur * 2, chord: true },
+          { freq: 587.33, dur: beatDur * 1, chord: false },
+          { freq: 523.25, dur: beatDur * 2, chord: true },
+          { freq: 392, dur: beatDur * 1, chord: true },
+          { freq: 392, dur: beatDur * 1, chord: true },
+          { freq: 783.99, dur: beatDur * 1, chord: false },
+          { freq: 698.46, dur: beatDur * 1, chord: false },
+          { freq: 659.25, dur: beatDur * 1, chord: false },
+          { freq: 523.25, dur: beatDur * 1, chord: true },
+          { freq: 493.88, dur: beatDur * 1, chord: false },
+          { freq: 440, dur: beatDur * 2, chord: true },
+          { freq: 392, dur: beatDur * 1, chord: true },
+          { freq: 392, dur: beatDur * 1, chord: true },
+          { freq: 440, dur: beatDur * 1, chord: false },
+          { freq: 392, dur: beatDur * 2, chord: true },
+          { freq: 523.25, dur: beatDur * 1, chord: false },
+          { freq: 493.88, dur: beatDur * 2, chord: true }
+        ];
+
+        let timeOffset = 0;
+        notes.forEach(note => {
+          const oscMelody = ctxAudio.createOscillator();
+          oscMelody.type = 'sine';
+          oscMelody.frequency.value = note.freq;
+
+          let gain = ctxAudio.createGain();
+          let filter = ctxAudio.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 800;
+          oscMelody.connect(filter).connect(gain).connect(ctxAudio.destination);
+
+          gain.gain.setValueAtTime(0, now + timeOffset);
+          gain.gain.linearRampToValueAtTime(0.12, now + timeOffset + 0.01);
+          gain.gain.linearRampToValueAtTime(0.08, now + timeOffset + 0.11);
+          gain.gain.linearRampToValueAtTime(0.08, now + timeOffset + note.dur - 0.2);
+          gain.gain.linearRampToValueAtTime(0, now + timeOffset + note.dur);
+
+          oscMelody.start(now + timeOffset);
+          oscMelody.stop(now + timeOffset + note.dur + 0.2);
+
+          if (note.chord) {
+            const bassFreq = note.freq / 2;
+            const oscBass = ctxAudio.createOscillator();
+            oscBass.type = 'triangle';
+            oscBass.frequency.value = bassFreq;
+            const gainBass = ctxAudio.createGain();
+            oscBass.connect(gainBass).connect(ctxAudio.destination);
+            gainBass.gain.setValueAtTime(0, now + timeOffset);
+            gainBass.gain.linearRampToValueAtTime(0.06, now + timeOffset + 0.01);
+            gainBass.gain.linearRampToValueAtTime(0, now + timeOffset + note.dur);
+            oscBass.start(now + timeOffset);
+            oscBass.stop(now + timeOffset + note.dur);
+          }
+
+          timeOffset += note.dur;
+        });
+      } catch (error) {
+        console.error('Play error:', error);
+      }
+    }
+    function playPop() {
+      try {
+        ensureAudio();
+        if (ctxAudio.state === 'suspended') ctxAudio.resume();
+        const now = ctxAudio.currentTime;
         const o = ctxAudio.createOscillator();
         const g = ctxAudio.createGain();
-        o.type='sine'; o.frequency.value = f; g.gain.value = 0;
-        o.connect(g); g.connect(ctxAudio.destination);
-        o.start(now + i*dur);
-        g.gain.setValueAtTime(0, now + i*dur);
-        g.gain.linearRampToValueAtTime(0.15, now + i*dur + 0.02);
-        g.gain.linearRampToValueAtTime(0, now + i*dur + dur - 0.05);
-        o.stop(now + i*dur + dur);
-      });
-      stopFireworksLoop();
+        o.type = 'triangle';
+        o.frequency.setValueAtTime(600, now);
+        o.frequency.exponentialRampToValueAtTime(300, now + 0.08);
+        o.connect(g);
+        g.connect(ctxAudio.destination);
+        g.gain.setValueAtTime(0, now);
+        g.gain.linearRampToValueAtTime(0.05, now + 0.005);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+        o.start(now);
+        o.stop(now + 0.12);
+      } catch (error) {
+        console.error('Pop error:', error);
+      }
     }
-    function playPop(){ ensureAudio(); const o=ctxAudio.createOscillator(); const g=ctxAudio.createGain(); o.type='square'; o.frequency.value=700; o.connect(g); g.connect(ctxAudio.destination); g.gain.value=0.02; o.start(); g.gain.exponentialRampToValueAtTime(0.0001, ctxAudio.currentTime+0.18); o.stop(ctxAudio.currentTime+0.2); }
+    function playFirework() {
+      try {
+        ensureAudio();
+        if (ctxAudio.state === 'suspended') ctxAudio.resume();
+        const now = ctxAudio.currentTime;
+
+        const oscWhistle = ctxAudio.createOscillator();
+        oscWhistle.type = 'sine';
+        oscWhistle.frequency.setValueAtTime(400, now);
+        oscWhistle.frequency.exponentialRampToValueAtTime(2000, now + 0.3);
+        const gainWhistle = ctxAudio.createGain();
+        oscWhistle.connect(gainWhistle);
+        gainWhistle.connect(ctxAudio.destination);
+        gainWhistle.gain.setValueAtTime(0, now);
+        gainWhistle.gain.linearRampToValueAtTime(0.08, now + 0.05);
+        gainWhistle.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+        oscWhistle.start(now);
+        oscWhistle.stop(now + 0.3);
+
+        const bufferSize = ctxAudio.sampleRate * 0.1;
+        const noiseBuffer = ctxAudio.createBuffer(1, bufferSize, ctxAudio.sampleRate);
+        const noiseData = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          noiseData[i] = Math.random() * 2 - 1;
+        }
+        const noiseSource = ctxAudio.createBufferSource();
+        noiseSource.buffer = noiseBuffer;
+        const gainBang = ctxAudio.createGain();
+        noiseSource.connect(gainBang);
+        gainBang.connect(ctxAudio.destination);
+        gainBang.gain.setValueAtTime(0, now + 0.25);
+        gainBang.gain.linearRampToValueAtTime(0.06, now + 0.26);
+        gainBang.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+        noiseSource.start(now + 0.25);
+
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => {
+            const sparkleOsc = ctxAudio.createOscillator();
+            sparkleOsc.type = 'square';
+            sparkleOsc.frequency.value = 1500 + Math.random() * 1000;
+            const gainSparkle = ctxAudio.createGain();
+            sparkleOsc.connect(gainSparkle).connect(ctxAudio.destination);
+            gainSparkle.gain.setValueAtTime(0.02, ctxAudio.currentTime);
+            gainSparkle.gain.exponentialRampToValueAtTime(0.0001, ctxAudio.currentTime + 0.05);
+            sparkleOsc.start();
+            sparkleOsc.stop(ctxAudio.currentTime + 0.05);
+          }, (now + 0.3 - now) * 1000 + i * 50);
+        }
+      } catch (error) {
+        console.error('Firework error:', error);
+      }
+    }
+    function playConfetti() {
+      try {
+        ensureAudio();
+        if (ctxAudio.state === 'suspended') ctxAudio.resume();
+        const now = ctxAudio.currentTime;
+
+        const bufferSize = ctxAudio.sampleRate * 0.15;
+        const noiseBuffer = ctxAudio.createBuffer(1, bufferSize, ctxAudio.sampleRate);
+        const noiseData = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          noiseData[i] = Math.random() * 2 - 1;
+        }
+        const noiseSource = ctxAudio.createBufferSource();
+        noiseSource.buffer = noiseBuffer;
+        const filter = ctxAudio.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(2000, now);
+        filter.frequency.exponentialRampToValueAtTime(500, now + 0.15);
+        const gainWhoosh = ctxAudio.createGain();
+        noiseSource.connect(filter).connect(gainWhoosh).connect(ctxAudio.destination);
+        gainWhoosh.gain.setValueAtTime(0, now);
+        gainWhoosh.gain.linearRampToValueAtTime(0.04, now + 0.02);
+        gainWhoosh.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+        noiseSource.start(now);
+
+        const numBits = 6 + Math.floor(Math.random() * 3);
+        for (let i = 0; i < numBits; i++) {
+          setTimeout(() => {
+            const bitOsc = ctxAudio.createOscillator();
+            bitOsc.type = 'sine';
+            bitOsc.frequency.value = 200 + Math.random() * 400;
+            const gainBit = ctxAudio.createGain();
+            bitOsc.connect(gainBit).connect(ctxAudio.destination);
+            gainBit.gain.setValueAtTime(0, ctxAudio.currentTime);
+            gainBit.gain.linearRampToValueAtTime(0.015, ctxAudio.currentTime + 0.005);
+            gainBit.gain.exponentialRampToValueAtTime(0.0001, ctxAudio.currentTime + 0.08);
+            bitOsc.start();
+            bitOsc.stop(ctxAudio.currentTime + 0.08);
+          }, i * 30 + Math.random() * 50);
+        }
+      } catch (error) {
+        console.error('Confetti error:', error);
+      }
+    }
 
     // ---- Controls wiring ----
     const playBtn = document.getElementById('playBtn');
@@ -328,66 +638,68 @@
     const memBtn = document.getElementById('memBtn');
     const fwBtn = document.getElementById('fwBtn');
 
-    playBtn.addEventListener('click', ()=>{ playMelody(); spawnConfetti(undefined, undefined, 120); });
+    playBtn.addEventListener('click', () => { playMelody(); spawnConfetti(undefined, undefined, 120); });
 
-    confettiBtn.addEventListener('click', ()=>{ confettiActive = !confettiActive; confettiBtn.setAttribute('aria-pressed', String(confettiActive)); if(confettiActive) spawnConfetti(); });
+    confettiBtn.addEventListener('click', () => { confettiActive = !confettiActive; confettiBtn.setAttribute('aria-pressed', String(confettiActive)); if (confettiActive) spawnConfetti(); });
 
     // balloons
     const balloonsWrap = document.getElementById('balloons');
-    function createBalloon(x){
-      const b=document.createElement('div'); b.className='balloon'; b.style.left=(x||Math.random()*90)+'%';
-      b.style.bottom='-100px'; b.style.background=`linear-gradient(180deg, rgba(255,218,77,0.95), rgba(255,195,60,0.95))`;
-      const s=document.createElement('div'); s.className='string'; b.appendChild(s);
+    function createBalloon(x) {
+      const colors = ['#ffd84d', '#ff9b71', '#ffd2a6', '#fff7d9', '#ff7ab6'];
+      const b = document.createElement('div'); b.className = 'balloon'; b.style.left = (x || Math.random() * 90) + '%';
+      b.style.bottom = '-100px'; b.style.background = `linear-gradient(180deg, ${colors[Math.floor(Math.random() * colors.length)]}, ${colors[Math.floor(Math.random() * colors.length)]})`;
+      const s = document.createElement('div'); s.className = 'string'; b.appendChild(s);
       balloonsWrap.appendChild(b);
-      const dur = 8000 + Math.random()*6000;
-      b.animate([ {transform:'translateY(0) rotate(0deg)', opacity:1}, {transform:`translateY(-${innerHeight+200}px) rotate(${Math.random()*40-20}deg)`, opacity:0.95} ], {duration:dur, easing:'cubic-bezier(.17,.67,.32,1)', iterations:1}).onfinish = ()=> b.remove();
-      b.addEventListener('click', ()=>{ playPop(); b.remove(); });
+      const dur = 8000 + Math.random() * 6000;
+      b.animate([{ transform: 'translateY(0) rotate(0deg)', opacity: 1 }, { transform: `translateY(-${innerHeight + 200}px) rotate(${Math.random() * 40 - 20}deg)`, opacity: 0.95 }], { duration: dur, easing: 'cubic-bezier(.17,.67,.32,1)', iterations: 1 }).onfinish = () => { playPop(); b.remove(); };
+      b.addEventListener('click', () => { playPop(); b.remove(); });
     }
-    balloonBtn.addEventListener('click', ()=>{ for(let i=0;i<6;i++) setTimeout(()=>createBalloon(), i*250); });
+    balloonBtn.addEventListener('click', () => { for (let i = 0; i < 6; i++) setTimeout(() => createBalloon(), i * 250); });
 
     // click anywhere small confetti burst
-    addEventListener('click', (e)=>{ if(confettiActive) spawnConfetti(e.clientX, e.clientY, 30); });
+    addEventListener('click', (e) => { if (confettiActive) spawnConfetti(e.clientX, e.clientY, 30); });
 
     // Memories modal & fireworks control
     const memModal = document.getElementById('memModal');
     const closeMem = document.getElementById('closeMem');
     let fwInterval = null;
 
-    function startFireworksLoop(){
+    function startFireworksLoop() {
       // initial bursts
-      spawnFirework(); spawnConfetti();
-      if(fwInterval) clearInterval(fwInterval);
-      fwInterval = setInterval(()=>{ if(confettiActive) { spawnFirework(); spawnConfetti(undefined, undefined, 60); } }, 1400);
+      spawnFirework();
+      if (fwInterval) clearInterval(fwInterval);
+      fwInterval = setInterval(() => { if (confettiActive) { spawnFirework(); } }, 1400);
     }
-    function stopFireworksLoop(){ if(fwInterval) clearInterval(fwInterval); fwInterval = null; }
+    function stopFireworksLoop() { if (fwInterval) clearInterval(fwInterval); fwInterval = null; }
 
-    memBtn.addEventListener('click', ()=>{ memModal.classList.remove('hidden'); memModal.classList.add('flex'); startFireworksLoop(); });
-    closeMem.addEventListener('click', ()=>{ memModal.classList.add('hidden'); memModal.classList.remove('flex'); stopFireworksLoop(); });
+    memBtn.addEventListener('click', () => { memModal.classList.remove('hidden'); memModal.classList.add('flex'); startFireworksLoop(); });
+    closeMem.addEventListener('click', () => { memModal.classList.add('hidden'); memModal.classList.remove('flex'); stopFireworksLoop(); });
 
     // dedicated fireworks button
-    fwBtn.addEventListener('click', ()=>{ spawnFirework(undefined, undefined, 48); });
+    fwBtn.addEventListener('click', () => { spawnFirework(undefined, undefined, 48); });
 
     // periodic gentle bursts
-    setInterval(()=>{ if(Math.random()<0.5 && confettiActive) spawnConfetti(Math.random()*innerWidth, Math.random()*innerHeight/2, 40); }, 3500);
+    setInterval(() => { if (Math.random() < 0.5 && confettiActive) spawnConfetti(Math.random() * innerWidth, Math.random() * innerHeight / 2, 40); }, 3500);
 
     // accessibility: keyboard shortcuts
-    addEventListener('keydown', (e)=>{
-      if(e.key==='m') playMelody();
-      if(e.key==='c') { confettiActive = !confettiActive; confettiBtn.setAttribute('aria-pressed', String(confettiActive)); if(confettiActive) spawnConfetti(); }
-      if(e.key==='b') createBalloon();
-      if(e.key==='f') spawnFirework();
+    addEventListener('keydown', (e) => {
+      if (e.key === 'm') playMelody();
+      if (e.key === 'c') { confettiActive = !confettiActive; confettiBtn.setAttribute('aria-pressed', String(confettiActive)); if (confettiActive) spawnConfetti(); }
+      if (e.key === 'b') createBalloon();
+      if (e.key === 'f') spawnFirework();
     });
 
     // tip: generate printable card with name
-    function downloadHTML(){ const el = document.documentElement.outerHTML; const blob = new Blob([el], {type:'text/html'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='happy_bday_saniya.html'; a.click(); URL.revokeObjectURL(url); }
+    function downloadHTML() { const el = document.documentElement.outerHTML; const blob = new Blob([el], { type: 'text/html' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'happy_bday_saniya.html'; a.click(); URL.revokeObjectURL(url); }
 
     // long-press on play to download the page for gifting offline
-    playBtn.addEventListener('contextmenu', (e)=>{ e.preventDefault(); downloadHTML(); alert('Downloaded a copy for offline gifting!') });
+    playBtn.addEventListener('contextmenu', (e) => { e.preventDefault(); downloadHTML(); alert('Downloaded a copy for offline gifting!') });
 
     // gentle typewriter for name
     const nameEl = document.getElementById('nameText');
-    (function typeName(){ const txt = PERSON.name; let i=0; let dir=1; setInterval(()=>{ nameEl.textContent = txt.slice(0,i); i+=dir; if(i>txt.length){dir=-1; i=txt.length-1} if(i<0){dir=1; i=1} }, 200); })();
+    (function typeName() { const txt = PERSON.name; let i = 0; let dir = 1; setInterval(() => { nameEl.textContent = txt.slice(0, i); i += dir; if (i > txt.length) { dir = -1; i = txt.length - 1 } if (i < 0) { dir = 1; i = 1 } }, 200); })();
 
   </script>
 </body>
+
 </html>

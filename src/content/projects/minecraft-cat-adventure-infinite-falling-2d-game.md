@@ -5,7 +5,7 @@ technologies: ["Phaser 3", "Matter.js", "React", "Vite", "Node.js", "Express", "
 category: "Personal"
 status: "Active"
 github: ""
-live: ""
+live: "https://www.youtube.com/channel/UCHbfnbCUy3eKoIDmln6jnnw"
 image: "/images/projects/minecraft-cat-adventure.png"
 featured: true
 date: "2026-02-28"

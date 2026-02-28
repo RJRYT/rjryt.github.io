@@ -7,7 +7,7 @@ status: "Completed"
 github: "https://github.com/RJRYT/e2ee-chat"
 live: "https://e2ee-chat-six.vercel.app/"
 image: "/images/projects/e2ee-chat.png"
-featured: true
+featured: false
 date: "2025-07-02"
 ---
 

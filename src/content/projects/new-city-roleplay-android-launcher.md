@@ -3,11 +3,11 @@ title: "New City Roleplay Android Launcher"
 description: "An Android launcher app for New City Roleplay that manages game downloads, updates, and launching with server lists."
 technologies: ["Java/Kotlin", "Android SDK", "NDK"]
 category: "SAMP"
-status: "In Development"
+status: "Completed"
 github: ""
 live: ""
 image: "/images/projects/ncrp-launcher.png"
-featured: true
+featured: false
 date: "2025-07-01"
 ---
 

@@ -7,7 +7,7 @@ status: "Completed"
 github: ""
 live: ""
 image: "/images/projects/buddypair.png"
-featured: true
+featured: false
 date: "2025-05-07"
 ---
 

@@ -7,7 +7,7 @@ status: "Completed"
 github: ""
 live: "https://service-connect-app.vercel.app/"
 image: "/images/projects/serviceconnect.png"
-featured: true
+featured: false
 date: "2025-04-25"
 ---
 

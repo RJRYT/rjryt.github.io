@@ -3,11 +3,11 @@ title: "New City Roleplay"
 description: "A full-featured San Andreas Multiplayer (SA-MP) roleplay gamemode built with Pawn. Includes dynamic jobs, factions, vehicles, admin tools, anti-cheat systems, and continuous updates."
 technologies: ["Pawn (SAMP)", "MySQL", "sscanf", "streamer", "sampctl"]
 category: "SAMP"
-status: "Active"
+status: "Completed"
 github: ""
 live: ""
 image: "/images/projects/ncrp-banner.png"
-featured: true
+featured: false
 date: "2025-10-01"
 ---
 

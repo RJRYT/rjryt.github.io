@@ -134,7 +134,7 @@ function generateSitemapXml(urls) {
 }
 
 function generateRobotsTxt() {
-  return `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`;
+  return `Sitemap: ${SITE_URL}/sitemap.xml\nUser-agent: *\nAllow: /`;
 }
 
 // ======= Main =======

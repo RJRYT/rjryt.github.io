@@ -112,7 +112,7 @@ export const redirectsData = [
   },
   {
     id: "gamefluxerlive",
-    shortUrl: "gamefluxerlive",
+    shortUrl: "/r/gamefluxerlive",
     targetUrl: "https://www.youtube.com/@gamefluxer/live",
     title: "GameFluxer Live",
     description: "GameFluxer YouTube live",

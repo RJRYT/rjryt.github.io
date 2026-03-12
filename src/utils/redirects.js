@@ -100,6 +100,26 @@ export const redirectsData = [
     createdAt: "2025-09-04",
     updatedAt: "2025-09-04",
   },
+  {
+    id: "gamefluxer",
+    shortUrl: "/r/gamefluxer",
+    targetUrl: "https://www.youtube.com/@gamefluxer",
+    title: "GameFluxer",
+    description: "GameFluxer youtube channel",
+    active: true,
+    createdAt: "2026-03-04",
+    updatedAt: "2026-03-04",
+  },
+  {
+    id: "gamefluxerlive",
+    shortUrl: "gamefluxerlive",
+    targetUrl: "https://www.youtube.com/@gamefluxer/live",
+    title: "GameFluxer Live",
+    description",
+    active: true,
+    createdAt: "2025-09-04",
+    updatedAt: "2025-09-04",
+  },
 ];
 
 // Load redirects
@@ -111,22 +131,24 @@ const loadRedirects = () => {
 export const getRedirectByShortUrl = (shortUrl) => {
   const redirects = loadRedirects();
   // Handle both /r/key and key formats
-  const normalizedUrl = shortUrl.startsWith('/r/') ? shortUrl : `/r/${shortUrl}`;
-  return redirects.find(redirect => redirect.shortUrl === normalizedUrl);
+  const normalizedUrl = shortUrl.startsWith("/r/")
+    ? shortUrl
+    : `/r/${shortUrl}`;
+  return redirects.find((redirect) => redirect.shortUrl === normalizedUrl);
 };
 
 // Perform redirect (increment counter and return target URL)
 export const performRedirect = (shortUrl) => {
   const redirect = getRedirectByShortUrl(shortUrl);
-  
+
   if (!redirect) {
-    throw new Error('Redirect not found');
+    throw new Error("Redirect not found");
   }
-  
+
   if (!redirect.active) {
-    throw new Error('Redirect is disabled');
+    throw new Error("Redirect is disabled");
   }
-  
+
   return redirect.targetUrl;
 };
 

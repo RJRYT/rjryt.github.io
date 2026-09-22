@@ -1,6 +1,6 @@
 ---
-title: "ytsearch.js — YouTube Search Wrapper"
-description: "A powerful Node.js package for YouTube search that supports videos, channels, playlists, movies, and live streams — all without the official API."
+title: "ytsearch.js — YouTube Search & Playlist Scraper"
+description: "TypeScript and Node.js library for YouTube search and playlist data. Search videos, channels, playlists, movies, and live streams, with video details and pagination without the YouTube Data API."
 technologies: ["Node.js", "npm"]
 category: "Package"
 status: "Maintained"
@@ -11,23 +11,23 @@ featured: false
 date: "2023-07-15"
 ---
 
-# ytsearch.js — YouTube Search Wrapper
+# ytsearch.js — YouTube Search & Playlist Scraper for Node.js
 
 ## Overview
 
-**ytsearch.js** is a powerful yet lightweight **Node.js package** that allows developers to perform YouTube searches without relying on the official YouTube Data API.
-It supports fetching **videos, channels, playlists, movies, and live streams**, complete with pagination, sorting, and extended metadata. Designed with a **developer-friendly API**, it offers a clean, fast, and efficient way to integrate YouTube search into any Node.js application.
+**ytsearch.js** is a TypeScript and Node.js library for YouTube search and playlist data. It allows developers to search YouTube videos, channels, playlists, movies, and live streams without requiring the official YouTube Data API.
+The library also provides YouTube video details, playlist items with pagination, sorting, result limits, and TypeScript support, making it useful for applications that need programmatic YouTube search and metadata.
 
 ## Features
 
-* 🔍 **Search YouTube content** — videos, channels, playlists, movies, and live streams.
-* ⚡ **Fast & Lightweight** — optimized with minimal dependencies.
-* 📦 **Easy Installation** via `npm install ytsearch.js`.
-* 🛠️ **Developer-Friendly API** — async/await support and clean typings.
-* 📊 **Rich Metadata Access** — titles, views, channel details, and more.
-* 📑 **Pagination Support** — handle large playlists and multi-page search results.
-* 🎯 **Advanced Options** — filtering, sorting, and combined multi-type searches (`any`).
-* ✅ **Error Handling** — robust mechanisms to ensure reliability.
+* 🔍 **YouTube Search** — Search videos, channels, playlists, movies, and live streams.
+* 📑 **Playlist Pagination** — Fetch playlist items across multiple pages.
+* 📊 **Video Metadata** — Retrieve detailed information for YouTube videos.
+* ⚡ **Lightweight API** — Simple developer-friendly API with minimal dependencies.
+* 📦 **Easy Installation** — Install with `npm install ytsearch.js`.
+* 🛠️ **TypeScript Support** — Includes TypeScript declarations with CommonJS and ESM support.
+* 🎯 **Search Options** — Control result types, limits, and sorting.
+* 🔌 **No YouTube Data API Key** — Search publicly available YouTube data without an official API key.
 
 ## Installation
 
@@ -64,8 +64,15 @@ video Black Panther - Car Chase Scene - Movie clip Epic 4K UHD
 
 ## Tech Stack
 
+* **TypeScript** — Type-safe library development and declarations.
 * **Node.js** — Core runtime environment.
 * **npm** — Package distribution.
+
+## Related Project
+
+### ytsearch-cli — YouTube Search from the Terminal
+
+[ytsearch-cli](https://rjryt.github.io/projects/ytsearch-cli-npm-package) is the command-line interface powered by ytsearch.js. It brings YouTube video, channel, and playlist search directly to the terminal with formatted output, JSON support, and interactive search.
 
 ## Status
 
@@ -73,5 +80,7 @@ video Black Panther - Car Chase Scene - Movie clip Epic 4K UHD
 
 ## Links
 
-* 📦 **NPM Package**: [npmjs.com/package/ytsearch.js](https://www.npmjs.com/package/ytsearch.js)
-* 📖 **Documentation & Wiki**: [GitHub Wiki](https://github.com/RJRYT/ytsearch.js/wiki)
+* 📦 **NPM Package**: [ytsearch.js on npm](https://www.npmjs.com/package/ytsearch.js)
+* 📖 **Documentation & Wiki**: [ytsearch.js on GitHub Wiki](https://github.com/RJRYT/ytsearch.js/wiki)
+* 💻 **GitHub Repository**: [RJRYT/ytsearch.js](https://github.com/RJRYT/ytsearch.js)
+* 🖥️ **Command-Line Interface**: [ytsearch-cli](https://rjryt.github.io/projects/ytsearch-cli-npm-package)

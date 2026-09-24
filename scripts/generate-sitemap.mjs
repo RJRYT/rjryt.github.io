@@ -11,7 +11,7 @@ import path from "node:path";
 
 // ======= Config =======
 const SITE_URL =
-  process.env.SITE_URL?.replace(/\/$/, "") || "https://rjryt.github.io";
+  process.env.SITE_URL?.replace(/\/$/, "") || "https://rjryt.com";
 const DIST_DIR = path.resolve(process.cwd(), "dist");
 
 // Core routes shown on Home and also available as pages

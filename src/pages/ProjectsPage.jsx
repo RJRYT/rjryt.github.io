@@ -83,7 +83,7 @@ const ProjectsPage = () => {
           name="keywords"
           content="RJRYT projects, MERN stack portfolio, web apps, React projects"
         />
-        <link rel="canonical" href="https://rjryt.github.io/projects" />
+        <link rel="canonical" href="https://rjryt.com/projects" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -96,11 +96,11 @@ const ProjectsPage = () => {
           content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.github.io/projects" />
+        <meta property="og:url" content="https://rjryt.com/projects" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.github.io/images/seo/seo-projects.png"
+          content="https://rjryt.com/images/seo/seo-projects.png"
         />
 
         {/* Twitter Card */}
@@ -113,28 +113,28 @@ const ProjectsPage = () => {
           name="twitter:description"
           content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
         />
-        <meta name="twitter:url" content="https://rjryt.github.io/projects" />
+        <meta name="twitter:url" content="https://rjryt.com/projects" />
         <meta
           name="twitter:image"
-          content="https://rjryt.github.io/images/seo/seo-projects.png"
+          content="https://rjryt.com/images/seo/seo-projects.png"
         />
 
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "@id": "https://rjryt.github.io/projects#webpage",
-            url: "https://rjryt.github.io/projects",
+            "@id": "https://rjryt.com/projects#webpage",
+            url: "https://rjryt.com/projects",
             name: "Projects by RJRYT | MERN Stack Creations",
             description:
               "Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies.",
             isPartOf: {
               "@type": "WebSite",
-              "@id": "https://rjryt.github.io/#website",
+              "@id": "https://rjryt.com/#website",
             },
             about: {
               "@type": "Person",
-              "@id": "https://rjryt.github.io/#person",
+              "@id": "https://rjryt.com/#person",
               name: "RJRYT",
             },
           })}

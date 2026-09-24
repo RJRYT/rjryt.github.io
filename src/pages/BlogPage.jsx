@@ -66,7 +66,7 @@ const BlogPage = () => {
           name="keywords"
           content="web dev blog, MERN stack blog, coding tutorials, RJRYT blog"
         />
-        <link rel="canonical" href="https://rjryt.github.io/blog" />
+        <link rel="canonical" href="https://rjryt.com/blog" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -79,11 +79,11 @@ const BlogPage = () => {
           content="Read blogs by RJRYT on web development, MERN stack tutorials, coding tips, and industry insights."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.github.io/blog" />
+        <meta property="og:url" content="https://rjryt.com/blog" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.github.io/images/seo/seo-blogs.png"
+          content="https://rjryt.com/images/seo/seo-blogs.png"
         />
 
         {/* Twitter Card */}
@@ -96,10 +96,10 @@ const BlogPage = () => {
           name="twitter:description"
           content="Read blogs by RJRYT on web development, MERN stack tutorials, coding tips, and industry insights."
         />
-        <meta name="twitter:url" content="https://rjryt.github.io/blog" />
+        <meta name="twitter:url" content="https://rjryt.com/blog" />
         <meta
           name="twitter:image"
-          content="https://rjryt.github.io/images/seo/seo-blogs.png"
+          content="https://rjryt.com/images/seo/seo-blogs.png"
         />
 
         {/* JSON-LD Structured Data */}
@@ -108,34 +108,34 @@ const BlogPage = () => {
             {
               "@context": "https://schema.org",
               "@type": "Blog",
-              "@id": "https://rjryt.github.io/blog#blog",
-              url: "https://rjryt.github.io/blog",
+              "@id": "https://rjryt.com/blog#blog",
+              url: "https://rjryt.com/blog",
               name: "Blog by RJRYT | Web Development Insights",
               description:
                 "Read blogs by RJRYT on web development, MERN stack tutorials, coding tips, and industry insights.",
               publisher: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
               },
               author: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
               },
-              image: "https://rjryt.github.io/images/seo/seo-blogs.png",
+              image: "https://rjryt.com/images/seo/seo-blogs.png",
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": "https://rjryt.github.io/blog#webpage",
+                "@id": "https://rjryt.com/blog#webpage",
               },
             },
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "https://rjryt.github.io/#website",
-              url: "https://rjryt.github.io",
+              "@id": "https://rjryt.com/#website",
+              url: "https://rjryt.com",
               potentialAction: {
                 "@type": "SearchAction",
                 target:
-                  "https://rjryt.github.io/blog?search={search_term_string}",
+                  "https://rjryt.com/blog?search={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             },

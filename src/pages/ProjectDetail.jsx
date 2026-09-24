@@ -63,7 +63,7 @@ const ProjectDetail = () => {
         />
         <link
           rel="canonical"
-          href={`https://rjryt.github.io/projects/${slug}`}
+          href={`https://rjryt.com/projects/${slug}`}
         />
         <meta name="author" content="RJRYT" />
 
@@ -76,7 +76,7 @@ const ProjectDetail = () => {
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://rjryt.github.io/projects/${slug}`}
+          content={`https://rjryt.com/projects/${slug}`}
         />
         {project.image && <meta property="og:image" content={project.image} />}
 
@@ -90,7 +90,7 @@ const ProjectDetail = () => {
         {project.image && <meta name="twitter:image" content={project.image} />}
         <meta
           name="twitter:url"
-          content={`https://rjryt.github.io/projects/${slug}`}
+          content={`https://rjryt.com/projects/${slug}`}
         />
 
         <script type="application/ld+json">
@@ -98,10 +98,10 @@ const ProjectDetail = () => {
             {
               "@context": "https://schema.org",
               "@type": "SoftwareSourceCode",
-              "@id": `https://rjryt.github.io/projects/${slug}#code`,
+              "@id": `https://rjryt.com/projects/${slug}#code`,
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://rjryt.github.io/projects/${slug}#webpage`,
+                "@id": `https://rjryt.com/projects/${slug}#webpage`,
               },
               name: project.title,
               description: project.description,
@@ -114,46 +114,46 @@ const ProjectDetail = () => {
               programmingLanguage: project.technologies?.join(", "),
               author: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
                 name: "RJRYT",
-                url: "https://rjryt.github.io/",
+                url: "https://rjryt.com/",
               },
               publisher: {
                 "@type": "Organization",
-                "@id": "https://rjryt.github.io/#organization",
+                "@id": "https://rjryt.com/#organization",
                 name: "RJRYT Portfolio",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://rjryt.github.io/images/profile/profile-1.jpg",
+                  url: "https://rjryt.com/images/profile/profile-1.jpg",
                 },
               },
               image: project.image ? [project.image] : undefined,
               datePublished: project.date,
               dateModified: project.updatedAt || project.date,
-              url: `https://rjryt.github.io/projects/${slug}`,
+              url: `https://rjryt.com/projects/${slug}`,
             },
             {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
-              "@id": `https://rjryt.github.io/projects/${slug}#breadcrumb`,
+              "@id": `https://rjryt.com/projects/${slug}#breadcrumb`,
               itemListElement: [
                 {
                   "@type": "ListItem",
                   position: 1,
                   name: "Home",
-                  item: "https://rjryt.github.io/",
+                  item: "https://rjryt.com/",
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
                   name: "Projects",
-                  item: "https://rjryt.github.io/projects",
+                  item: "https://rjryt.com/projects",
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: project.title,
-                  item: `https://rjryt.github.io/projects/${slug}`,
+                  item: `https://rjryt.com/projects/${slug}`,
                 },
               ],
             },

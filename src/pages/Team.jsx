@@ -36,7 +36,7 @@ const Team = () => {
       description: 'Working with distributed teams to build impactful applications.',
       avatar: '/placeholder.svg',
       skills: ['Remote Collaboration', 'Agile', 'Cross-functional Teams'],
-      website: 'https://rjryt.github.io',
+      website: 'https://rjryt.com',
       projects: 25
     }
   ];
@@ -71,7 +71,7 @@ const Team = () => {
           name="keywords"
           content="team, collaboration, RJRYT, developer group"
         />
-        <link rel="canonical" href="https://rjryt.github.io/team" />
+        <link rel="canonical" href="https://rjryt.com/team" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -81,11 +81,11 @@ const Team = () => {
           content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.github.io/team" />
+        <meta property="og:url" content="https://rjryt.com/team" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.github.io/images/seo/seo-team.png"
+          content="https://rjryt.com/images/seo/seo-team.png"
         />
 
         {/* Twitter Card */}
@@ -95,50 +95,50 @@ const Team = () => {
           name="twitter:description"
           content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products."
         />
-        <meta name="twitter:url" content="https://rjryt.github.io/team" />
+        <meta name="twitter:url" content="https://rjryt.com/team" />
         <meta
           name="twitter:image"
-          content="https://rjryt.github.io/images/seo/seo-team.png"
+          content="https://rjryt.com/images/seo/seo-team.png"
         />
         <script type="application/ld+json">
           {JSON.stringify([
             {
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "@id": "https://rjryt.github.io/team#webpage",
-              url: "https://rjryt.github.io/team",
+              "@id": "https://rjryt.com/team#webpage",
+              url: "https://rjryt.com/team",
               name: "Team | Collaborations by RJRYT",
               description:
                 "Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products.",
               isPartOf: {
                 "@type": "WebSite",
-                "@id": "https://rjryt.github.io/#website",
+                "@id": "https://rjryt.com/#website",
               },
               about: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
                 name: "RJRYT",
               },
             },
             {
               "@context": "https://schema.org",
               "@type": "Organization",
-              "@id": "https://rjryt.github.io/#organization",
+              "@id": "https://rjryt.com/#organization",
               name: "RJRYT Collaborations",
-              url: "https://rjryt.github.io/team",
+              url: "https://rjryt.com/team",
               description:
                 "Collaborative team working with RJRYT to build impactful applications and digital products.",
-              image: "https://rjryt.github.io/images/seo/seo-team.png",
+              image: "https://rjryt.com/images/seo/seo-team.png",
               member: [
                 {
                   "@type": "Person",
-                  "@id": "https://rjryt.github.io/#person",
+                  "@id": "https://rjryt.com/#person",
                   name: "RJRYT",
                   roleName: "Lead MERN Stack Developer",
                 },
                 {
                   "@type": "Person",
-                  "@id": "https://rjryt.github.io/#person",
+                  "@id": "https://rjryt.com/#person",
                   name: "BOSS",
                   roleName: "Web Developer",
                 },

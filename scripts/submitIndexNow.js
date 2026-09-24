@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 // IndexNow configuration
-const HOST = "rjryt.github.io";
+const HOST = "rjryt.com";
 const KEY = "7a235d82900548b59cb9b4bf36f5bffd";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 

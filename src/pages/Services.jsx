@@ -93,7 +93,7 @@ const Services = () => {
           name="keywords"
           content="web development services, MERN stack services, React, Node.js, MongoDB"
         />
-        <link rel="canonical" href="https://rjryt.github.io/services" />
+        <link rel="canonical" href="https://rjryt.com/services" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -106,11 +106,11 @@ const Services = () => {
           content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.github.io/services" />
+        <meta property="og:url" content="https://rjryt.com/services" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.github.io/images/seo/seo-services.png"
+          content="https://rjryt.com/images/seo/seo-services.png"
         />
 
         {/* Twitter Card */}
@@ -123,10 +123,10 @@ const Services = () => {
           name="twitter:description"
           content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions."
         />
-        <meta name="twitter:url" content="https://rjryt.github.io/services" />
+        <meta name="twitter:url" content="https://rjryt.com/services" />
         <meta
           name="twitter:image"
-          content="https://rjryt.github.io/images/seo/seo-services.png"
+          content="https://rjryt.com/images/seo/seo-services.png"
         />
 
         <script type="application/ld+json">
@@ -134,31 +134,31 @@ const Services = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "@id": "https://rjryt.github.io/services#webpage",
-              url: "https://rjryt.github.io/services",
+              "@id": "https://rjryt.com/services#webpage",
+              url: "https://rjryt.com/services",
               name: "Services | Web Development by RJRYT",
               description:
                 "Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions.",
               isPartOf: {
                 "@type": "WebSite",
-                "@id": "https://rjryt.github.io/#website",
+                "@id": "https://rjryt.com/#website",
               },
               about: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
                 name: "RJRYT",
               },
             },
             {
               "@context": "https://schema.org",
               "@type": "Service",
-              "@id": "https://rjryt.github.io/services#service",
+              "@id": "https://rjryt.com/services#service",
               serviceType: "Web Development",
               provider: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
                 name: "RJRYT",
-                url: "https://rjryt.github.io/",
+                url: "https://rjryt.com/",
               },
               description:
                 "Professional web development services by RJRYT including full-stack MERN development, React apps, Node.js APIs, and scalable solutions.",
@@ -168,7 +168,7 @@ const Services = () => {
               },
               availableChannel: {
                 "@type": "ServiceChannel",
-                serviceUrl: "https://rjryt.github.io/contact",
+                serviceUrl: "https://rjryt.com/contact",
                 availableLanguage: ["English"],
               },
             },

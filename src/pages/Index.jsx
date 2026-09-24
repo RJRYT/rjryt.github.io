@@ -21,7 +21,7 @@ const Index = () => {
           name="keywords"
           content="RJRYT, MERN stack, web developer, portfolio, React, Node.js"
         />
-        <link rel="canonical" href="https://rjryt.github.io/" />
+        <link rel="canonical" href="https://rjryt.com/" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -34,11 +34,11 @@ const Index = () => {
           content="Discover the portfolio of RJRYT, a MERN stack web developer building scalable and modern applications. Explore projects, blogs, and services."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.github.io/" />
+        <meta property="og:url" content="https://rjryt.com/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.github.io/images/profile/profile-1.jpg"
+          content="https://rjryt.com/images/profile/profile-1.jpg"
         />
 
         {/* Twitter Card */}
@@ -51,10 +51,10 @@ const Index = () => {
           name="twitter:description"
           content="Discover the portfolio of RJRYT, a MERN stack web developer building scalable and modern applications. Explore projects, blogs, and services."
         />
-        <meta name="twitter:url" content="https://rjryt.github.io/" />
+        <meta name="twitter:url" content="https://rjryt.com/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.github.io/images/profile/profile-1.jpg"
+          content="https://rjryt.com/images/profile/profile-1.jpg"
         />
 
         <script type="application/ld+json">
@@ -62,24 +62,24 @@ const Index = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "https://rjryt.github.io/#website",
-              url: "https://rjryt.github.io/",
+              "@id": "https://rjryt.com/#website",
+              url: "https://rjryt.com/",
               name: "RJRYT Portfolio",
               description:
                 "Discover the portfolio of RJRYT, a MERN stack web developer building scalable and modern applications. Explore projects, blogs, and services.",
               publisher: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
               },
             },
             {
               "@context": "https://schema.org",
               "@type": "Person",
-              "@id": "https://rjryt.github.io/#person",
+              "@id": "https://rjryt.com/#person",
               name: "RJRYT",
               jobTitle: "MERN Stack Web Developer",
-              url: "https://rjryt.github.io/",
-              image: "https://rjryt.github.io/images/profile/profile-1.jpg",
+              url: "https://rjryt.com/",
+              image: "https://rjryt.com/images/profile/profile-1.jpg",
               sameAs: [
                 "https://github.com/rjryt",
                 "https://www.linkedin.com/in/robin-jr",
@@ -90,7 +90,7 @@ const Index = () => {
                 {
                   "@type": "ContactPoint",
                   contactType: "business inquiries",
-                  url: "https://rjryt.github.io/contact",
+                  url: "https://rjryt.com/contact",
                   availableLanguage: ["English"],
                 },
               ],

@@ -18,7 +18,7 @@ const Contact = () => {
           name="keywords"
           content="contact RJRYT, hire web developer, MERN developer contact"
         />
-        <link rel="canonical" href="https://rjryt.github.io/contact" />
+        <link rel="canonical" href="https://rjryt.com/contact" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -28,11 +28,11 @@ const Contact = () => {
           content="Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.github.io/contact" />
+        <meta property="og:url" content="https://rjryt.com/contact" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.github.io/images/seo/seo-contact.png"
+          content="https://rjryt.com/images/seo/seo-contact.png"
         />
 
         {/* Twitter Card */}
@@ -42,10 +42,10 @@ const Contact = () => {
           name="twitter:description"
           content="Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection."
         />
-        <meta name="twitter:url" content="https://rjryt.github.io/contact" />
+        <meta name="twitter:url" content="https://rjryt.com/contact" />
         <meta
           name="twitter:image"
-          content="https://rjryt.github.io/images/seo/seo-contact.png"
+          content="https://rjryt.com/images/seo/seo-contact.png"
         />
 
         {/* JSON-LD Structured Data */}
@@ -53,18 +53,18 @@ const Contact = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            "@id": "https://rjryt.github.io/contact#webpage",
-            url: "https://rjryt.github.io/contact",
+            "@id": "https://rjryt.com/contact#webpage",
+            url: "https://rjryt.com/contact",
             name: "Contact RJRYT | Get in Touch",
             description:
               "Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection.",
             isPartOf: {
               "@type": "WebSite",
-              "@id": "https://rjryt.github.io/#website",
+              "@id": "https://rjryt.com/#website",
             },
             mainEntity: {
               "@type": "Person",
-              "@id": "https://rjryt.github.io/#person",
+              "@id": "https://rjryt.com/#person",
             },
           })}
         </script>

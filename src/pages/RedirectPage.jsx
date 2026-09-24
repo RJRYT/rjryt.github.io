@@ -169,19 +169,19 @@ const RedirectPage = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": "https://rjryt.github.io/redirect",
-            url: "https://rjryt.github.io/redirect",
+            "@id": "https://rjryt.com/redirect",
+            url: "https://rjryt.com/redirect",
             name: "Redirecting… | Quick Links by RJRYT",
             description: `You are being redirected to ${
               new URL(redirect.targetUrl).hostname
             }.`,
             isPartOf: {
               "@type": "WebSite",
-              "@id": "https://rjryt.github.io/#website",
+              "@id": "https://rjryt.com/#website",
             },
             publisher: {
               "@type": "Person",
-              "@id": "https://rjryt.github.io/#person",
+              "@id": "https://rjryt.com/#person",
             },
             potentialAction: {
               "@type": "ViewAction",

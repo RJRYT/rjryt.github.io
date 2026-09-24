@@ -18,7 +18,7 @@ const Skills = () => {
           name="keywords"
           content="MERN skills, full stack skills, React, Node.js, MongoDB, Tailwind"
         />
-        <link rel="canonical" href="https://rjryt.github.io/skills" />
+        <link rel="canonical" href="https://rjryt.com/skills" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -31,11 +31,11 @@ const Skills = () => {
           content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.github.io/skills" />
+        <meta property="og:url" content="https://rjryt.com/skills" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.github.io/images/seo/seo-skills.png"
+          content="https://rjryt.com/images/seo/seo-skills.png"
         />
 
         {/* Twitter Card */}
@@ -48,10 +48,10 @@ const Skills = () => {
           name="twitter:description"
           content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
         />
-        <meta name="twitter:url" content="https://rjryt.github.io/skills" />
+        <meta name="twitter:url" content="https://rjryt.com/skills" />
         <meta
           name="twitter:image"
-          content="https://rjryt.github.io/images/seo/seo-skills.png"
+          content="https://rjryt.com/images/seo/seo-skills.png"
         />
 
         <script type="application/ld+json">
@@ -59,27 +59,27 @@ const Skills = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "@id": "https://rjryt.github.io/skills#webpage",
-              url: "https://rjryt.github.io/skills",
+              "@id": "https://rjryt.com/skills#webpage",
+              url: "https://rjryt.com/skills",
               name: "Skills | MERN Stack & Full Stack Expertise",
               description:
                 "Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices.",
               isPartOf: {
                 "@type": "WebSite",
-                "@id": "https://rjryt.github.io/#website",
+                "@id": "https://rjryt.com/#website",
               },
               about: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
                 name: "RJRYT",
               },
             },
             {
               "@context": "https://schema.org",
               "@type": "Person",
-              "@id": "https://rjryt.github.io/#person",
+              "@id": "https://rjryt.com/#person",
               name: "RJRYT",
-              url: "https://rjryt.github.io/",
+              url: "https://rjryt.com/",
               knowsAbout: [
                 "React",
                 "Node.js",
@@ -92,7 +92,7 @@ const Skills = () => {
               ],
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": "https://rjryt.github.io/skills#webpage",
+                "@id": "https://rjryt.com/skills#webpage",
               },
             },
           ])}

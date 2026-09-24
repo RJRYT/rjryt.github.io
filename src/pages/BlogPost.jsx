@@ -76,7 +76,7 @@ const BlogPost = () => {
           name="keywords"
           content={`RJRYT, Blog, ${post.tags.join(", ")}, Web Development`}
         />
-        <link rel="canonical" href={`https://rjryt.github.io/blog/${slug}`} />
+        <link rel="canonical" href={`https://rjryt.com/blog/${slug}`} />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -85,7 +85,7 @@ const BlogPost = () => {
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://rjryt.github.io/blog/${slug}`}
+          content={`https://rjryt.com/blog/${slug}`}
         />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta property="article:author" content="RJRYT" />
@@ -100,7 +100,7 @@ const BlogPost = () => {
         {post.image && <meta name="twitter:image" content={post.image} />}
         <meta
           name="twitter:url"
-          content={`https://rjryt.github.io/blog/${slug}`}
+          content={`https://rjryt.com/blog/${slug}`}
         />
 
         {/* Twitter */}
@@ -114,24 +114,24 @@ const BlogPost = () => {
             {
               "@context": "https://schema.org",
               "@type": "BlogPosting",
-              "@id": `https://rjryt.github.io/blog/${slug}#blogpost`,
+              "@id": `https://rjryt.com/blog/${slug}#blogpost`,
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://rjryt.github.io/blog/${slug}#webpage`,
+                "@id": `https://rjryt.com/blog/${slug}#webpage`,
               },
               headline: post.title,
               description: post.excerpt,
               image: post.image ? [post.image] : undefined,
               author: {
                 "@type": "Person",
-                "@id": "https://rjryt.github.io/#person",
+                "@id": "https://rjryt.com/#person",
               },
               publisher: {
                 "@type": "Organization",
                 name: "RJRYT Portfolio",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://rjryt.github.io/images/profile/profile-1.jpg",
+                  url: "https://rjryt.com/images/profile/profile-1.jpg",
                 },
               },
               datePublished: post.date,
@@ -146,19 +146,19 @@ const BlogPost = () => {
                   "@type": "ListItem",
                   position: 1,
                   name: "Home",
-                  item: "https://rjryt.github.io/",
+                  item: "https://rjryt.com/",
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
                   name: "Blogs",
-                  item: "https://rjryt.github.io/blog",
+                  item: "https://rjryt.com/blog",
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: post.title,
-                  item: `https://rjryt.github.io/blog/${slug}`,
+                  item: `https://rjryt.com/blog/${slug}`,
                 },
               ],
             },

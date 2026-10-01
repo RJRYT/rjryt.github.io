@@ -347,27 +347,14 @@ const BlogPost = () => {
                             {children}
                           </a>
                         ),
-                        code: ({ inline, className, children, ...props }) =>
-                          inline ? (
-                            <code
-                              className="bg-muted/50 text-accent px-2 py-1 rounded text-sm"
-                              {...props}
-                            >
-                              {children}
-                            </code>
-                          ) : (
-                            <code
-                              className={`block bg-muted/30 text-foreground p-4 rounded-lg text-sm overflow-x-auto ${
-                                className || ""
-                              }`}
-                              {...props}
-                            >
-                              {children}
-                            </code>
-                          ),
+                        code: ({ children }) => (
+                          <code className="bg-muted/50 text-accent px-1.5 py-0.5 rounded text-sm font-mono">
+                            {children}
+                          </code>
+                        ),
 
                         pre: ({ children }) => (
-                          <pre className="bg-muted/30 rounded-lg overflow-x-auto mb-6 p-0">
+                          <pre className="bg-muted/30 text-foreground p-4 rounded-lg overflow-x-auto mb-6 border border-border/50">
                             {children}
                           </pre>
                         ),

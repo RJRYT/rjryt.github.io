@@ -3,6 +3,7 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import {
   ArrowLeft,
   ExternalLink,
@@ -400,68 +401,194 @@ const ProjectDetail = () => {
                 <div className="glass-card p-8 lg:p-12 rounded-2xl">
                   <div className="prose prose-lg prose-invert max-w-none">
                     <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
                       components={{
                         h1: ({ children }) => (
-                          <h1 className="text-fluid-3xl font-bold gradient-text mb-6">
+                          <h1 className="text-3xl font-bold text-foreground mb-6 gradient-text">
                             {children}
                           </h1>
                         ),
+
                         h2: ({ children }) => (
-                          <h2 className="text-fluid-2xl font-bold text-foreground mb-4 mt-8">
+                          <h2 className="text-2xl font-bold text-foreground mb-4 mt-8">
                             {children}
                           </h2>
                         ),
+
                         h3: ({ children }) => (
-                          <h3 className="text-fluid-xl font-semibold text-foreground mb-3 mt-6">
+                          <h3 className="text-xl font-bold text-foreground mb-3 mt-6">
                             {children}
                           </h3>
+                        ),
+
+                        h4: ({ children }) => (
+                          <h4 className="text-lg font-bold text-foreground mb-3 mt-5">
+                            {children}
+                          </h4>
+                        ),
+
+                        h5: ({ children }) => (
+                          <h5 className="text-base font-bold text-foreground mb-2 mt-4">
+                            {children}
+                          </h5>
+                        ),
+
+                        h6: ({ children }) => (
+                          <h6 className="text-sm font-bold text-foreground mb-2 mt-4">
+                            {children}
+                          </h6>
                         ),
                         p: ({ children }) => (
                           <p className="text-foreground/80 leading-relaxed mb-4">
                             {children}
                           </p>
                         ),
+                        a: ({ href, children }) => (
+                          <a
+                            href={href}
+                            className="text-primary hover:underline underline-offset-4 transition-colors"
+                            target={
+                              href?.startsWith("http") ? "_blank" : undefined
+                            }
+                            rel={
+                              href?.startsWith("http")
+                                ? "noopener noreferrer"
+                                : undefined
+                            }
+                          >
+                            {children}
+                          </a>
+                        ),
+                        code: ({ inline, className, children, ...props }) =>
+                          inline ? (
+                            <code
+                              className="bg-muted/50 text-accent px-2 py-1 rounded text-sm"
+                              {...props}
+                            >
+                              {children}
+                            </code>
+                          ) : (
+                            <code
+                              className={`block bg-muted/30 text-foreground p-4 rounded-lg text-sm overflow-x-auto ${
+                                className || ""
+                              }`}
+                              {...props}
+                            >
+                              {children}
+                            </code>
+                          ),
+
+                        pre: ({ children }) => (
+                          <pre className="bg-muted/30 rounded-lg overflow-x-auto mb-6 p-0">
+                            {children}
+                          </pre>
+                        ),
                         ul: ({ children }) => (
                           <ul className="list-disc list-inside text-foreground/80 mb-4 space-y-2">
                             {children}
                           </ul>
                         ),
+
                         ol: ({ children }) => (
                           <ol className="list-decimal list-inside text-foreground/80 mb-4 space-y-2">
                             {children}
                           </ol>
                         ),
-                        li: ({ children }) => (
-                          <li className="text-foreground/80">{children}</li>
+
+                        li: ({ children, className, ...props }) => (
+                          <li
+                            className={`text-foreground/80 ${className || ""}`}
+                            {...props}
+                          >
+                            {children}
+                          </li>
                         ),
+                        input: ({ type, checked, disabled, ...props }) => {
+                          if (type !== "checkbox") {
+                            return <input type={type} {...props} />;
+                          }
+
+                          return (
+                            <input
+                              type="checkbox"
+                              checked={checked}
+                              disabled={disabled}
+                              readOnly
+                              className="mr-2 h-4 w-4 accent-primary align-middle"
+                              {...props}
+                            />
+                          );
+                        },
                         blockquote: ({ children }) => (
-                          <blockquote className="border-l-4 border-primary pl-4 italic text-foreground/70 my-6">
+                          <blockquote className="border-l-4 border-primary pl-4 my-6 italic text-foreground/70">
                             {children}
                           </blockquote>
                         ),
-                        pre: ({ children }) => (
-                          <pre className="bg-muted p-4 rounded-lg overflow-x-auto mb-4">
+                        hr: () => <hr className="my-8 border-border" />,
+                        del: ({ children }) => (
+                          <del className="text-foreground/50 line-through">
                             {children}
-                          </pre>
+                          </del>
                         ),
-                        code: ({ children }) => (
-                          <code className="px-2 py-1 bg-muted rounded text-sm font-mono text-foreground">
+                        table: ({ children }) => (
+                          <div className="w-full overflow-x-auto mb-6 rounded-lg border border-border">
+                            <table className="w-full min-w-[600px] border-collapse text-sm">
+                              {children}
+                            </table>
+                          </div>
+                        ),
+
+                        thead: ({ children }) => (
+                          <thead className="bg-muted/50">{children}</thead>
+                        ),
+
+                        tbody: ({ children }) => (
+                          <tbody className="divide-y divide-border">
                             {children}
-                          </code>
+                          </tbody>
                         ),
-                        a: ({ href, children }) => (
-                          <a
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary hover:text-accent underline underline-offset-2 transition-colors"
-                          >
+
+                        tr: ({ children }) => (
+                          <tr className="border-b border-border last:border-b-0">
                             {children}
-                          </a>
+                          </tr>
                         ),
+
+                        th: ({ children }) => (
+                          <th className="border-r border-border px-4 py-3 text-left font-semibold text-foreground whitespace-nowrap last:border-r-0">
+                            {children}
+                          </th>
+                        ),
+
+                        td: ({ children }) => (
+                          <td className="border-r border-border px-4 py-3 text-foreground/80 align-top last:border-r-0">
+                            {children}
+                          </td>
+                        ),
+                        img: ({ src, alt, title }) => (
+                          <img
+                            src={src}
+                            alt={alt || ""}
+                            title={title}
+                            loading="lazy"
+                            className="max-w-full h-auto rounded-lg my-6"
+                          />
+                        ),
+                        strong: ({ children }) => (
+                          <strong className="font-bold text-foreground">
+                            {children}
+                          </strong>
+                        ),
+
+                        em: ({ children }) => (
+                          <em className="italic text-foreground/90">
+                            {children}
+                          </em>
+                        ),
+                        br: () => <br />,
                       }}
                     >
-                      {project.content}
+                      {post.content}
                     </ReactMarkdown>
                   </div>
                 </div>

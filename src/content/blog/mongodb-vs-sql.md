@@ -1,6 +1,6 @@
 ---
 title: "Is MongoDB a Relational Database? MongoDB vs SQL Databases Explained"
-date: "2026-10-01"
+date: "2026-09-21"
 tags: ["MongoDB","NoSQL","SQL","Relational Databases","Databases","Data Modeling","Scalability"]
 excerpt: "Is MongoDB a relational database? Learn how MongoDB differs from relational databases, how NoSQL compares with SQL, and when to choose MongoDB, MySQL, or PostgreSQL."
 image: '/images/blog/mongodb-vs-sql.png'

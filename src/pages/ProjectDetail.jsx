@@ -1,18 +1,32 @@
-import React from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import ReactMarkdown from 'react-markdown';
-import { 
-  ArrowLeft, ExternalLink, Github, Calendar, 
-  Tag, Globe, Code, Clock, CheckCircle, 
-  Eye, Share2, ArrowRight 
-} from 'lucide-react';
-import Navigation from '@/components/layout/Navigation';
-import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/layout/ScrollToTop';
-import { Button } from '@/components/ui/button';
-import { getProjectBySlug, getRelatedProjects, formatDate } from '@/utils/projects';
+import React from "react";
+import { useParams, Navigate, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import ReactMarkdown from "react-markdown";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  Calendar,
+  Tag,
+  Globe,
+  Code,
+  Clock,
+  CheckCircle,
+  Eye,
+  Share2,
+  ArrowRight,
+} from "lucide-react";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import { Button } from "@/components/ui/button";
+import {
+  getProjectBySlug,
+  getRelatedProjects,
+  formatDate,
+} from "@/utils/projects";
+import { SITE_URL, SITE_NAME, PERSON_ID } from "@/components/SEO";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -25,10 +39,14 @@ const ProjectDetail = () => {
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
-      case 'completed': return 'bg-green-500';
-      case 'in progress': return 'bg-blue-500';
-      case 'planned': return 'bg-yellow-500';
-      default: return 'bg-gray-500';
+      case "completed":
+        return "bg-green-500";
+      case "in progress":
+        return "bg-blue-500";
+      case "planned":
+        return "bg-yellow-500";
+      default:
+        return "bg-gray-500";
     }
   };
 
@@ -38,7 +56,7 @@ const ProjectDetail = () => {
         await navigator.share({
           title: project.title,
           text: project.description,
-          url: window.location.href
+          url: window.location.href,
         });
       } catch (error) {
         // Fallback to clipboard
@@ -61,11 +79,11 @@ const ProjectDetail = () => {
             ", "
           )}, ${project.category}`}
         />
-        <link
-          rel="canonical"
-          href={`https://rjryt.com/projects/${slug}`}
-        />
+        <link rel="canonical" href={`https://rjryt.com/projects/${slug}`} />
         <meta name="author" content="RJRYT" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:locale" content="en_US" />
 
         {/* Open Graph */}
         <meta
@@ -78,7 +96,22 @@ const ProjectDetail = () => {
           property="og:url"
           content={`https://rjryt.com/projects/${slug}`}
         />
-        {project.image && <meta property="og:image" content={project.image} />}
+        {project.image && (
+          <>
+            <meta
+              property="og:image"
+              content={`${SITE_URL}${
+                project.image.startsWith("/")
+                  ? project.image
+                  : `/${project.image}`
+              }`}
+            />
+            <meta
+              property="og:image:alt"
+              content={`${project.title} — RJRYT project`}
+            />
+          </>
+        )}
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -87,7 +120,22 @@ const ProjectDetail = () => {
           content={`${project.title} - RJRYT Projects`}
         />
         <meta name="twitter:description" content={project.description} />
-        {project.image && <meta name="twitter:image" content={project.image} />}
+        {project.image && (
+          <>
+            <meta
+              name="twitter:image"
+              content={`${SITE_URL}${
+                project.image.startsWith("/")
+                  ? project.image
+                  : `/${project.image}`
+              }`}
+            />
+            <meta
+              name="twitter:image:alt"
+              content={`${project.title} — RJRYT project`}
+            />
+          </>
+        )}
         <meta
           name="twitter:url"
           content={`https://rjryt.com/projects/${slug}`}
@@ -110,7 +158,7 @@ const ProjectDetail = () => {
                 ...(project.technologies || []),
                 project.category || "",
               ],
-              codeRepository: project.repoUrl || undefined,
+              codeRepository: project.github || undefined,
               programmingLanguage: project.technologies?.join(", "),
               author: {
                 "@type": "Person",
@@ -119,18 +167,24 @@ const ProjectDetail = () => {
                 url: "https://rjryt.com/",
               },
               publisher: {
-                "@type": "Organization",
-                "@id": "https://rjryt.com/#organization",
-                name: "RJRYT Portfolio",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://rjryt.com/images/profile/profile-1.jpg",
-                },
+                "@id": PERSON_ID,
               },
-              image: project.image ? [project.image] : undefined,
+              image: project.image
+                ? [
+                    `${SITE_URL}${
+                      project.image.startsWith("/")
+                        ? project.image
+                        : `/${project.image}`
+                    }`,
+                  ]
+                : undefined,
               datePublished: project.date,
               dateModified: project.updatedAt || project.date,
-              url: `https://rjryt.com/projects/${slug}`,
+              url: `${SITE_URL}/projects/${slug}`,
+              isPartOf: {
+                "@type": "WebSite",
+                "@id": `${SITE_URL}/#website`,
+              },
             },
             {
               "@context": "https://schema.org",

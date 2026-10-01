@@ -5,7 +5,7 @@ technologies: ["HTML", "Bootstrap", "CSS", "JavaScript"]
 category: "Web"
 status: "Completed"
 github: "https://github.com/rjryt/docs"
-live: "https://rjryt.github.io/docs/"
+live: "https://rjryt.com/docs/"
 image: "/images/projects/ncrp-docs.png"
 featured: false
 date: "2023-05-30"
@@ -25,7 +25,7 @@ It serves as a central reference point with guides, code snippets, and setup ins
 - 📱 **Responsive Design** — Fully mobile-friendly with Bootstrap grid system.  
 - 🎨 **Bootstrap Styling** — Simple yet effective UI with minimal custom CSS.  
 - ⚡ **Fast & Lightweight** — No backend, entirely static hosting on GitHub Pages.  
-- 🌍 **Public Access** — Live at [rjryt.github.io/docs](https://rjryt.github.io/docs/).  
+- 🌍 **Public Access** — Live at [rjryt.com/docs](https://rjryt.com/docs/).  
 
 ## Tech Stack
 
@@ -43,4 +43,4 @@ It serves as a central reference point with guides, code snippets, and setup ins
 ## Links
 
 - **GitHub Repo**: [github.com/rjryt/docs](https://github.com/rjryt/docs)  
-- **Live Site**: [rjryt.github.io/docs](https://rjryt.github.io/docs/)  
+- **Live Site**: [rjryt.com/docs](https://rjryt.com/docs/)  

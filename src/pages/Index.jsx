@@ -40,6 +40,7 @@ const Index = () => {
           property="og:image"
           content="https://rjryt.com/images/profile/profile-1.jpg"
         />
+        <meta property="og:image:alt" content="RJRYT Index page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -56,6 +57,7 @@ const Index = () => {
           name="twitter:image"
           content="https://rjryt.com/images/profile/profile-1.jpg"
         />
+        <meta name="twitter:image:alt" content="RJRYT Index page preview" />
 
         <script type="application/ld+json">
           {JSON.stringify([

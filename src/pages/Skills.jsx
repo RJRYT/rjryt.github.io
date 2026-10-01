@@ -37,6 +37,7 @@ const Skills = () => {
           property="og:image"
           content="https://rjryt.com/images/seo/seo-skills.png"
         />
+        <meta property="og:image:alt" content="RJRYT Skills page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
@@ -53,6 +54,7 @@ const Skills = () => {
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-skills.png"
         />
+        <meta name="twitter:image:alt" content="RJRYT Skills page preview" />
 
         <script type="application/ld+json">
           {JSON.stringify([

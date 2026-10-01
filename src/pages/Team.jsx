@@ -87,6 +87,7 @@ const Team = () => {
           property="og:image"
           content="https://rjryt.com/images/seo/seo-team.png"
         />
+        <meta property="og:image:alt" content="RJRYT Team page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
@@ -100,6 +101,7 @@ const Team = () => {
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-team.png"
         />
+        <meta name="twitter:image:alt" content="RJRYT Team page preview" />
         <script type="application/ld+json">
           {JSON.stringify([
             {

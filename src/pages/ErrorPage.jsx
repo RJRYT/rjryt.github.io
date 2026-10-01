@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AlertCircle, Home } from "lucide-react";
@@ -17,6 +18,14 @@ const ErrorPage = ({ message = "Something went wrong!", status = 500 }) => {
   }, [location.pathname, status, message]);
 
   return (
+    <>
+      <Helmet>
+        <title>Error | RJRYT</title>
+        <meta name="description" content="An unexpected error occurred on the RJRYT portfolio." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://rjryt.com/" />
+      </Helmet>
+
     <div className="min-h-screen flex items-center justify-center bg-gradient-hero">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -40,6 +49,7 @@ const ErrorPage = ({ message = "Something went wrong!", status = 500 }) => {
         </div>
       </motion.div>
     </div>
+    </>
   );
 };
 

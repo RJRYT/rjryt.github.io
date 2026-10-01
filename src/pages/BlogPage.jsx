@@ -85,6 +85,7 @@ const BlogPage = () => {
           property="og:image"
           content="https://rjryt.com/images/seo/seo-blogs.png"
         />
+        <meta property="og:image:alt" content="RJRYT BlogPage page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -101,6 +102,7 @@ const BlogPage = () => {
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-blogs.png"
         />
+        <meta name="twitter:image:alt" content="RJRYT BlogPage page preview" />
 
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
@@ -125,18 +127,6 @@ const BlogPage = () => {
               mainEntityOfPage: {
                 "@type": "WebPage",
                 "@id": "https://rjryt.com/blog#webpage",
-              },
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "@id": "https://rjryt.com/#website",
-              url: "https://rjryt.com",
-              potentialAction: {
-                "@type": "SearchAction",
-                target:
-                  "https://rjryt.com/blog?search={search_term_string}",
-                "query-input": "required name=search_term_string",
               },
             },
           ])}

@@ -5,7 +5,7 @@ technologies: ["HTML", "CSS", "JavaScript"]
 category: "Academic"
 status: "Archived"
 github: "https://github.com/rjryt/college-web-collections"
-live: "https://rjryt.github.io/web-programming/"
+live: "https://rjryt.com/web-programming/"
 image: "/images/projects/college-web.png"
 featured: false
 date: "2023-09-11"

@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { Link, useParams, Navigate } from 'react-router-dom';
-import { Calendar, Clock, Tag, ArrowLeft, Share2, Github, ExternalLink } from 'lucide-react';
-import ReactMarkdown from 'react-markdown';
-import Navigation from '@/components/layout/Navigation';
-import Footer from '@/components/layout/Footer';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { Link, useParams, Navigate } from "react-router-dom";
+import {
+  Calendar,
+  Clock,
+  Tag,
+  ArrowLeft,
+  Share2,
+  Github,
+  ExternalLink,
+} from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { getPostBySlug } from "@/utils/blog";
+import { SITE_URL, SITE_NAME, PERSON_ID } from "@/components/SEO";
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  useEffect(() => {
-    setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      const foundPost = getPostBySlug(slug);
-      setPost(foundPost || null);
-      setLoading(false);
-    }, 500);
-  }, [slug]);
+  // Must be synchronous so the post and Helmet metadata
+  // are available during build-time SSR/prerendering.
+  const post = getPostBySlug(slug);
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -35,11 +36,11 @@ const BlogPost = () => {
           url: window.location.href,
         });
       } catch (err) {
-        console.log('Error sharing:', err);
+        console.log("Error sharing:", err);
       }
     } else {
-      // Fallback to copying URL
       navigator.clipboard.writeText(window.location.href);
+
       toast({
         title: "Link Copied",
         description: "Article URL copied to clipboard!",
@@ -48,20 +49,12 @@ const BlogPost = () => {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-hero flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-2 border-accent border-t-transparent rounded-full"></div>
-      </div>
-    );
-  }
 
   if (!post) {
     return <Navigate to="/blog" replace />;
@@ -71,94 +64,136 @@ const BlogPost = () => {
     <>
       <Helmet>
         <title>{post.title} - RJRYT Blog</title>
+
         <meta name="description" content={post.excerpt} />
+
         <meta
           name="keywords"
           content={`RJRYT, Blog, ${post.tags.join(", ")}, Web Development`}
         />
-        <link rel="canonical" href={`https://rjryt.com/blog/${slug}`} />
+
+        <link rel="canonical" href={`${SITE_URL}/blog/${slug}`} />
+
         <meta name="author" content="RJRYT" />
 
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+
         {/* Open Graph */}
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:locale" content="en_US" />
         <meta property="og:title" content={`${post.title} - RJRYT Blog`} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={`https://rjryt.com/blog/${slug}`}
-        />
-        <meta property="og:site_name" content="RJRYT Portfolio" />
+        <meta property="og:url" content={`${SITE_URL}/blog/${slug}`} />
+
         <meta property="article:author" content="RJRYT" />
+
         <meta property="article:published_time" content={post.date} />
+
         <meta property="article:tag" content={post.tags.join(", ")} />
-        {post.image && <meta property="og:image" content={post.image} />}
+
+        {post.image && (
+          <>
+            <meta
+              property="og:image"
+              content={`${SITE_URL}${
+                post.image.startsWith("/") ? post.image : `/${post.image}`
+              }`}
+            />
+
+            <meta
+              property="og:image:alt"
+              content={`${post.title} — RJRYT Blog`}
+            />
+          </>
+        )}
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${post.title} - RJRYT Blog`} />
-        <meta name="twitter:description" content={post.excerpt} />
-        {post.image && <meta name="twitter:image" content={post.image} />}
-        <meta
-          name="twitter:url"
-          content={`https://rjryt.com/blog/${slug}`}
-        />
 
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:title" content={`${post.title} - RJRYT Blog`} />
+
         <meta name="twitter:description" content={post.excerpt} />
-        <meta name="twitter:image" content={post.image} />
+
+        {post.image && (
+          <>
+            <meta
+              name="twitter:image"
+              content={`${SITE_URL}${
+                post.image.startsWith("/") ? post.image : `/${post.image}`
+              }`}
+            />
+
+            <meta
+              name="twitter:image:alt"
+              content={`${post.title} — RJRYT Blog`}
+            />
+          </>
+        )}
+
+        <meta name="twitter:url" content={`${SITE_URL}/blog/${slug}`} />
 
         <script type="application/ld+json">
           {JSON.stringify([
             {
               "@context": "https://schema.org",
               "@type": "BlogPosting",
-              "@id": `https://rjryt.com/blog/${slug}#blogpost`,
+              "@id": `${SITE_URL}/blog/${slug}#blogpost`,
+
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://rjryt.com/blog/${slug}#webpage`,
+                "@id": `${SITE_URL}/blog/${slug}#webpage`,
               },
+
               headline: post.title,
               description: post.excerpt,
-              image: post.image ? [post.image] : undefined,
+
+              image: post.image
+                ? [
+                    `${SITE_URL}${
+                      post.image.startsWith("/") ? post.image : `/${post.image}`
+                    }`,
+                  ]
+                : undefined,
+
               author: {
-                "@type": "Person",
-                "@id": "https://rjryt.com/#person",
+                "@id": PERSON_ID,
               },
+
               publisher: {
-                "@type": "Organization",
-                name: "RJRYT Portfolio",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://rjryt.com/images/profile/profile-1.jpg",
-                },
+                "@id": PERSON_ID,
               },
+
               datePublished: post.date,
               dateModified: post.updatedAt || post.date,
               keywords: post.tags,
+              url: `${SITE_URL}/blog/${slug}`,
+              articleSection: "Web Development",
+              inLanguage: "en",
             },
+
             {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
+
               itemListElement: [
                 {
                   "@type": "ListItem",
                   position: 1,
                   name: "Home",
-                  item: "https://rjryt.com/",
+                  item: `${SITE_URL}/`,
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
                   name: "Blogs",
-                  item: "https://rjryt.com/blog",
+                  item: `${SITE_URL}/blog`,
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: post.title,
-                  item: `https://rjryt.com/blog/${slug}`,
+                  item: `${SITE_URL}/blog/${slug}`,
                 },
               ],
             },
@@ -170,7 +205,6 @@ const BlogPost = () => {
         <Navigation />
 
         <main className="pt-20">
-          {/* Header */}
           <section className="py-16">
             <div className="container mx-auto px-4 max-w-4xl">
               <div className="flex items-center gap-4 mb-8">
@@ -199,6 +233,7 @@ const BlogPost = () => {
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />
+
                   <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 </div>
 
@@ -209,10 +244,12 @@ const BlogPost = () => {
                       <Calendar className="w-4 h-4" />
                       {formatDate(post.date)}
                     </div>
+
                     <div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
                       {post.readTime}
                     </div>
+
                     <Button
                       variant="ghost"
                       size="sm"
@@ -257,21 +294,25 @@ const BlogPost = () => {
                             {children}
                           </h1>
                         ),
+
                         h2: ({ children }) => (
                           <h2 className="text-2xl font-bold text-foreground mb-4 mt-8">
                             {children}
                           </h2>
                         ),
+
                         h3: ({ children }) => (
                           <h3 className="text-xl font-bold text-foreground mb-3 mt-6">
                             {children}
                           </h3>
                         ),
+
                         p: ({ children }) => (
                           <p className="text-foreground/80 leading-relaxed mb-4">
                             {children}
                           </p>
                         ),
+
                         code: ({ inline, children }) =>
                           inline ? (
                             <code className="bg-muted/50 text-accent px-2 py-1 rounded text-sm">
@@ -282,11 +323,13 @@ const BlogPost = () => {
                               {children}
                             </code>
                           ),
+
                         ul: ({ children }) => (
                           <ul className="list-disc list-inside text-foreground/80 mb-4 space-y-2">
                             {children}
                           </ul>
                         ),
+
                         li: ({ children }) => (
                           <li className="text-foreground/80">{children}</li>
                         ),
@@ -307,9 +350,11 @@ const BlogPost = () => {
                   <h3 className="text-2xl font-bold text-foreground mb-4">
                     Found this helpful?
                   </h3>
+
                   <p className="text-foreground/70 mb-6">
                     Follow me for more development insights and tutorials
                   </p>
+
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button
                       asChild
@@ -324,6 +369,7 @@ const BlogPost = () => {
                         Follow on GitHub
                       </a>
                     </Button>
+
                     <Button
                       asChild
                       variant="outline"

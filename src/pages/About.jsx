@@ -37,6 +37,7 @@ const About = () => {
           property="og:image"
           content="https://rjryt.com/images/seo/seo-about.png"
         />
+        <meta property="og:image:alt" content="RJRYT About page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
@@ -53,6 +54,7 @@ const About = () => {
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-about.png"
         />
+        <meta name="twitter:image:alt" content="RJRYT About page preview" />
 
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">

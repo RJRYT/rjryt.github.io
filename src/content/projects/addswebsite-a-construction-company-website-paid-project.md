@@ -5,7 +5,7 @@ technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"]
 category: "Web"
 status: "Completed"
 github: "https://github.com/RJRYT/addswebsite"
-live: "https://rjryt.github.io/AddsWebsite/"
+live: "https://rjryt.com/AddsWebsite/"
 image: "/images/projects/addswebsite.png"
 featured: false
 date: "2023-09-29"
@@ -29,4 +29,4 @@ The website includes a modern landing page, services section, project gallery, a
 ## Links
 
 - **GitHub Repo**: [AddsWebsite](https://github.com/RJRYT/addswebsite)  
-- **Live Demo**: [View Website](https://rjryt.github.io/AddsWebsite/)  
+- **Live Demo**: [View Website](https://rjryt.com/AddsWebsite/)  

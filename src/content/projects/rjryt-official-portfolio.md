@@ -5,7 +5,7 @@ technologies: ["React", "Vite", "Tailwind CSS", "PWA"]
 category: "Personal"
 status: "Completed"
 github: "https://github.com/RJRYT/rjryt.github.io"
-live: "https://rjryt.github.io/"
+live: "https://rjryt.com/"
 image: "/images/projects/rjryt-portfolio.png"
 featured: true
 date: "2025-08-23"

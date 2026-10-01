@@ -34,6 +34,7 @@ const Contact = () => {
           property="og:image"
           content="https://rjryt.com/images/seo/seo-contact.png"
         />
+        <meta property="og:image:alt" content="RJRYT Contact page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
@@ -47,6 +48,7 @@ const Contact = () => {
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-contact.png"
         />
+        <meta name="twitter:image:alt" content="RJRYT Contact page preview" />
 
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">

@@ -72,7 +72,7 @@ video Black Panther - Car Chase Scene - Movie clip Epic 4K UHD
 
 ### ytsearch-cli — YouTube Search from the Terminal
 
-[ytsearch-cli](https://rjryt.github.io/projects/ytsearch-cli-npm-package) is the command-line interface powered by ytsearch.js. It brings YouTube video, channel, and playlist search directly to the terminal with formatted output, JSON support, and interactive search.
+[ytsearch-cli](https://rjryt.com/projects/ytsearch-cli-npm-package) is the command-line interface powered by ytsearch.js. It brings YouTube video, channel, and playlist search directly to the terminal with formatted output, JSON support, and interactive search.
 
 ## Status
 
@@ -83,4 +83,4 @@ video Black Panther - Car Chase Scene - Movie clip Epic 4K UHD
 * 📦 **NPM Package**: [ytsearch.js on npm](https://www.npmjs.com/package/ytsearch.js)
 * 📖 **Documentation & Wiki**: [ytsearch.js on GitHub Wiki](https://github.com/RJRYT/ytsearch.js/wiki)
 * 💻 **GitHub Repository**: [RJRYT/ytsearch.js](https://github.com/RJRYT/ytsearch.js)
-* 🖥️ **Command-Line Interface**: [ytsearch-cli](https://rjryt.github.io/projects/ytsearch-cli-npm-package)
+* 🖥️ **Command-Line Interface**: [ytsearch-cli](https://rjryt.com/projects/ytsearch-cli-npm-package)

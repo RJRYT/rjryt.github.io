@@ -29,14 +29,12 @@ const STATIC_ROUTES = [
 // Content sources (adjust if your folders differ)
 const BLOG_DIR = path.resolve(process.cwd(), "src", "content", "blog");
 const PROJECTS_DIR = path.resolve(process.cwd(), "src", "content", "projects");
-import { redirectsData } from "../src/utils/redirects.js";
 
 // Defaults for <changefreq> and <priority>
 const FREQ = {
   static: "weekly",
   blog: "weekly",
   project: "weekly",
-  redirect: "monthly",
 };
 const PRIORITY = {
   "/": 1.0,
@@ -83,10 +81,23 @@ function urlXml({ loc, lastmod, changefreq, priority }) {
 }
 
 // ======= Collect URLs =======
+const STATIC_SOURCE_FILES = {
+  "/": "src/pages/Index.jsx",
+  "/about": "src/pages/About.jsx",
+  "/services": "src/pages/Services.jsx",
+  "/skills": "src/pages/Skills.jsx",
+  "/projects": "src/pages/ProjectsPage.jsx",
+  "/team": "src/pages/Team.jsx",
+  "/contact": "src/pages/Contact.jsx",
+  "/blog": "src/pages/BlogPage.jsx",
+};
+
 function collectStaticRoutes() {
   return STATIC_ROUTES.map((route) => ({
     loc: `${SITE_URL}${route}`,
-    lastmod: new Date().toISOString(),
+    lastmod: getFileMtimeIso(
+      path.resolve(process.cwd(), STATIC_SOURCE_FILES[route] || "src/App.jsx")
+    ),
     changefreq: FREQ.static,
     priority: PRIORITY[route] ?? PRIORITY.default,
   }));
@@ -106,23 +117,7 @@ function collectMarkdownRoutes(dir, basePath, type) {
   });
 }
 
-function collectRedirects() {
-  try {
-    return redirectsData.map((item) => ({
-      loc: `${SITE_URL}${item.shortUrl}`,
-      lastmod: item.updatedAt || item.createdAt || new Date().toISOString(),
-      changefreq: FREQ.redirect,
-      priority: 0.5,
-      target: item.targetUrl,
-      title: item.title,
-      description: item.description,
-      active: item.active,
-      clicks: item.clicks,
-    }));
-  } catch {
-    return [];
-  }
-}
+
 
 // ======= Generate XML =======
 function generateSitemapXml(urls) {
@@ -134,7 +129,12 @@ function generateSitemapXml(urls) {
 }
 
 function generateRobotsTxt() {
-  return `Sitemap: ${SITE_URL}/sitemap.xml\nUser-agent: *\nAllow: /`;
+  return [
+    "User-agent: *",
+    "Allow: /",
+    `Sitemap: ${SITE_URL}/sitemap.xml`,
+    "",
+  ].join("\n");
 }
 
 // ======= Main =======
@@ -144,7 +144,6 @@ function generateRobotsTxt() {
     ...collectStaticRoutes(),
     ...collectMarkdownRoutes(BLOG_DIR, "/blog", "blog"),
     ...collectMarkdownRoutes(PROJECTS_DIR, "/projects", "project"),
-    ...collectRedirects(),
   ];
 
   // Ensure dist exists
@@ -159,15 +158,4 @@ function generateRobotsTxt() {
   const robotsTxt = generateRobotsTxt();
   fs.writeFileSync(path.join(DIST_DIR, "robots.txt"), robotsTxt, "utf8");
   console.log("[sitemap] Wrote robots.txt → dist/robots.txt");
-
-  // Optional: copy sitemap.xml to sitemap-new.xml
-  try {
-      fs.copyFileSync(
-        path.join(DIST_DIR, "sitemap.xml"),
-        path.join(DIST_DIR, "sitemap-new.xml")
-      );
-      console.log("[sitemap] Copied sitemap.xml to sitemap-new.xml");
-    } catch (error) {
-      console.error("Error copying sitemap.xml:", error.message);
-    }
 })();

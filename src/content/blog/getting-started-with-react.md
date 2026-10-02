@@ -161,7 +161,7 @@ You can use it like this:
 function App() {
   return (
     <div>
-      <Welcome name="Robin" />
+      <Welcome name="John" />
     </div>
   );
 }
@@ -188,7 +188,7 @@ JSX is not HTML. It is syntax that React tooling transforms into JavaScript.
 You can also use JavaScript expressions inside JSX:
 
 ```jsx
-const name = "Robin";
+const name = "John";
 
 function App() {
   return <h1>Hello, {name}!</h1>;
@@ -267,7 +267,7 @@ function App() {
   return (
     <div>
       <UserCard
-        name="Robin"
+        name="John"
         role="Full-Stack Developer"
       />
 
@@ -414,7 +414,7 @@ React can render arrays of data using JavaScript's `map()` method.
 
 ```jsx
 const users = [
-  { id: 1, name: "Robin" },
+  { id: 1, name: "John" },
   { id: 2, name: "Alex" },
   { id: 3, name: "Sam" }
 ];
@@ -741,7 +741,7 @@ When learning React, a few mistakes appear frequently.
 Avoid:
 
 ```jsx
-user.name = "Robin";
+user.name = "John";
 ```
 
 Instead, create a new value and update state through its setter.
@@ -751,7 +751,7 @@ For example:
 ```jsx
 setUser((currentUser) => ({
   ...currentUser,
-  name: "Robin"
+  name: "John"
 }));
 ```
 

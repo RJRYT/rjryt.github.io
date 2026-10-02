@@ -588,7 +588,7 @@ const ProjectDetail = () => {
                         br: () => <br />,
                       }}
                     >
-                      {post.content}
+                      {project.content}
                     </ReactMarkdown>
                   </div>
                 </div>

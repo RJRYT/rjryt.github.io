@@ -93,8 +93,8 @@ Example:
 ```json
 {
   "_id": "65abc123",
-  "name": "Robin",
-  "email": "robin@example.com",
+  "name": "John",
+  "email": "john@example.com",
   "role": "developer"
 }
 ```

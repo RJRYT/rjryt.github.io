@@ -461,7 +461,7 @@ might contain:
 
 ```json
 {
-  "name": "Robin",
+  "name": "John",
   "email": "invalid",
   "password": ""
 }
@@ -512,7 +512,7 @@ For example:
 {
   "data": {
     "id": "123",
-    "name": "Robin"
+    "name": "John"
   }
 }
 ```
@@ -1143,8 +1143,8 @@ POST /api/users
 
 Request:
 {
-  "name": "Robin",
-  "email": "robin@example.com"
+  "name": "John",
+  "email": "john@example.com"
 }
 
 Response:
@@ -1152,7 +1152,7 @@ Response:
 {
   "data": {
     "id": "123",
-    "name": "Robin"
+    "name": "John"
   }
 }
 ```
@@ -1324,7 +1324,7 @@ For example, changing:
 
 ```json
 {
-  "name": "Robin"
+  "name": "John"
 }
 ```
 
@@ -1332,7 +1332,7 @@ to:
 
 ```json
 {
-  "fullName": "Robin"
+  "fullName": "John"
 }
 ```
 

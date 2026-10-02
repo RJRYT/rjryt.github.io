@@ -348,13 +348,13 @@ const BlogPost = () => {
                           </a>
                         ),
                         code: ({ children }) => (
-                          <code className="bg-muted/50 text-accent px-1.5 py-0.5 rounded text-sm font-mono">
+                          <code className="bg-muted/20 text-foreground/70 px-1.5 py-0.5 rounded text-sm font-mono italic">
                             {children}
                           </code>
                         ),
 
                         pre: ({ children }) => (
-                          <pre className="bg-muted/30 text-foreground p-4 rounded-lg overflow-x-auto mb-6 border border-border/50">
+                          <pre className="bg-muted/20 text-foreground p-4 rounded-lg overflow-x-auto mb-6 border border-border/50">
                             {children}
                           </pre>
                         ),

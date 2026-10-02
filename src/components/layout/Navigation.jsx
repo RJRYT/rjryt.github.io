@@ -6,17 +6,38 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const currentTheme = localStorage.getItem("theme");
-    setTheme(currentTheme);
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.classList.toggle("light", theme === "light");
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleStorage = (event) => {
+      if (event.key === "theme") {
+        setTheme(event.newValue || "dark");
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+    };
   }, []);
 
   const navigation = [
@@ -30,10 +51,7 @@ const Navigation = () => {
   ];
 
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    document.documentElement.className = newTheme;
-    localStorage.setItem("theme", newTheme);
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
   };
 
   return (

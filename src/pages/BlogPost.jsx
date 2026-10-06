@@ -347,14 +347,17 @@ const BlogPost = () => {
                             {children}
                           </a>
                         ),
-                        code: ({ children }) => (
-                          <code className="bg-muted/20 text-foreground/70 px-1.5 py-0.5 rounded text-sm font-mono italic">
+                        code: ({ className, children, node, ...props }) => (
+                          <code
+                            className={`bg-muted/40 px-1.5 py-0.5 rounded font-mono text-[length:inherit] text-inherit ${className || ""}`}
+                            {...props}
+                          >
                             {children}
                           </code>
                         ),
 
                         pre: ({ children }) => (
-                          <pre className="bg-muted/20 text-foreground p-4 rounded-lg overflow-x-auto mb-6 border border-border/50">
+                          <pre className="bg-muted/20 text-foreground p-4 rounded-lg overflow-x-auto mb-6 border border-border/50 [&>code]:block [&>code]:bg-transparent [&>code]:p-0 [&>code]:rounded-none [&>code]:text-inherit">
                             {children}
                           </pre>
                         ),

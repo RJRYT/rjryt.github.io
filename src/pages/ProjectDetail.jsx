@@ -459,27 +459,17 @@ const ProjectDetail = () => {
                             {children}
                           </a>
                         ),
-                        code: ({ inline, className, children, ...props }) =>
-                          inline ? (
-                            <code
-                              className="bg-muted/50 text-accent px-2 py-1 rounded text-sm"
-                              {...props}
-                            >
-                              {children}
-                            </code>
-                          ) : (
-                            <code
-                              className={`block bg-muted/30 text-foreground p-4 rounded-lg text-sm overflow-x-auto ${
-                                className || ""
-                              }`}
-                              {...props}
-                            >
-                              {children}
-                            </code>
-                          ),
+                        code: ({ className, children, node, ...props }) => (
+                          <code
+                            className={`bg-muted/40 px-1.5 py-0.5 rounded font-mono text-[length:inherit] text-inherit ${className || ""}`}
+                            {...props}
+                          >
+                            {children}
+                          </code>
+                        ),
 
                         pre: ({ children }) => (
-                          <pre className="bg-muted/30 rounded-lg overflow-x-auto mb-6 p-0">
+                          <pre className="bg-muted/20 text-foreground p-4 rounded-lg overflow-x-auto mb-6 border border-border/50 [&>code]:block [&>code]:bg-transparent [&>code]:p-0 [&>code]:rounded-none [&>code]:text-inherit">
                             {children}
                           </pre>
                         ),

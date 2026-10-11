@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Mail, MapPin, User, MessageSquare, Send, CheckCircle, 
@@ -9,6 +9,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { trackEvent } from '@/lib/analytics';
+import {
+  getRecaptchaToken,
+  isRecaptchaEnabled,
+  loadRecaptcha,
+} from '@/lib/recaptcha';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +24,16 @@ const ContactSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasStartedForm, setHasStartedForm] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (isRecaptchaEnabled) {
+      loadRecaptcha().catch(() => {
+        console.warn('reCAPTCHA could not be loaded.');
+      });
+    }
+  }, []);
 
   const contactInfo = [
     {
@@ -82,6 +97,10 @@ const ContactSection = () => {
   ];
 
   const handleInputChange = (e) => {
+    if (!hasStartedForm) {
+      trackEvent('form_start', { form_id: 'contact' });
+      setHasStartedForm(true);
+    }
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -117,13 +136,18 @@ const ContactSection = () => {
     }
 
     try {
+      const recaptchaToken = await getRecaptchaToken('contact_submit');
+
       // Create form data for FormSubmit
       const form = new FormData();
       form.append('name', formData.name);
       form.append('email', formData.email);
       form.append('subject', formData.subject || 'Contact from RJRYT Portfolio');
       form.append('message', formData.message);
-      form.append('_captcha', 'false'); // Disable captcha
+      form.append('_captcha', 'false');
+      if (recaptchaToken) {
+        form.append('g-recaptcha-response', recaptchaToken);
+      }
       form.append('_next', window.location.origin + '/?message=success'); // Redirect URL
       form.append('_subject', "New message request from your website!");
       form.append('_autoresponse', "Your request was send to the website owner. Wait for the response...🙂");
@@ -137,6 +161,10 @@ const ContactSection = () => {
       });
 
       if (response.ok) {
+        trackEvent('generate_lead', {
+          form_id: 'contact',
+          captcha_enabled: isRecaptchaEnabled,
+        });
         toast({
           title: "Message Sent!",
           description: "Thank you for your message. I'll get back to you soon!",
@@ -155,6 +183,10 @@ const ContactSection = () => {
       }
     } catch (error) {
       console.error('Contact form error:', error);
+      trackEvent('form_submit_error', {
+        form_id: 'contact',
+        captcha_enabled: isRecaptchaEnabled,
+      });
       toast({
         title: "Error",
         description: "Failed to send message. Please try again or contact me directly.",

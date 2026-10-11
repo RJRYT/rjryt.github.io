@@ -21,6 +21,7 @@ import Team from "./pages/Team";
 import ErrorPage from "./pages/ErrorPage";
 import GlobalSEO from "./components/SEO";
 import AutoScrollToTop from "./components/layout/AutoScrollToTop";
+import Analytics from "./components/Analytics";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ const App = ({ isServer = false, location = "/", helmetContext={} }) => {
           <Sonner />
           <ConditionRouter>
             <AutoScrollToTop />
+            {!isServer && <Analytics />}
             <GlobalSEO />
             <Routes>
               <Route path="/" element={<Index />} />

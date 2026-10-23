@@ -18,7 +18,7 @@ const About = () => {
           name="keywords"
           content="About RJRYT, MERN stack developer, full stack developer"
         />
-        <link rel="canonical" href="https://rjryt.com/about" />
+        <link rel="canonical" href="https://rjryt.com/about/" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -31,7 +31,7 @@ const About = () => {
           content="Learn about RJRYT, a passionate MERN stack developer with expertise in building scalable, modern, and user-friendly web apps."
         />
         <meta property="og:type" content="profile" />
-        <meta property="og:url" content="https://rjryt.com/about" />
+        <meta property="og:url" content="https://rjryt.com/about/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
@@ -49,7 +49,7 @@ const About = () => {
           name="twitter:description"
           content="Learn about RJRYT, a passionate MERN stack developer with expertise in building scalable, modern, and user-friendly web apps."
         />
-        <meta name="twitter:url" content="https://rjryt.com/about" />
+        <meta name="twitter:url" content="https://rjryt.com/about/" />
         <meta
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-about.png"
@@ -61,8 +61,8 @@ const About = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": "https://rjryt.com/about#webpage",
-            url: "https://rjryt.com/about",
+            "@id": "https://rjryt.com/about/#webpage",
+            url: "https://rjryt.com/about/",
             name: "About RJRYT | MERN Stack Web Developer",
             description:
               "Learn about RJRYT, a passionate MERN stack developer with expertise in building scalable, modern, and user-friendly web apps.",

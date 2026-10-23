@@ -18,7 +18,7 @@ const Skills = () => {
           name="keywords"
           content="MERN skills, full stack skills, React, Node.js, MongoDB, Tailwind"
         />
-        <link rel="canonical" href="https://rjryt.com/skills" />
+        <link rel="canonical" href="https://rjryt.com/skills/" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -31,7 +31,7 @@ const Skills = () => {
           content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.com/skills" />
+        <meta property="og:url" content="https://rjryt.com/skills/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
@@ -49,7 +49,7 @@ const Skills = () => {
           name="twitter:description"
           content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
         />
-        <meta name="twitter:url" content="https://rjryt.com/skills" />
+        <meta name="twitter:url" content="https://rjryt.com/skills/" />
         <meta
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-skills.png"
@@ -61,8 +61,8 @@ const Skills = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "@id": "https://rjryt.com/skills#webpage",
-              url: "https://rjryt.com/skills",
+              "@id": "https://rjryt.com/skills/#webpage",
+              url: "https://rjryt.com/skills/",
               name: "Skills | MERN Stack & Full Stack Expertise",
               description:
                 "Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices.",
@@ -94,7 +94,7 @@ const Skills = () => {
               ],
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": "https://rjryt.com/skills#webpage",
+                "@id": "https://rjryt.com/skills/#webpage",
               },
             },
           ])}

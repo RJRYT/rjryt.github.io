@@ -10,34 +10,43 @@ export const DEFAULT_IMAGE = `${SITE_URL}/images/profile/profile-1.jpg`;
 
 const INDEXABLE_STATIC_ROUTES = new Set([
   "/",
-  "/about",
-  "/services",
-  "/skills",
-  "/team",
-  "/contact",
-  "/projects",
-  "/blog",
+  "/about/",
+  "/services/",
+  "/skills/",
+  "/team/",
+  "/contact/",
+  "/projects/",
+  "/blog/",
 ]);
 
 const normalizePath = (pathname) => {
   if (!pathname || pathname === "/") return "/";
-  return pathname.replace(/\/+$/, "") || "/";
+
+  const trimmed = pathname.replace(/\/+$/, "") || "/";
+  return trimmed === "/" ? "/" : `${trimmed}/`;
 };
 
 export const getCanonicalUrl = (pathname) => {
   const normalized = normalizePath(pathname);
-  if (normalized === "/index.html" || normalized === "/404.html") {
+
+  if (normalized === "/index.html/" || normalized === "/404.html/") {
     return `${SITE_URL}/`;
   }
+
   return `${SITE_URL}${normalized}`;
 };
 
 export const isIndexablePath = (pathname) => {
   const normalized = normalizePath(pathname);
 
+  if (normalized === "/index.html/" || normalized === "/404.html/") {
+    return false;
+  }
+
   if (INDEXABLE_STATIC_ROUTES.has(normalized)) return true;
-  if (/^\/projects\/[^/]+$/.test(normalized)) return true;
-  if (/^\/blog\/[^/]+$/.test(normalized)) return true;
+  if (/^\/projects\/[^/]+\/$/.test(normalized)) return true;
+  if (/^\/blog\/[^/]+\/$/.test(normalized)) return true;
+
   return false;
 };
 

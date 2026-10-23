@@ -18,8 +18,9 @@ const indexableRoutes = [
 const ignoredRoutes = ["/404.html", "/error"];
 
 function normalizeRoute(route) {
-  if (route === "/") return "/";
-  return route.replace(/\/+$/, "");
+  if (!route || route === "/") return "/";
+  const normalized = `/${route.replace(/^\/+|\/+$/g, "")}`;
+  return normalized === "/" ? "/" : `${normalized}/`;
 }
 
 function routeToFile(route) {
@@ -440,7 +441,7 @@ if (!fs.existsSync(sitemapPath)) {
   const expectedRoutes = [...indexableRoutes, ...projectRoutes, ...blogRoutes];
 
   const expectedUrls = expectedRoutes.map(
-    (route) => `${SITE_URL}${route === "/" ? "/" : route}`
+    (route) => `${SITE_URL}${route === "/" ? "/" : normalizeRoute(route)}`
   );
 
   // Check expected routes exist.

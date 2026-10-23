@@ -73,7 +73,7 @@ const BlogPost = () => {
           content={`RJRYT, Blog, ${post.tags.join(", ")}, Web Development`}
         />
 
-        <link rel="canonical" href={`${SITE_URL}/blog/${slug}`} />
+        <link rel="canonical" href={`${SITE_URL}/blog/${slug}/`} />
 
         <meta name="author" content="RJRYT" />
 
@@ -85,7 +85,7 @@ const BlogPost = () => {
         <meta property="og:title" content={`${post.title} - RJRYT Blog`} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`${SITE_URL}/blog/${slug}`} />
+        <meta property="og:url" content={`${SITE_URL}/blog/${slug}/`} />
 
         <meta property="article:author" content="RJRYT" />
 
@@ -132,18 +132,18 @@ const BlogPost = () => {
           </>
         )}
 
-        <meta name="twitter:url" content={`${SITE_URL}/blog/${slug}`} />
+        <meta name="twitter:url" content={`${SITE_URL}/blog/${slug}/`} />
 
         <script type="application/ld+json">
           {JSON.stringify([
             {
               "@context": "https://schema.org",
               "@type": "BlogPosting",
-              "@id": `${SITE_URL}/blog/${slug}#blogpost`,
+              "@id": `${SITE_URL}/blog/${slug}/#blogpost`,
 
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `${SITE_URL}/blog/${slug}#webpage`,
+                "@id": `${SITE_URL}/blog/${slug}/#webpage`,
               },
 
               headline: post.title,
@@ -168,7 +168,7 @@ const BlogPost = () => {
               datePublished: post.date,
               dateModified: post.updatedAt || post.date,
               keywords: post.tags,
-              url: `${SITE_URL}/blog/${slug}`,
+              url: `${SITE_URL}/blog/${slug}/`,
               articleSection: "Web Development",
               inLanguage: "en",
             },
@@ -188,13 +188,13 @@ const BlogPost = () => {
                   "@type": "ListItem",
                   position: 2,
                   name: "Blogs",
-                  item: `${SITE_URL}/blog`,
+                  item: `${SITE_URL}/blog/`,
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: post.title,
-                  item: `${SITE_URL}/blog/${slug}`,
+                  item: `${SITE_URL}/blog/${slug}/`,
                 },
               ],
             },
@@ -209,7 +209,7 @@ const BlogPost = () => {
           <section className="py-16">
             <div className="container mx-auto px-4 max-w-4xl">
               <div className="flex items-center gap-4 mb-8">
-                <Link to="/blog">
+                <Link to="/blog/">
                   <Button
                     variant="ghost"
                     size="sm"

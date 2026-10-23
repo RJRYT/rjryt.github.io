@@ -80,7 +80,7 @@ const ProjectDetail = () => {
             ", "
           )}, ${project.category}`}
         />
-        <link rel="canonical" href={`https://rjryt.com/projects/${slug}`} />
+        <link rel="canonical" href={`https://rjryt.com/projects/${slug}/`} />
         <meta name="author" content="RJRYT" />
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta property="og:site_name" content={SITE_NAME} />
@@ -95,7 +95,7 @@ const ProjectDetail = () => {
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://rjryt.com/projects/${slug}`}
+          content={`https://rjryt.com/projects/${slug}/`}
         />
         {project.image && (
           <>
@@ -139,7 +139,7 @@ const ProjectDetail = () => {
         )}
         <meta
           name="twitter:url"
-          content={`https://rjryt.com/projects/${slug}`}
+          content={`https://rjryt.com/projects/${slug}/`}
         />
 
         <script type="application/ld+json">
@@ -147,10 +147,10 @@ const ProjectDetail = () => {
             {
               "@context": "https://schema.org",
               "@type": "SoftwareSourceCode",
-              "@id": `https://rjryt.com/projects/${slug}#code`,
+              "@id": `https://rjryt.com/projects/${slug}/#code`,
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://rjryt.com/projects/${slug}#webpage`,
+                "@id": `https://rjryt.com/projects/${slug}/#webpage`,
               },
               name: project.title,
               description: project.description,
@@ -181,7 +181,7 @@ const ProjectDetail = () => {
                 : undefined,
               datePublished: project.date,
               dateModified: project.updatedAt || project.date,
-              url: `${SITE_URL}/projects/${slug}`,
+              url: `${SITE_URL}/projects/${slug}/`,
               isPartOf: {
                 "@type": "WebSite",
                 "@id": `${SITE_URL}/#website`,
@@ -190,7 +190,7 @@ const ProjectDetail = () => {
             {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
-              "@id": `https://rjryt.com/projects/${slug}#breadcrumb`,
+              "@id": `https://rjryt.com/projects/${slug}/#breadcrumb`,
               itemListElement: [
                 {
                   "@type": "ListItem",
@@ -202,13 +202,13 @@ const ProjectDetail = () => {
                   "@type": "ListItem",
                   position: 2,
                   name: "Projects",
-                  item: "https://rjryt.com/projects",
+                  item: "https://rjryt.com/projects/",
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: project.title,
-                  item: `https://rjryt.com/projects/${slug}`,
+                  item: `https://rjryt.com/projects/${slug}/`,
                 },
               ],
             },
@@ -662,7 +662,7 @@ const ProjectDetail = () => {
                         variant="outline"
                         className="glass border-primary/50 text-primary hover:text-foreground/90 hover:bg-primary/10 group w-full"
                       >
-                        <Link to={`/projects/${relatedProject.slug}`}>
+                        <Link to={`/projects/${relatedProject.slug}/`}>
                           <Eye className="w-4 h-4 mr-2" />
                           View Project
                           <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />

@@ -93,7 +93,7 @@ const Services = () => {
           name="keywords"
           content="web development services, MERN stack services, React, Node.js, MongoDB"
         />
-        <link rel="canonical" href="https://rjryt.com/services" />
+        <link rel="canonical" href="https://rjryt.com/services/" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -106,7 +106,7 @@ const Services = () => {
           content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.com/services" />
+        <meta property="og:url" content="https://rjryt.com/services/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
@@ -124,7 +124,7 @@ const Services = () => {
           name="twitter:description"
           content="Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions."
         />
-        <meta name="twitter:url" content="https://rjryt.com/services" />
+        <meta name="twitter:url" content="https://rjryt.com/services/" />
         <meta
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-services.png"
@@ -136,8 +136,8 @@ const Services = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "@id": "https://rjryt.com/services#webpage",
-              url: "https://rjryt.com/services",
+              "@id": "https://rjryt.com/services/#webpage",
+              url: "https://rjryt.com/services/",
               name: "Services | Web Development by RJRYT",
               description:
                 "Explore web development services by RJRYT including full-stack development, React apps, Node.js APIs, and scalable solutions.",
@@ -154,7 +154,7 @@ const Services = () => {
             {
               "@context": "https://schema.org",
               "@type": "Service",
-              "@id": "https://rjryt.com/services#service",
+              "@id": "https://rjryt.com/services/#service",
               serviceType: "Web Development",
               provider: {
                 "@type": "Person",
@@ -170,7 +170,7 @@ const Services = () => {
               },
               availableChannel: {
                 "@type": "ServiceChannel",
-                serviceUrl: "https://rjryt.com/contact",
+                serviceUrl: "https://rjryt.com/contact/",
                 availableLanguage: ["English"],
               },
             },

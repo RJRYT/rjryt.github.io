@@ -83,7 +83,7 @@ const ProjectsPage = () => {
           name="keywords"
           content="RJRYT projects, MERN stack portfolio, web apps, React projects"
         />
-        <link rel="canonical" href="https://rjryt.com/projects" />
+        <link rel="canonical" href="https://rjryt.com/projects/" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -96,7 +96,7 @@ const ProjectsPage = () => {
           content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.com/projects" />
+        <meta property="og:url" content="https://rjryt.com/projects/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
@@ -114,7 +114,7 @@ const ProjectsPage = () => {
           name="twitter:description"
           content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
         />
-        <meta name="twitter:url" content="https://rjryt.com/projects" />
+        <meta name="twitter:url" content="https://rjryt.com/projects/" />
         <meta
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-projects.png"
@@ -125,8 +125,8 @@ const ProjectsPage = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "@id": "https://rjryt.com/projects#webpage",
-            url: "https://rjryt.com/projects",
+            "@id": "https://rjryt.com/projects/#webpage",
+            url: "https://rjryt.com/projects/",
             name: "Projects by RJRYT | MERN Stack Creations",
             description:
               "Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies.",
@@ -380,7 +380,7 @@ const ProjectsPage = () => {
                             size="sm"
                             className="bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 group"
                           >
-                            <Link to={`/projects/${project.slug}`}>
+                            <Link to={`/projects/${project.slug}/`}>
                               <Eye className="w-4 h-4 mr-2" />
                               View Details
                               <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />

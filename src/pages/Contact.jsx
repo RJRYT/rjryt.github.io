@@ -18,7 +18,7 @@ const Contact = () => {
           name="keywords"
           content="contact RJRYT, hire web developer, MERN developer contact"
         />
-        <link rel="canonical" href="https://rjryt.com/contact" />
+        <link rel="canonical" href="https://rjryt.com/contact/" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -28,7 +28,7 @@ const Contact = () => {
           content="Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.com/contact" />
+        <meta property="og:url" content="https://rjryt.com/contact/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
@@ -43,7 +43,7 @@ const Contact = () => {
           name="twitter:description"
           content="Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection."
         />
-        <meta name="twitter:url" content="https://rjryt.com/contact" />
+        <meta name="twitter:url" content="https://rjryt.com/contact/" />
         <meta
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-contact.png"
@@ -55,8 +55,8 @@ const Contact = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            "@id": "https://rjryt.com/contact#webpage",
-            url: "https://rjryt.com/contact",
+            "@id": "https://rjryt.com/contact/#webpage",
+            url: "https://rjryt.com/contact/",
             name: "Contact RJRYT | Get in Touch",
             description:
               "Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection.",

@@ -93,14 +93,21 @@ const STATIC_SOURCE_FILES = {
 };
 
 function collectStaticRoutes() {
-  return STATIC_ROUTES.map((route) => ({
-    loc: `${SITE_URL}${route}`,
-    lastmod: getFileMtimeIso(
-      path.resolve(process.cwd(), STATIC_SOURCE_FILES[route] || "src/App.jsx")
-    ),
-    changefreq: FREQ.static,
-    priority: PRIORITY[route] ?? PRIORITY.default,
-  }));
+  return STATIC_ROUTES.map((route) => {
+    const loc =
+      route === "/"
+        ? `${SITE_URL}/`
+        : `${SITE_URL}${route.replace(/\/+$/, "")}/`;
+
+    return {
+      loc,
+      lastmod: getFileMtimeIso(
+        path.resolve(process.cwd(), STATIC_SOURCE_FILES[route] || "src/App.jsx")
+      ),
+      changefreq: FREQ.static,
+      priority: PRIORITY[route] ?? PRIORITY.default,
+    };
+  });
 }
 
 function collectMarkdownRoutes(dir, basePath, type) {
@@ -109,10 +116,13 @@ function collectMarkdownRoutes(dir, basePath, type) {
   );
   return entries.map((d) => {
     const slug = slugFromFilename(d.name);
-    const loc = `${SITE_URL}${basePath}/${slug}`.replace(/\/+$/, "");
+    const normalizedBasePath = `/${basePath.replace(/^\/+|\/+$/g, "")}`;
+    const loc = `${SITE_URL}${normalizedBasePath}/${slug}/`;
+
     const lastmod = getFileMtimeIso(path.join(dir, d.name));
     const changefreq = type === "blog" ? FREQ.blog : FREQ.project;
-    const priority = basePath === "/blog" ? 0.8 : 0.8;
+    const priority = 0.8;
+
     return { loc, lastmod, changefreq, priority };
   });
 }

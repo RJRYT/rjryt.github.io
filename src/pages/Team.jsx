@@ -71,7 +71,7 @@ const Team = () => {
           name="keywords"
           content="team, collaboration, RJRYT, developer group"
         />
-        <link rel="canonical" href="https://rjryt.com/team" />
+        <link rel="canonical" href="https://rjryt.com/team/" />
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
@@ -81,7 +81,7 @@ const Team = () => {
           content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rjryt.com/team" />
+        <meta property="og:url" content="https://rjryt.com/team/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
@@ -96,7 +96,7 @@ const Team = () => {
           name="twitter:description"
           content="Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products."
         />
-        <meta name="twitter:url" content="https://rjryt.com/team" />
+        <meta name="twitter:url" content="https://rjryt.com/team/" />
         <meta
           name="twitter:image"
           content="https://rjryt.com/images/seo/seo-team.png"
@@ -107,8 +107,8 @@ const Team = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "@id": "https://rjryt.com/team#webpage",
-              url: "https://rjryt.com/team",
+              "@id": "https://rjryt.com/team/#webpage",
+              url: "https://rjryt.com/team/",
               name: "Team | Collaborations by RJRYT",
               description:
                 "Meet the team and collaborations of RJRYT, working together to build impactful applications and digital products.",
@@ -127,7 +127,7 @@ const Team = () => {
               "@type": "Organization",
               "@id": "https://rjryt.com/#organization",
               name: "RJRYT Collaborations",
-              url: "https://rjryt.com/team",
+              url: "https://rjryt.com/team/",
               description:
                 "Collaborative team working with RJRYT to build impactful applications and digital products.",
               image: "https://rjryt.com/images/seo/seo-team.png",

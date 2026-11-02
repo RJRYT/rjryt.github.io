@@ -51,9 +51,9 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'robinjratr@gmail.com',
+      value: 'contact@rjryt.com',
       color: 'from-purple-500 to-purple-600',
-      href: 'mailto:robinjratr@gmail.com'
+      href: 'mailto:contact@rjryt.com'
     }
   ];
 

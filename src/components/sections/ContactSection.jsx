@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   Mail, MapPin, User, MessageSquare, Send, CheckCircle, 
   AlertCircle, Github, Youtube, Linkedin, Instagram, 
-  Heart, ExternalLink
+  Heart, ExternalLink, ArrowUpRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -198,20 +198,21 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="relative overflow-hidden py-24 md:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_85%,_hsl(var(--primary)/.12),_transparent_34%),radial-gradient(ellipse_at_85%_10%,_hsl(var(--accent)/.08),_transparent_30%)]" />
+      <div className="container relative z-10 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-6">
-            Contact Me
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-primary">Have a good one in mind?</p>
+          <h2 className="text-4xl font-black tracking-tight text-foreground md:text-5xl">
+            Let’s make something useful.
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-muted-foreground">
             Get in Touch - If you need any help in developing, message me via
             email or contact on Discord
           </p>
@@ -224,13 +225,14 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-7"
           >
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[.2em] text-accent">Start a conversation</p>
+              <h3 className="mb-4 text-2xl font-bold text-foreground">
                 Let's Work Together
               </h3>
-              <p className="text-muted-foreground leading-relaxed mb-8">
+              <p className="mb-7 max-w-xl leading-relaxed text-muted-foreground">
                 I'm always excited to collaborate on new projects and help bring
                 your ideas to life. Whether you need a Discord bot, a website,
                 or SA-MP development, I'm here to help.
@@ -249,10 +251,10 @@ const ContactSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
-                    className="bg-card/50 backdrop-blur-sm border border-border p-4 rounded-xl flex items-center gap-4 cursor-pointer"
+                    className="flex items-center gap-4 rounded-2xl border border-border bg-card/55 p-4 backdrop-blur-xl transition-colors hover:border-primary/35"
                   >
                     <div
-                      className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-lg flex items-center justify-center`}
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r ${info.color} shadow-lg`}
                     >
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
@@ -279,10 +281,10 @@ const ContactSection = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-xl font-semibold text-foreground mb-4">
+              <h4 className="mb-4 text-lg font-bold text-foreground">
                 Connect With Me
               </h4>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
@@ -296,7 +298,7 @@ const ContactSection = () => {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`bg-card/50 flex flex-col justify-between items-center backdrop-blur-sm border border-border p-4 rounded-xl text-muted-foreground hover:text-accent hover:border-accent/50 transition-all duration-300 group`}
+                      className="group flex flex-col items-center justify-between rounded-2xl border border-border bg-card/45 p-4 text-muted-foreground backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:text-primary"
                       title={social.name}
                     >
                       <IconComponent className="w-6 h-6 mx-auto mb-2" />
@@ -313,7 +315,7 @@ const ContactSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-card/50 backdrop-blur-sm border border-border p-6 rounded-xl text-center"
+              className="rounded-2xl border border-rose-500/15 bg-gradient-to-r from-rose-500/[.07] to-card/50 p-6 text-center backdrop-blur-xl"
             >
               <Heart className="w-8 h-8 text-red-500 mx-auto mb-3" />
               <h4 className="font-semibold text-foreground mb-2">
@@ -343,10 +345,16 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="bg-card/50 backdrop-blur-sm border border-border p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold text-foreground mb-6">
+            <div className="rounded-[1.75rem] border border-border bg-card/60 p-6 shadow-2xl shadow-black/5 backdrop-blur-xl sm:p-8">
+              <div className="mb-7 flex items-start justify-between gap-4">
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[.2em] text-primary">Project inquiry</p>
+                  <h3 className="text-2xl font-bold text-foreground">
                 Send Message
-              </h3>
+                  </h3>
+                </div>
+                <span className="hidden h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary sm:grid"><ArrowUpRight size={20} /></span>
+              </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
@@ -365,7 +373,7 @@ const ContactSection = () => {
                       onChange={handleInputChange}
                       placeholder="Your name"
                       required
-                      className="bg-card/50 backdrop-blur-sm border-border focus-visible:border-none focus-visible:ring-accent"
+                      className="rounded-xl border-border bg-background/50 transition-colors focus-visible:border-primary focus-visible:ring-primary/30"
                     />
                   </div>
 
@@ -384,7 +392,7 @@ const ContactSection = () => {
                       onChange={handleInputChange}
                       placeholder="your.email@example.com"
                       required
-                      className="bg-card/50 backdrop-blur-sm border-border focus-visible:border-none focus-visible:ring-accent"
+                      className="rounded-xl border-border bg-background/50 transition-colors focus-visible:border-primary focus-visible:ring-primary/30"
                     />
                   </div>
                 </div>
@@ -403,7 +411,7 @@ const ContactSection = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     placeholder="What's this about?"
-                    className="bg-card/50 backdrop-blur-sm border-border focus-visible:border-none focus-visible:ring-accent"
+                    className="rounded-xl border-border bg-background/50 transition-colors focus-visible:border-primary focus-visible:ring-primary/30"
                   />
                 </div>
 
@@ -422,7 +430,7 @@ const ContactSection = () => {
                     placeholder="Tell me about your project..."
                     rows={6}
                     required
-                    className="bg-card/50 backdrop-blur-sm border-border focus-visible:border-none focus-visible:ring-accent resize-none"
+                    className="resize-none rounded-xl border-border bg-background/50 transition-colors focus-visible:border-primary focus-visible:ring-primary/30"
                   />
                 </div>
 

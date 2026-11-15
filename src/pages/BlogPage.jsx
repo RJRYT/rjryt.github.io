@@ -83,7 +83,7 @@ const BlogPage = () => {
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.com/images/seo/seo-blogs.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta property="og:image:alt" content="RJRYT BlogPage page preview" />
 
@@ -100,7 +100,7 @@ const BlogPage = () => {
         <meta name="twitter:url" content="https://rjryt.com/blog/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.com/images/seo/seo-blogs.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta name="twitter:image:alt" content="RJRYT BlogPage page preview" />
 
@@ -123,7 +123,7 @@ const BlogPage = () => {
                 "@type": "Person",
                 "@id": "https://rjryt.com/#person",
               },
-              image: "https://rjryt.com/images/seo/seo-blogs.png",
+              image: "https://rjryt.com/images/seo/rjryt-social-card.png",
               mainEntityOfPage: {
                 "@type": "WebPage",
                 "@id": "https://rjryt.com/blog/#webpage",
@@ -262,6 +262,10 @@ const BlogPage = () => {
                       <div className="relative overflow-hidden aspect-video">
                         <img
                           src={post.image}
+                            onError={(event) => {
+                              event.currentTarget.onerror = null;
+                              event.currentTarget.src = "/images/seo/rjryt-social-card.png";
+                            }}
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />

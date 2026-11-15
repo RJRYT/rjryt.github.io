@@ -1,180 +1,159 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Code, 
-  Server, 
-  Database, 
-  Cloud, 
-  Shield, 
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  Cloud,
+  Code,
+  GitBranch,
+  Shield,
   Smartphone,
+  Server,
+  Database,
   Zap,
-  GitBranch
-} from 'lucide-react';
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
-const AboutSection = () => {
-  const skills = [
-    {
-      category: 'Frontend',
-      icon: Code,
-      color: 'from-blue-500 to-cyan-500',
-      items: ['React.js', 'Vite', 'Next.js (basics)', 'Tailwind CSS', 'ShadCN', 'Material UI']
-    },
-    {
-      category: 'Backend',
-      icon: Server,
-      color: 'from-green-500 to-emerald-500',
-      items: ['Node.js', 'Express.js', 'REST APIs', 'WebSockets', 'Authentication', 'Rate Limiting']
-    },
-    {
-      category: 'Database',
-      icon: Database,
-      color: 'from-purple-500 to-violet-500',
-      items: ['MongoDB', 'MySQL', 'Redis', 'Mongoose', 'Aggregations', 'Indexing']
-    },
-    {
-      category: 'DevOps & Cloud',
-      icon: Cloud,
-      color: 'from-orange-500 to-red-500',
-      items: ['AWS (EC2, S3, CloudFront)', 'NGINX', 'CI/CD', 'Docker', 'Linux Server']
-    }
-  ];
+const skills = [
+  {
+    category: "Frontend",
+    icon: Code,
+    color: "from-blue-500 to-cyan-500",
+    items: ["React.js", "Vite", "Next.js (basics)", "Tailwind CSS", "ShadCN", "Material UI"],
+  },
+  {
+    category: "Backend",
+    icon: Server,
+    color: "from-green-500 to-emerald-500",
+    items: ["Node.js", "Express.js", "REST APIs", "WebSockets", "Authentication", "Rate Limiting"],
+  },
+  {
+    category: "Database",
+    icon: Database,
+    color: "from-purple-500 to-violet-500",
+    items: ["MongoDB", "MySQL", "Redis", "Mongoose", "Aggregations", "Indexing"],
+  },
+  {
+    category: "DevOps & Cloud",
+    icon: Cloud,
+    color: "from-orange-500 to-red-500",
+    items: ["AWS (EC2, S3, CloudFront)", "NGINX", "CI/CD", "Docker", "Linux Server"],
+  },
+];
 
-  const specialties = [
-    { icon: Smartphone, label: 'PWA Development', desc: 'Offline support, push notifications' },
-    { icon: Shield, label: 'Security Expert', desc: 'E2EE, XSS/CSRF protection, secure auth' },
-    { icon: Zap, label: 'Performance', desc: 'SEO optimization, fast loading times' },
-    { icon: GitBranch, label: 'Best Practices', desc: 'Clean code, scalable architecture' }
-  ];
+const specialties = [
+  { icon: Smartphone, label: "PWA Development", desc: "Offline support and app-like experiences across devices." },
+  { icon: Shield, label: "Security", desc: "E2EE, XSS/CSRF protection, and carefully designed authentication." },
+  { icon: Zap, label: "Performance", desc: "SEO-aware, lightweight experiences with fast loading times." },
+  { icon: GitBranch, label: "Best Practices", desc: "Clean code and scalable architecture built to evolve." },
+];
 
-  return (
-    <section id="about" className="py-20 relative">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-6">
-            About Me
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
-        </motion.div>
+const Reveal = ({ children, className = "", delay = 0 }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 22 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.15 }}
+    transition={{ duration: 0.55, delay }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
 
-        {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start mb-20">
-          {/* About Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            <div className="space-y-4">
-              <p className="text-lg text-foreground/90 leading-relaxed">
-                Hi 👋 I'm <span className="text-accent font-semibold">RJRYT</span>, a passionate 
-                Full-Stack Web Developer specializing in the MERN stack (MongoDB, Express.js, React, Node.js).
-                I love building scalable, secure, and user-friendly applications that solve real-world problems.
-              </p>
-              
-              <div className="bg-card/50 backdrop-blur-sm border border-border p-6 rounded-xl">
-                <h3 className="text-xl font-semibold text-accent mb-3">💻 What I Do</h3>
-                <ul className="space-y-2 text-foreground/80">
-                  <li>• Develop responsive web apps with React + Tailwind for clean UI/UX</li>
-                  <li>• Build robust backends with Node.js & Express, integrating APIs and databases</li>
-                  <li>• Optimize apps for SEO, performance, and PWA support</li>
-                  <li>• Implement advanced features like real-time chat, push notifications, and encryption</li>
-                </ul>
-              </div>
+const AboutSection = () => (
+  <section id="about" className="relative overflow-hidden py-24 md:py-28">
+    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_85%_15%,_hsl(var(--primary)/.12),_transparent_35%)]" />
+    <div className="container relative z-10 mx-auto px-4">
+      <Reveal className="mb-14 max-w-3xl">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-primary">A little about me</p>
+        <h2 className="text-4xl font-black leading-tight tracking-tight text-foreground md:text-5xl">
+          I build useful things for the web—and care about how they work.
+        </h2>
+      </Reveal>
 
-              <div className="bg-card/50 backdrop-blur-sm border border-border p-6 rounded-xl">
-                <h3 className="text-xl font-semibold text-accent mb-3">🚀 My Focus</h3>
-                <ul className="space-y-2 text-foreground/80">
-                  <li>• Delivering production-ready applications with best practices</li>
-                  <li>• Exploring cloud deployment (AWS, EC2, S3, CloudFront, CI/CD)</li>
-                  <li>• Building secure apps with authentication, rate limiting, and E2EE</li>
-                </ul>
-              </div>
+      <div className="grid gap-8 lg:grid-cols-[1.05fr_.95fr]">
+        <Reveal className="space-y-5">
+          <div className="rounded-[1.75rem] border border-border bg-card/60 p-7 shadow-xl shadow-black/5 backdrop-blur-xl md:p-9">
+            <p className="text-lg leading-relaxed text-foreground/90">
+              Hi 👋 I’m <span className="font-semibold text-primary">RJRYT</span>, a passionate Full-Stack Web Developer specializing in the MERN stack (MongoDB, Express.js, React, Node.js). I love building scalable, secure, and user-friendly applications that solve real-world problems.
+            </p>
+            <div className="my-7 h-px bg-gradient-to-r from-primary/40 via-border to-transparent" />
+            <h3 className="mb-4 text-xl font-bold text-foreground">What I do</h3>
+            <ul className="space-y-3">
+              {[
+                "Develop responsive web apps with React and Tailwind for clean UI/UX.",
+                "Build robust Node.js and Express backends, integrating APIs and databases.",
+                "Optimize applications for SEO, performance, and PWA support.",
+                "Implement advanced features like real-time chat, push notifications, and encryption.",
+              ].map((item, index) => (
+                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 font-mono text-[0.65rem] font-semibold text-primary">0{index + 1}</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-border bg-card/40 p-6 backdrop-blur-xl">
+            <h3 className="mb-3 text-base font-bold text-foreground">My focus</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Production-ready applications, cloud deployment with AWS and CI/CD, and secure systems using authentication, rate limiting, and end-to-end encryption. Beyond coding, I enjoy experimenting with new technologies, contributing to open source, and learning better ways to build scalable web solutions.
+            </p>
+          </div>
+          <Link to="/services" className="inline-flex items-center gap-2 px-1 text-sm font-semibold text-foreground transition-colors hover:text-primary">
+            See how I can help <ArrowUpRight size={16} />
+          </Link>
+        </Reveal>
 
-              <p className="text-lg text-foreground/80 leading-relaxed">
-                🌱 <span className="text-accent font-medium">Beyond Coding:</span> I enjoy experimenting with new technologies, 
-                contributing to open-source projects, and constantly learning better ways to build 
-                scalable and modern web solutions.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Specialties Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4"
-          >
-            {specialties.map((specialty, index) => {
-              const IconComponent = specialty.icon;
-              return (
-                <motion.div
-                  key={specialty.label}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-card/50 backdrop-blur-sm border border-border p-6 rounded-xl text-center"
-                >
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-lg mb-4">
-                    <IconComponent className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <h4 className="font-semibold text-foreground mb-2">
-                    {specialty.label}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {specialty.desc}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-
-        {/* Skills Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {skills.map((skillGroup, index) => {
-            const IconComponent = skillGroup.icon;
-            return (
-              <motion.div
-                key={skillGroup.category}
-                whileHover={{ scale: 1.02, y: -8 }}
-                className="bg-card/50 backdrop-blur-sm border border-border p-6 rounded-xl"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+        <div className="grid grid-cols-2 gap-4">
+          {specialties.map(({ icon: Icon, label, desc }, index) => (
+            <Reveal key={label} delay={index * 0.06}>
+              <motion.article
+                whileHover={{ y: -5 }}
+                className="h-full min-h-48 rounded-2xl border border-border bg-card/45 p-5 backdrop-blur-xl transition-colors hover:border-primary/35 sm:p-6"
               >
-                <div className={`inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r ${skillGroup.color} rounded-lg mb-4`}>
-                  <IconComponent className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">{skillGroup.category}</h3>
-                <ul className="space-y-1">
-                  {skillGroup.items.map((item) => (
-                    <li key={item} className="text-sm text-muted-foreground">
-                      {item}
+                <span className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary">
+                  <Icon size={20} />
+                </span>
+                <h3 className="mb-2 text-base font-bold text-foreground">{label}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
+              </motion.article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-20">
+        <Reveal className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[.25em] text-accent">My toolkit</p>
+            <h3 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">The systems I work across</h3>
+          </div>
+          <p className="max-w-md text-sm leading-relaxed text-muted-foreground">A broad toolkit for taking web products from interface to infrastructure.</p>
+        </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {skills.map(({ category, icon: Icon, color, items }, index) => (
+            <Reveal key={category} delay={index * 0.06}>
+              <motion.article
+                whileHover={{ y: -5 }}
+                className="h-full rounded-2xl border border-border bg-card/55 p-6 backdrop-blur-xl transition-colors hover:border-primary/30"
+              >
+                <span className={`mb-4 grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br ${color} text-white`}>
+                  <Icon size={20} />
+                </span>
+                <h4 className="mb-4 font-bold text-foreground">{category}</h4>
+                <ul className="space-y-2">
+                  {items.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span className="h-1 w-1 rounded-full bg-primary/70" />{item}
                     </li>
                   ))}
                 </ul>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+              </motion.article>
+            </Reveal>
+          ))}
+        </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default AboutSection;

@@ -1,177 +1,106 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Code, Database, Server, Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Code2, Database, Layers3, Server, Terminal } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import PixelReveal from "@/components/animations/PixelReveal";
+import MagneticButton from "@/components/interactions/MagneticButton";
 
 const HeroSection = () => {
-  const techIcons = [
-    { Icon: Code, label: 'Frontend', delay: 0.2 },
-    { Icon: Server, label: 'Backend', delay: 0.4 },
-    { Icon: Database, label: 'Database', delay: 0.6 },
-    { Icon: Globe, label: 'Full-Stack', delay: 0.8 }
-  ];
+  const stageRef = useRef(null);
+  const reduce = useReducedMotion();
+  const rx = useSpring(useMotionValue(0), { stiffness: 90, damping: 18 });
+  const ry = useSpring(useMotionValue(0), { stiffness: 90, damping: 18 });
+  const { scrollYProgress } = useScroll();
+  const parallaxY = useTransform(scrollYProgress, [0, .25], [0, 70]);
+  const moveStage = (event) => {
+    if (reduce || !stageRef.current) return;
+    const rect = stageRef.current.getBoundingClientRect();
+    ry.set(((event.clientX - rect.left) / rect.width - .5) * 12);
+    rx.set(-((event.clientY - rect.top) / rect.height - .5) * 12);
+  };
+  const resetStage = () => { rx.set(0); ry.set(0); };
 
+  const technologies = ["React", "Node.js", "MongoDB", "Express", "TypeScript", "AWS"];
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
-
-      {/* Floating tech icons */}
-      <div className="absolute inset-0 pointer-events-none">
-        {techIcons.map(({ Icon, label, delay }, index) => (
-          <motion.div
-            key={label}
-            className={`absolute text-primary/20 ${
-              index === 0
-                ? "top-20 left-20"
-                : index === 1
-                ? "top-40 right-32"
-                : index === 2
-                ? "bottom-40 left-32"
-                : "bottom-20 right-20"
-            }`}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{
-              opacity: [0.2, 0.5, 0.2],
-              scale: [0.5, 1, 0.5],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              delay,
-              ease: "easeInOut",
-            }}
-          >
-            <Icon size={48} />
+    <section className="relative min-h-[92svh] flex items-center overflow-hidden px-4 pt-24 pb-16">
+      <div className="absolute inset-0 portfolio-grid opacity-60" aria-hidden="true" />
+      <motion.div style={{ y: parallaxY }} className="ambient-orb w-80 h-80 -top-20 -left-20" aria-hidden="true" />
+      <div className="ambient-orb w-96 h-96 bottom-0 right-0" aria-hidden="true" />
+      <div className="container mx-auto relative z-10 grid lg:grid-cols-[1.08fr_.92fr] gap-10 lg:gap-4 items-center">
+        <div className="max-w-3xl text-center lg:text-left">
+          <motion.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }}
+            className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-card/60 backdrop-blur px-4 py-2 text-sm text-muted-foreground mb-7">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_12px_currentColor]" />
+            Available for meaningful projects
           </motion.div>
-        ))}
-      </div>
-
-      <div className="container mx-auto text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-8"
-        >
-          {/* Main heading */}
-          <div className="space-y-4">
-            <motion.h1
-              className="text-5xl md:text-7xl font-bold"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="block text-foreground">Hi 👋 I'm</span>
-              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                RJRYT
-              </span>
-            </motion.h1>
-
-            <motion.p
-              className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Full-Stack Web Developer specializing in the{" "}
-              <span className="text-accent font-semibold">MERN Stack</span>
-            </motion.p>
-
-            <motion.p
-              className="text-lg text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              Building scalable, secure, and user-friendly applications that
-              solve real-world problems
-            </motion.p>
-          </div>
-
-          {/* Tech stack highlight */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-4 text-sm md:text-base"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            {[
-              "React",
-              "Node.js",
-              "MongoDB",
-              "Express.js",
-              "Tailwind",
-              "AWS",
-            ].map((tech, index) => (
-              <motion.span
-                key={tech}
-                className="bg-card/50 backdrop-blur-sm border border-border px-4 py-2 text-primary font-medium rounded-lg"
-                whileHover={{ scale: 1.05, y: -2 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-              >
-                {tech}
-              </motion.span>
-            ))}
+          <motion.p className="text-sm font-semibold tracking-[.28em] uppercase text-primary mb-4"
+            initial={false} animate={{ opacity: 1 }} transition={{ delay: .12 }}>Independent developer · India</motion.p>
+          <motion.h1 className="text-5xl sm:text-6xl xl:text-7xl font-black leading-[1.02] tracking-tight text-foreground"
+            initial={false} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: .7, delay: .08 }}>
+            Building digital
+            <span className="block gradient-text">experiences</span>
+            that work.
+          </motion.h1>
+          <motion.p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mt-7 leading-relaxed"
+            initial={false} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2, duration: .65 }}>
+            I'm <strong className="text-foreground">RJRYT (Robin Jr)</strong>, a MERN stack and full-stack web developer crafting scalable, secure, and thoughtful web applications — from polished interfaces to reliable backend systems.
+          </motion.p>
+          <motion.div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mt-8"
+            initial={false} animate={{ opacity: 1, y: 0 }} transition={{ delay: .32 }}>
+            <MagneticButton>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold px-7 shadow-lg shadow-primary/15 hover:-translate-y-1 transition-transform" asChild>
+                <a href="/projects">Explore my work <ArrowUpRight className="ml-2 w-4 h-4" /></a>
+              </Button>
+            </MagneticButton>
+            <MagneticButton>
+              <Button size="lg" variant="outline" className="border-border bg-card/50 backdrop-blur hover:border-primary/50" asChild>
+                <a href="/contact">Let's work together</a>
+              </Button>
+            </MagneticButton>
           </motion.div>
-
-          {/* CTA buttons */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-primary/25 text-primary-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105"
-              asChild
-            >
-              <a href="/projects">
-                <Code className="w-5 h-5 mr-2" />
-                View My Work
-              </a>
-            </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-card/50 backdrop-blur-sm border-border hover:bg-auto text-foreground hover:text-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105"
-              asChild
-            >
-              <a href="/contact">
-                <Globe className="w-5 h-5 mr-2" />
-                Let's Connect
-              </a>
-            </Button>
+          <motion.div className="flex flex-wrap gap-2.5 justify-center lg:justify-start mt-9"
+            initial={false} animate={{ opacity: 1 }} transition={{ delay: .48 }}>
+            {technologies.map((tech) => <span key={tech} className="text-xs sm:text-sm rounded-lg border border-border bg-card/55 px-3 py-2 text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors">{tech}</span>)}
           </motion.div>
+        </div>
+
+        <PixelReveal className="mx-auto w-full max-w-[520px] hidden sm:block">
+        <motion.div ref={stageRef} onPointerMove={moveStage} onPointerLeave={resetStage}
+          className="hero-stage relative aspect-square"
+          initial={false} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .9, delay: .18 }}>
+          <div className="absolute inset-[8%] rounded-full bg-primary/10 blur-3xl" />
+          <motion.div className="hero-core absolute inset-[7%]" style={{ rotateX: rx, rotateY: ry }}>
+            <div className="hero-ring" /><div className="hero-ring ring-two" />
+            <div className="absolute inset-[25%] rounded-[2rem] hero-glass rotate-[-8deg] grid place-items-center">
+              <div className="text-center rotate-[8deg]">
+                <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-primary to-accent text-primary-foreground grid place-items-center shadow-2xl shadow-primary/25">
+                  <Code2 size={38} />
+                </div>
+                <p className="mt-5 text-2xl font-black tracking-widest text-foreground">RJRYT</p>
+                <p className="text-xs uppercase tracking-[.25em] text-muted-foreground mt-1">Full-stack engineer</p>
+              </div>
+            </div>
+            <div className="absolute top-[8%] right-[4%] hero-glass rounded-2xl p-4 -rotate-6">
+              <Terminal className="text-primary" size={25} /><span className="block text-[10px] text-muted-foreground mt-2">BUILD / SHIP</span>
+            </div>
+            <div className="absolute bottom-[12%] left-[2%] hero-glass rounded-2xl p-4 rotate-6">
+              <Database className="text-accent" size={25} /><span className="block text-[10px] text-muted-foreground mt-2">DATA / API</span>
+            </div>
+            <div className="absolute top-[42%] right-[-2%] hero-glass rounded-xl p-3">
+              <Server className="text-primary" size={22} />
+            </div>
+            <div className="absolute bottom-[8%] right-[20%] hero-glass rounded-xl p-3">
+              <Layers3 className="text-accent" size={22} />
+            </div>
+          </motion.div>
+          <div className="absolute bottom-[2%] left-1/2 -translate-x-1/2 text-xs text-muted-foreground tracking-[.25em] uppercase whitespace-nowrap">Design · Engineer · Deliver</div>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-        >
-          <motion.div
-            className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <motion.div
-              className="w-1 h-3 bg-primary rounded-full mt-2"
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-          </motion.div>
-        </motion.div>
+        </PixelReveal>
       </div>
+      <a href="#about" className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors" aria-label="Scroll to introduction">
+        Scroll to explore <ArrowDown size={14} />
+      </a>
     </section>
   );
 };
-
 export default HeroSection;

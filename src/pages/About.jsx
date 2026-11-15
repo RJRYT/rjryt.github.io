@@ -35,7 +35,7 @@ const About = () => {
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.com/images/seo/seo-about.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta property="og:image:alt" content="RJRYT About page preview" />
 
@@ -52,7 +52,7 @@ const About = () => {
         <meta name="twitter:url" content="https://rjryt.com/about/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.com/images/seo/seo-about.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta name="twitter:image:alt" content="RJRYT About page preview" />
 
@@ -66,7 +66,7 @@ const About = () => {
             name: "About RJRYT | MERN Stack Web Developer",
             description:
               "Learn about RJRYT, a passionate MERN stack developer with expertise in building scalable, modern, and user-friendly web apps.",
-            image: "https://rjryt.com/images/seo/seo-about.png",
+            image: "https://rjryt.com/images/seo/rjryt-social-card.png",
             author: {
               "@type": "Person",
               "@id": "https://rjryt.com/#person",

@@ -85,7 +85,7 @@ const Team = () => {
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.com/images/seo/seo-team.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta property="og:image:alt" content="RJRYT Team page preview" />
 
@@ -99,7 +99,7 @@ const Team = () => {
         <meta name="twitter:url" content="https://rjryt.com/team/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.com/images/seo/seo-team.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta name="twitter:image:alt" content="RJRYT Team page preview" />
         <script type="application/ld+json">
@@ -130,7 +130,7 @@ const Team = () => {
               url: "https://rjryt.com/team/",
               description:
                 "Collaborative team working with RJRYT to build impactful applications and digital products.",
-              image: "https://rjryt.com/images/seo/seo-team.png",
+              image: "https://rjryt.com/images/seo/rjryt-social-card.png",
               member: [
                 {
                   "@type": "Person",

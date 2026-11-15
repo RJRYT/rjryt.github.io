@@ -5,6 +5,9 @@ import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import ContactSection from '@/components/sections/ContactSection';
+import FeaturedProjectsSection from '@/components/sections/FeaturedProjectsSection';
+import ServicesPreviewSection from '@/components/sections/ServicesPreviewSection';
+import FeaturedBlogSection from '@/components/sections/FeaturedBlogSection';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 
@@ -38,7 +41,7 @@ const Index = () => {
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.com/images/profile/profile-1.jpg"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta property="og:image:alt" content="RJRYT Index page preview" />
 
@@ -55,7 +58,7 @@ const Index = () => {
         <meta name="twitter:url" content="https://rjryt.com/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.com/images/profile/profile-1.jpg"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta name="twitter:image:alt" content="RJRYT Index page preview" />
 
@@ -78,10 +81,11 @@ const Index = () => {
               "@context": "https://schema.org",
               "@type": "Person",
               "@id": "https://rjryt.com/#person",
-              name: "RJRYT",
-              jobTitle: "MERN Stack Web Developer",
+              name: "Robin Jr",
+              alternateName: "RJRYT",
+              jobTitle: "MERN Stack & Full-Stack Web Developer",
               url: "https://rjryt.com/",
-              image: "https://rjryt.com/images/profile/profile-1.jpg",
+              image: "https://rjryt.com/images/seo/rjryt-social-card.png",
               sameAs: [
                 "https://github.com/rjryt",
                 "https://www.linkedin.com/in/robin-jr",
@@ -107,7 +111,10 @@ const Index = () => {
         <main>
           <HeroSection />
           <AboutSection />
+          <ServicesPreviewSection />
           <SkillsSection />
+          <FeaturedProjectsSection />
+          <FeaturedBlogSection />
           <ContactSection />
         </main>
 

@@ -32,7 +32,7 @@ const Contact = () => {
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.com/images/seo/seo-contact.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta property="og:image:alt" content="RJRYT Contact page preview" />
 
@@ -46,7 +46,7 @@ const Contact = () => {
         <meta name="twitter:url" content="https://rjryt.com/contact/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.com/images/seo/seo-contact.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta name="twitter:image:alt" content="RJRYT Contact page preview" />
 

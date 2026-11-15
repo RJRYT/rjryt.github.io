@@ -6,27 +6,18 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "dark";
+    try { return localStorage.getItem("theme") || "dark"; } catch { return "dark"; }
+  });
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.classList.toggle("light", theme === "light");
 
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", theme);
-    }
+    try { localStorage.setItem("theme", theme); } catch {}
   }, [theme]);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-
-    setTheme(savedTheme);
-
-    document.documentElement.classList.toggle("dark", savedTheme === "dark");
-
-    document.documentElement.classList.toggle("light", savedTheme === "light");
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

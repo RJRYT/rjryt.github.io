@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Navigate } from "react-router-dom";
 import { StaticRouter } from "react-router-dom/server";
 import { HelmetProvider } from 'react-helmet-async';
 import Index from "./pages/Index";
@@ -22,14 +22,19 @@ import ErrorPage from "./pages/ErrorPage";
 import GlobalSEO from "./components/SEO";
 import AutoScrollToTop from "./components/layout/AutoScrollToTop";
 import Analytics from "./components/Analytics";
+import RouteTransitions from "./components/layout/RouteTransitions";
+import CustomCursor from "./components/interactions/CustomCursor";
+import IntroLoader from "./components/loaders/IntroLoader";
 
 const queryClient = new QueryClient();
 
 const App = ({ isServer = false, location = "/", helmetContext={} }) => {
   useEffect(() => {
     // Browser-only logic is safe in useEffect
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    document.documentElement.className = savedTheme;
+    let savedTheme = "dark";
+    try { savedTheme = localStorage.getItem("theme") || "dark"; } catch {}
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    document.documentElement.classList.toggle("light", savedTheme === "light");
 
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
@@ -54,6 +59,7 @@ const App = ({ isServer = false, location = "/", helmetContext={} }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider context={helmetContext}>
+        {!isServer && <><IntroLoader /><CustomCursor /></>}
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -61,7 +67,7 @@ const App = ({ isServer = false, location = "/", helmetContext={} }) => {
             <AutoScrollToTop />
             {!isServer && <Analytics />}
             <GlobalSEO />
-            <Routes>
+            <RouteTransitions>
               <Route path="/" element={<Index />} />
               <Route path="/index.html" element={<Navigate to="/" replace />} />
               <Route path="/404.html" element={<Navigate to="/" replace />} />
@@ -77,7 +83,7 @@ const App = ({ isServer = false, location = "/", helmetContext={} }) => {
               <Route path="/r/:key" element={<RedirectPage />} />
               <Route path="/error" element={<ErrorPage />} />
               <Route path="*" element={<NotFound />} />
-            </Routes>
+            </RouteTransitions>
           </ConditionRouter>
         </TooltipProvider>
       </HelmetProvider>

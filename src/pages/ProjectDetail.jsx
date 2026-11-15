@@ -27,7 +27,7 @@ import {
   getRelatedProjects,
   formatDate,
 } from "@/utils/projects";
-import { SITE_URL, SITE_NAME, PERSON_ID } from "@/components/SEO";
+import { SITE_URL, SITE_NAME, PERSON_ID, DEFAULT_IMAGE } from "@/components/SEO";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -101,11 +101,7 @@ const ProjectDetail = () => {
           <>
             <meta
               property="og:image"
-              content={`${SITE_URL}${
-                project.image.startsWith("/")
-                  ? project.image
-                  : `/${project.image}`
-              }`}
+              content={DEFAULT_IMAGE}
             />
             <meta
               property="og:image:alt"
@@ -125,11 +121,7 @@ const ProjectDetail = () => {
           <>
             <meta
               name="twitter:image"
-              content={`${SITE_URL}${
-                project.image.startsWith("/")
-                  ? project.image
-                  : `/${project.image}`
-              }`}
+              content={DEFAULT_IMAGE}
             />
             <meta
               name="twitter:image:alt"
@@ -170,15 +162,7 @@ const ProjectDetail = () => {
               publisher: {
                 "@id": PERSON_ID,
               },
-              image: project.image
-                ? [
-                    `${SITE_URL}${
-                      project.image.startsWith("/")
-                        ? project.image
-                        : `/${project.image}`
-                    }`,
-                  ]
-                : undefined,
+              image: [DEFAULT_IMAGE],
               datePublished: project.date,
               dateModified: project.updatedAt || project.date,
               url: `${SITE_URL}/projects/${slug}/`,
@@ -378,6 +362,10 @@ const ProjectDetail = () => {
                     <div className="glass-card p-4 rounded-2xl">
                       <img
                         src={project.image}
+                            onError={(event) => {
+                              event.currentTarget.onerror = null;
+                              event.currentTarget.src = "/images/seo/rjryt-social-card.png";
+                            }}
                         alt={project.title}
                         className="w-full h-auto rounded-xl shadow-lg"
                       />

@@ -6,6 +6,7 @@ import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
   const services = [
@@ -110,7 +111,7 @@ const Services = () => {
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.com/images/seo/seo-services.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta property="og:image:alt" content="RJRYT Services page preview" />
 
@@ -127,7 +128,7 @@ const Services = () => {
         <meta name="twitter:url" content="https://rjryt.com/services/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.com/images/seo/seo-services.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta name="twitter:image:alt" content="RJRYT Services page preview" />
 
@@ -178,72 +179,91 @@ const Services = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">
+      <div className="min-h-screen overflow-hidden bg-background">
         <Navigation />
 
         <main className="pt-20">
           {/* Hero Section */}
-          <section className="py-20">
-            <div className="container mx-auto px-4">
+          <section className="relative overflow-hidden py-20 md:py-28">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_75%_5%,_hsl(var(--primary)/.16),_transparent_38%)]" aria-hidden="true" />
+            <div className="container relative z-10 mx-auto px-4">
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 26 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-16"
+                transition={{ duration: 0.65 }}
+                className="mx-auto max-w-4xl text-center"
               >
-                <h1 className="text-fluid-4xl font-bold gradient-text mb-6">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[.28em] text-primary">Services · From concept to launch</p>
+                <h1 className="text-balance text-4xl font-black leading-tight tracking-tight text-foreground md:text-6xl">
                   Professional Web Development Services
                 </h1>
-                <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6"></div>
-                <p className="text-fluid-lg text-foreground/70 max-w-3xl mx-auto">
+                <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
                   Transform your ideas into powerful web applications with
                   cutting-edge technology and best practices.
                 </p>
+                <div className="mt-8 flex flex-wrap justify-center gap-3">
+                  <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent font-semibold shadow-lg shadow-primary/15">
+                    <Link to="/contact">Tell me about your project <ExternalLink className="ml-2 h-4 w-4" /></Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="border-border bg-card/40">
+                    <Link to="/projects">Explore my work</Link>
+                  </Button>
+                </div>
               </motion.div>
             </div>
           </section>
 
           {/* Services Grid */}
-          <section className="py-20">
+          <section className="relative py-12 md:py-16">
             <div className="container mx-auto px-4">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[.24em] text-accent">Capabilities</p>
+                  <h2 className="text-3xl font-black tracking-tight text-foreground md:text-4xl">Ways I can help</h2>
+                </div>
+                <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">Focused services that work together to create production-ready digital products.</p>
+              </div>
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {services.map((service, index) => {
                   const IconComponent = service.icon;
                   return (
                     <motion.div
                       key={service.title}
-                      initial={{ opacity: 0, y: 50 }}
+                      initial={{ opacity: 0, y: 22 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      whileHover={{ y: -10 }}
-                      className="glass-card p-8 rounded-2xl group"
+                      viewport={{ once: true, amount: 0.12 }}
+                      transition={{ duration: 0.5, delay: index * 0.06 }}
+                      whileHover={{ y: -6 }}
+                      className="group relative overflow-hidden rounded-[1.5rem] border border-border bg-card/55 p-7 backdrop-blur-xl transition-colors hover:border-primary/35"
                     >
+                      <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-primary/10 blur-3xl transition-colors group-hover:bg-primary/20" />
+                      <div className="relative">
                       <div
-                        className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                        className={`mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r ${service.gradient} shadow-lg transition-transform duration-300 group-hover:scale-105`}
                       >
-                        <IconComponent className="w-8 h-8 text-white" />
+                        <IconComponent className="h-6 w-6 text-white" />
                       </div>
 
-                      <h3 className="text-fluid-xl font-bold text-foreground mb-4">
+                      <h3 className="mb-3 text-xl font-bold text-foreground">
                         {service.title}
                       </h3>
 
-                      <p className="text-foreground/70 mb-6 leading-relaxed">
+                      <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
                         {service.description}
                       </p>
 
-                      <ul className="space-y-2">
+                      <ul className="space-y-2.5 border-t border-border/70 pt-5">
                         {service.features.map((feature, i) => (
                           <li
                             key={i}
                             className="flex items-center gap-3 text-sm text-foreground/80"
                           >
-                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                            <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
                             {feature}
                           </li>
                         ))}
                       </ul>
+                      </div>
                     </motion.div>
                   );
                 })}
@@ -252,20 +272,20 @@ const Services = () => {
           </section>
 
           {/* Process Section */}
-          <section className="py-20">
+          <section className="relative py-20 md:py-24">
             <div className="container mx-auto px-4">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="text-center mb-16"
+                className="mb-14 text-center"
               >
-                <h2 className="text-fluid-3xl font-bold gradient-text mb-6">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[.24em] text-primary">A clear path</p>
+                <h2 className="text-3xl font-black tracking-tight text-foreground md:text-4xl">
                   Development Process
                 </h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6"></div>
-                <p className="text-fluid-lg text-foreground/70 max-w-2xl mx-auto">
+                <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
                   A structured approach to deliver high-quality results on time
                   and within budget.
                 </p>
@@ -279,23 +299,21 @@ const Services = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className={`flex items-center gap-8 mb-12 ${
-                      index % 2 === 1 ? "flex-row-reverse" : ""
-                    }`}
+                    className="mb-5 flex items-center gap-5"
                   >
                     <div className="flex-shrink-0">
-                      <div className="w-20 h-20 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
-                        <span className="text-2xl font-bold text-white">
+                      <div className="grid h-14 w-14 place-items-center rounded-2xl border border-primary/20 bg-primary/10">
+                        <span className="font-mono text-lg font-bold text-primary">
                           {item.step}
                         </span>
                       </div>
                     </div>
 
-                    <div className="glass-card p-6 rounded-xl flex-1">
-                      <h3 className="text-fluid-xl font-bold text-foreground mb-3">
+                    <div className="flex-1 rounded-2xl border border-border bg-card/50 p-5 backdrop-blur-xl sm:p-6">
+                      <h3 className="text-lg font-bold text-foreground">
                         {item.title}
                       </h3>
-                      <p className="text-foreground/70 leading-relaxed">
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                         {item.description}
                       </p>
                     </div>
@@ -313,12 +331,12 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="glass-card p-12 rounded-2xl text-center max-w-4xl mx-auto"
+                className="relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-primary/20 bg-gradient-to-br from-primary/[.12] via-card/75 to-accent/[.08] p-8 text-center shadow-2xl shadow-primary/5 backdrop-blur-xl md:p-12"
               >
-                <h2 className="text-fluid-3xl font-bold gradient-text mb-6">
+                <h2 className="text-3xl font-black tracking-tight text-foreground md:text-4xl">
                   Ready to Start Your Project?
                 </h2>
-                <p className="text-fluid-lg text-foreground/70 mb-8 max-w-2xl mx-auto">
+                <p className="mx-auto mb-8 mt-4 max-w-2xl leading-relaxed text-muted-foreground">
                   Let's discuss your project requirements and create something
                   amazing together.
                 </p>
@@ -329,10 +347,10 @@ const Services = () => {
                     size="lg"
                     className="bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300"
                   >
-                    <a href="/contact">
+                    <Link to="/contact">
                       Get Started
                       <ExternalLink className="w-5 h-5 ml-2" />
-                    </a>
+                    </Link>
                   </Button>
 
                   <Button
@@ -341,7 +359,7 @@ const Services = () => {
                     size="lg"
                     className="glass border-primary/50 text-foreground hover:text-primary hover:bg-primary/10"
                   >
-                    <a href="/projects">View Projects</a>
+                    <Link to="/projects">View Projects</Link>
                   </Button>
                 </div>
               </motion.div>

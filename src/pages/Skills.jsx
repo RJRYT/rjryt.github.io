@@ -35,7 +35,7 @@ const Skills = () => {
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.com/images/seo/seo-skills.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta property="og:image:alt" content="RJRYT Skills page preview" />
 
@@ -52,7 +52,7 @@ const Skills = () => {
         <meta name="twitter:url" content="https://rjryt.com/skills/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.com/images/seo/seo-skills.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta name="twitter:image:alt" content="RJRYT Skills page preview" />
 

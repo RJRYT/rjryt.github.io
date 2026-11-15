@@ -16,7 +16,7 @@ const STATIC_ROUTES = [
     "/team",
     "/contact",
     "/blog",
-].map((route) => `https://${HOST}${route}`);
+].map((route) => `https://${HOST}${route === "/" ? "/" : `${route}/`}`);
 
 // Content sources
 const BLOG_DIR = path.resolve(process.cwd(), "src", "content", "blog");
@@ -43,7 +43,7 @@ function collectMarkdownRoutes(dir, basePath) {
   );
   return entries.map((d) => {
     const slug = slugFromFilename(d.name);
-    const loc = `https://${HOST}${basePath}/${slug}`.replace(/\/+$/, "");
+    const loc = `https://${HOST}${basePath}/${slug}/`;
     return loc;
   });
 }

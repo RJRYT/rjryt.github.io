@@ -18,7 +18,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { getPostBySlug } from "@/utils/blog";
-import { SITE_URL, SITE_NAME, PERSON_ID } from "@/components/SEO";
+import { SITE_URL, SITE_NAME, PERSON_ID, DEFAULT_IMAGE } from "@/components/SEO";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -97,9 +97,7 @@ const BlogPost = () => {
           <>
             <meta
               property="og:image"
-              content={`${SITE_URL}${
-                post.image.startsWith("/") ? post.image : `/${post.image}`
-              }`}
+              content={DEFAULT_IMAGE}
             />
 
             <meta
@@ -120,9 +118,7 @@ const BlogPost = () => {
           <>
             <meta
               name="twitter:image"
-              content={`${SITE_URL}${
-                post.image.startsWith("/") ? post.image : `/${post.image}`
-              }`}
+              content={DEFAULT_IMAGE}
             />
 
             <meta
@@ -149,22 +145,7 @@ const BlogPost = () => {
               headline: post.title,
               description: post.excerpt,
 
-              image: post.image
-                ? [
-                    `${SITE_URL}${
-                      post.image.startsWith("/") ? post.image : `/${post.image}`
-                    }`,
-                  ]
-                : undefined,
-
-              author: {
-                "@id": PERSON_ID,
-              },
-
-              publisher: {
-                "@id": PERSON_ID,
-              },
-
+              image: [DEFAULT_IMAGE],
               datePublished: post.date,
               dateModified: post.updatedAt || post.date,
               keywords: post.tags,
@@ -231,6 +212,10 @@ const BlogPost = () => {
                 <div className="relative overflow-hidden rounded-2xl mb-8 aspect-video">
                   <img
                     src={post.image}
+                            onError={(event) => {
+                              event.currentTarget.onerror = null;
+                              event.currentTarget.src = "/images/seo/rjryt-social-card.png";
+                            }}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />

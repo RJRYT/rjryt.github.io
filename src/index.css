@@ -390,3 +390,19 @@
     container-type: inline-size;
   }
 }
+
+
+/* RJRYT immersive interaction layer — consumes the existing theme tokens. */
+@layer base {
+  :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
+  a { text-underline-offset: .22em; }
+  img { max-width: 100%; }
+}
+@utility interactive-glow {
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+  @variant hover {
+    border-color: hsl(var(--primary) / .45);
+    box-shadow: 0 18px 44px hsl(var(--primary) / .10);
+    transform: translateY(-3px);
+  }
+}

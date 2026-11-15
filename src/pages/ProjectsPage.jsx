@@ -100,7 +100,7 @@ const ProjectsPage = () => {
         <meta property="og:site_name" content="RJRYT Portfolio" />
         <meta
           property="og:image"
-          content="https://rjryt.com/images/seo/seo-projects.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta property="og:image:alt" content="RJRYT ProjectsPage page preview" />
 
@@ -117,7 +117,7 @@ const ProjectsPage = () => {
         <meta name="twitter:url" content="https://rjryt.com/projects/" />
         <meta
           name="twitter:image"
-          content="https://rjryt.com/images/seo/seo-projects.png"
+          content="https://rjryt.com/images/seo/rjryt-social-card.png"
         />
         <meta name="twitter:image:alt" content="RJRYT ProjectsPage page preview" />
 
@@ -271,6 +271,10 @@ const ProjectsPage = () => {
                         <div className="relative h-48 overflow-hidden">
                           <img
                             src={project.image}
+                            onError={(event) => {
+                              event.currentTarget.onerror = null;
+                              event.currentTarget.src = "/images/seo/rjryt-social-card.png";
+                            }}
                             alt={project.title}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />

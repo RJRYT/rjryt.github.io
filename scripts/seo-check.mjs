@@ -481,6 +481,31 @@ if (!fs.existsSync(robotsPath)) {
   }
 }
 
+
+
+// ============================================================
+// GEO discovery resources
+// ============================================================
+
+const llmsPath = path.join(DIST, "llms.txt");
+if (!fs.existsSync(llmsPath)) {
+  fail("llms.txt does not exist");
+} else {
+  const llms = fs.readFileSync(llmsPath, "utf8");
+  if (!llms.includes("https://rjryt.com/")) fail("llms.txt: canonical site identity missing");
+  else pass("llms.txt");
+}
+
+if (fs.existsSync(robotsPath)) {
+  const robots = fs.readFileSync(robotsPath, "utf8");
+  if (!robots.includes("OAI-SearchBot") || !robots.includes("GPTBot")) {
+    warnings++;
+    console.warn("⚠️ robots.txt: explicit AI crawler policy not found");
+  } else {
+    pass("robots.txt AI crawler policy");
+  }
+}
+
 // ============================================================
 // 404.html
 //

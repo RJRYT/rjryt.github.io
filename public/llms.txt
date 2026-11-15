@@ -1,0 +1,41 @@
+# RJRYT Official
+
+> Official portfolio of Robin Jr, known online as RJRYT, a MERN stack and full-stack web developer based in Kerala, India.
+
+Canonical website: https://rjryt.com/
+
+## About
+RJRYT builds modern web applications with a focus on React, Node.js, Express.js, MongoDB, secure APIs, real-time features, progressive web apps, and performance.
+
+## Primary areas of expertise
+- Full-stack JavaScript and MERN stack application development
+- React, Vite, Tailwind CSS, and responsive user interfaces
+- Node.js, Express.js, REST APIs, and WebSockets
+- MongoDB, MySQL, Redis, and data modeling
+- Authentication, OAuth, JWT, API security, and rate limiting
+- Progressive Web Apps, offline support, and service workers
+- AWS, EC2, S3, CloudFront, NGINX, Docker, and CI/CD
+
+## Main sections
+- Home: https://rjryt.com/
+- About: https://rjryt.com/about/
+- Services: https://rjryt.com/services/
+- Skills: https://rjryt.com/skills/
+- Projects: https://rjryt.com/projects/
+- Blog: https://rjryt.com/blog/
+- Contact: https://rjryt.com/contact/
+
+## Selected projects
+- Minecraft Cat Adventure: https://rjryt.com/projects/minecraft-cat-adventure-infinite-falling-2d-game/
+- ZUA Discord Bot Dashboard: https://rjryt.com/projects/zua-discord-bot-dashboard-built-with-mern/
+- SA-MP Socket Plugin: https://rjryt.com/projects/samp-socket-plugin/
+- ytsearch.js: https://github.com/RJRYT/ytsearch.js
+- E2EE Chat: https://github.com/RJRYT/e2ee-chat
+
+## Profiles
+- GitHub: https://github.com/RJRYT
+- LinkedIn: https://www.linkedin.com/in/robin-jr
+- Instagram: https://www.instagram.com/rjryt_/
+
+## Content and attribution
+Project and article pages on this domain are the primary source for their own descriptions, technologies, dates, and status. Attribute portfolio content to Robin Jr (RJRYT) and link to the canonical page when referencing it.

@@ -1,453 +1,519 @@
-import React from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link, useParams, Navigate } from "react-router-dom";
-import { Calendar, Clock, Tag, ArrowLeft, Share2, Github, ExternalLink } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  BookOpen,
+  CalendarDays,
+  Check,
+  Clock3,
+  ExternalLink,
+  Github,
+  Share2,
+  Sparkles,
+} from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { getPostBySlug } from "@/utils/blog";
+import { getPostBySlug, getRelatedPosts, formatDate } from "@/utils/blog";
 import { SITE_URL, SITE_NAME, PERSON_ID, DEFAULT_IMAGE } from "@/components/SEO";
 
 const BlogPost = () => {
   const { slug } = useParams();
   const { toast } = useToast();
+  const progressRef = useRef(null);
+  const articleRef = useRef(null);
+  const desktopTocRef = useRef(null);
+  const mobileTocRef = useRef(null);
+  const [activeHeading, setActiveHeading] = useState("");
+  const [shareState, setShareState] = useState("idle");
 
-  // Must be synchronous so the post and Helmet metadata
-  // are available during build-time SSR/prerendering.
-  const post = getPostBySlug(slug);
+  const post = useMemo(() => getPostBySlug(slug), [slug]);
+  const relatedPosts = post ? getRelatedPosts(post) : [];
+  const headings = useMemo(() => (post ? extractHeadings(post.content) : []), [post]);
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: post.title,
-          text: post.excerpt,
-          url: window.location.href,
-        });
-      } catch (err) {
-        console.log("Error sharing:", err);
-      }
-    } else {
-      navigator.clipboard.writeText(window.location.href);
+  useEffect(() => {
+    if (!post) return undefined;
 
-      toast({
-        title: "Link Copied",
-        description: "Article URL copied to clipboard!",
+    let frame = 0;
+    const updateProgress = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const article = articleRef.current;
+        if (!article) return;
+
+        const articleTop = window.scrollY + article.getBoundingClientRect().top;
+        const scrollableHeight = article.offsetHeight - window.innerHeight;
+        const progress =
+          scrollableHeight > 0
+            ? Math.min(1, Math.max(0, (window.scrollY - articleTop) / scrollableHeight))
+            : 0;
+
+        if (progressRef.current) {
+          progressRef.current.style.transform = `scaleX(${progress})`;
+          progressRef.current.setAttribute("aria-valuenow", String(Math.round(progress * 100)));
+        }
+
+        const activationLine = window.innerHeight * 0.25;
+        const headingElements = article.querySelectorAll(
+          ".blog-article-content h2, .blog-article-content h3, .blog-article-content h4, .blog-article-content h5, .blog-article-content h6",
+        );
+        const activeHeadingElement = [...headingElements]
+          .filter((heading) => heading.getBoundingClientRect().top <= activationLine)
+          .at(-1);
+        const nextActiveHeading = activeHeadingElement?.id || "";
+        setActiveHeading((currentHeading) =>
+          currentHeading === nextActiveHeading ? currentHeading : nextActiveHeading,
+        );
       });
-    }
-  };
+    };
 
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    window.addEventListener("load", updateProgress);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+      window.removeEventListener("load", updateProgress);
+    };
+  }, [post, headings]);
+
+  useEffect(() => {
+    if (!activeHeading) return;
+
+    const scrollActiveLinkIntoView = (container) => {
+      if (!container) return;
+
+      const activeLink = container.querySelector('[aria-current="location"]');
+      if (!activeLink) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      let nextScrollTop = container.scrollTop;
+
+      if (linkRect.top < containerRect.top) {
+        nextScrollTop += linkRect.top - containerRect.top;
+      } else if (linkRect.bottom > containerRect.bottom) {
+        nextScrollTop += linkRect.bottom - containerRect.bottom;
+      } else {
+        return;
+      }
+
+      container.scrollTo({
+        top: nextScrollTop,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
+    };
+
+    scrollActiveLinkIntoView(desktopTocRef.current);
+    if (mobileTocRef.current?.closest("details")?.open) {
+      scrollActiveLinkIntoView(mobileTocRef.current);
+    }
+  }, [activeHeading]);
 
   if (!post) {
     return <Navigate to="/blog" replace />;
   }
 
+  const handleShare = async () => {
+    const shareData = {
+      title: post.title,
+      text: post.excerpt,
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        setShareState("shared");
+        return;
+      } catch (error) {
+        if (error.name === "AbortError") return;
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      setShareState("copied");
+      toast({
+        title: "Link copied",
+        description: "The article URL is ready to share.",
+      });
+      window.setTimeout(() => setShareState("idle"), 2500);
+    } catch {
+      setShareState("error");
+      toast({
+        title: "Unable to share",
+        description: "Your browser could not copy the article link.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const articleImage = post.image ? absoluteImageUrl(post.image) : DEFAULT_IMAGE;
+  const wordCount = post.content.trim().split(/\s+/).length;
+  const currentHeading = headings.find((heading) => heading.id === activeHeading);
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": `${SITE_URL}/blog/${slug}/#blogpost`,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/blog/${slug}/#webpage`,
+      },
+      headline: post.title,
+      description: post.excerpt,
+      image: [articleImage],
+      datePublished: post.date,
+      dateModified: post.updatedAt || post.date,
+      keywords: post.tags || [],
+      wordCount,
+      timeRequired: `PT${Math.max(1, parseInt(post.readTime, 10) || 1)}M`,
+      url: `${SITE_URL}/blog/${slug}/`,
+      articleSection: "Web Development",
+      inLanguage: "en",
+      author: { "@type": "Person", "@id": PERSON_ID, name: "Robin Jr" },
+      publisher: { "@type": "Person", "@id": PERSON_ID, name: "RJRYT" },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog/` },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: post.title,
+          item: `${SITE_URL}/blog/${slug}/`,
+        },
+      ],
+    },
+  ];
+
   return (
     <>
       <Helmet>
         <title>{post.title} - RJRYT Blog</title>
-
         <meta name="description" content={post.excerpt} />
-
-        <meta name="keywords" content={`RJRYT, Blog, ${post.tags.join(", ")}, Web Development`} />
-
+        <meta
+          name="keywords"
+          content={`RJRYT, Blog, ${(post.tags || []).join(", ")}, Web Development`}
+        />
         <link rel="canonical" href={`${SITE_URL}/blog/${slug}/`} />
-
         <meta name="author" content="RJRYT" />
-
         <meta name="robots" content="index, follow, max-image-preview:large" />
-
-        {/* Open Graph */}
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:locale" content="en_US" />
         <meta property="og:title" content={`${post.title} - RJRYT Blog`} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`${SITE_URL}/blog/${slug}/`} />
-
         <meta property="article:author" content="RJRYT" />
-
         <meta property="article:published_time" content={post.date} />
-
-        <meta property="article:tag" content={post.tags.join(", ")} />
-
-        {post.image && (
-          <>
-            <meta property="og:image" content={DEFAULT_IMAGE} />
-
-            <meta property="og:image:alt" content={`${post.title} — RJRYT Blog`} />
-          </>
-        )}
-
-        {/* Twitter Card */}
+        <meta property="article:tag" content={(post.tags || []).join(", ")} />
+        <meta property="og:image" content={articleImage} />
+        <meta property="og:image:alt" content={`${post.title} — RJRYT Blog`} />
         <meta name="twitter:card" content="summary_large_image" />
-
         <meta name="twitter:title" content={`${post.title} - RJRYT Blog`} />
-
         <meta name="twitter:description" content={post.excerpt} />
-
-        {post.image && (
-          <>
-            <meta name="twitter:image" content={DEFAULT_IMAGE} />
-
-            <meta name="twitter:image:alt" content={`${post.title} — RJRYT Blog`} />
-          </>
-        )}
-
+        <meta name="twitter:image" content={articleImage} />
+        <meta name="twitter:image:alt" content={`${post.title} — RJRYT Blog`} />
         <meta name="twitter:url" content={`${SITE_URL}/blog/${slug}/`} />
-
-        <script type="application/ld+json">
-          {JSON.stringify([
-            {
-              "@context": "https://schema.org",
-              "@type": "BlogPosting",
-              "@id": `${SITE_URL}/blog/${slug}/#blogpost`,
-
-              mainEntityOfPage: {
-                "@type": "WebPage",
-                "@id": `${SITE_URL}/blog/${slug}/#webpage`,
-              },
-
-              headline: post.title,
-              description: post.excerpt,
-
-              image: [DEFAULT_IMAGE],
-              datePublished: post.date,
-              dateModified: post.updatedAt || post.date,
-              keywords: post.tags,
-              url: `${SITE_URL}/blog/${slug}/`,
-              articleSection: "Web Development",
-              inLanguage: "en",
-            },
-
-            {
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Home",
-                  item: `${SITE_URL}/`,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Blogs",
-                  item: `${SITE_URL}/blog/`,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: post.title,
-                  item: `${SITE_URL}/blog/${slug}/`,
-                },
-              ],
-            },
-          ])}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-hero">
+      <div className="min-h-screen bg-background text-foreground">
+        <div
+          ref={progressRef}
+          className="blog-reading-progress"
+          role="progressbar"
+          aria-label="Article reading progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        />
         <Navigation />
 
         <main className="pt-20">
-          <section className="py-16">
-            <div className="container mx-auto px-4 max-w-4xl">
-              <div className="flex items-center gap-4 mb-8">
-                <Link to="/blog/">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-foreground/70 hover:text-accent-foreground"
-                    aria-label="Back to Blog"
-                  >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Back to Blog
-                  </Button>
+          <section className="relative overflow-hidden border-b border-border/70">
+            <div className="portfolio-grid absolute inset-0 opacity-50" aria-hidden="true" />
+            <div className="ambient-orb -left-40 top-0 h-96 w-96" aria-hidden="true" />
+            <div className="ambient-orb -right-36 bottom-0 h-80 w-80" aria-hidden="true" />
+
+            <div className="container relative mx-auto px-4 pb-10 pt-9 sm:pb-14 sm:pt-12">
+              <div className="mx-auto max-w-6xl">
+                <Link
+                  to="/blog/"
+                  className="mb-9 inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition hover:text-primary"
+                >
+                  <ArrowLeft size={16} />
+                  Back to journal
                 </Link>
-              </div>
 
-              <motion.article
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                {/* Featured Image */}
-                <div className="relative overflow-hidden rounded-2xl mb-8 aspect-video">
-                  <img
-                    src={post.image}
-                    onError={(event) => {
-                      event.currentTarget.onerror = null;
-                      event.currentTarget.src = "/images/seo/rjryt-social-card.png";
-                    }}
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                  />
+                <motion.article
+                  initial={{ opacity: 0, y: 22 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="grid items-center gap-9 lg:grid-cols-[1fr_0.95fr] lg:gap-14"
+                >
+                  <div>
+                    <p className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+                      <BookOpen size={14} />
+                      Developer journal
+                    </p>
+                    <h1 className="text-4xl font-bold leading-[1.07] tracking-[-0.055em] sm:text-5xl lg:text-6xl">
+                      {post.title}
+                    </h1>
+                    <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+                      {post.excerpt}
+                    </p>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-                </div>
-
-                {/* Article Header */}
-                <div className="glass-card p-8 rounded-2xl mb-8">
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/60 mb-6">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {formatDate(post.date)}
+                    <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground">
+                      <span className="inline-flex items-center gap-2">
+                        <CalendarDays size={16} className="text-primary" />
+                        <time dateTime={post.date}>{formatDate(post.date)}</time>
+                      </span>
+                      <span className="inline-flex items-center gap-2">
+                        <Clock3 size={16} className="text-primary" />
+                        {post.readTime}
+                      </span>
+                      <span className="inline-flex items-center gap-2">
+                        <BookOpen size={16} className="text-primary" />
+                        {headings.length} sections
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {post.readTime}
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {(post.tags || []).map((tag) => (
+                        <Link
+                          key={tag}
+                          to={`/blog?search=${encodeURIComponent(tag)}`}
+                          className="rounded-full border border-border/80 bg-card/60 px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:border-primary/40 hover:text-primary"
+                        >
+                          {tag}
+                        </Link>
+                      ))}
                     </div>
-
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={handleShare}
-                      className="ml-auto text-foreground/70 hover:text-accent-foreground"
-                      aria-label="Share"
-                    >
-                      <Share2 className="w-4 h-4 mr-2" />
-                      Share
-                    </Button>
                   </div>
 
-                  <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-                    {post.title}
-                  </h1>
+                  <div className="relative">
+                    <div className="absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-primary/20 via-transparent to-accent/20 blur-xl" />
+                    <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-card p-2 shadow-2xl shadow-foreground/10 sm:rounded-3xl sm:p-3">
+                      <img
+                        src={post.image || DEFAULT_IMAGE}
+                        onError={(event) => {
+                          event.currentTarget.onerror = null;
+                          event.currentTarget.src = DEFAULT_IMAGE;
+                        }}
+                        alt={`${post.title} article cover`}
+                        className="aspect-[16/10] w-full rounded-xl object-cover sm:rounded-2xl"
+                      />
+                    </div>
+                  </div>
+                </motion.article>
+              </div>
+            </div>
+          </section>
 
-                  <p className="text-lg text-foreground/80 leading-relaxed mb-6">{post.excerpt}</p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-flex items-center gap-1 px-3 py-1 bg-muted/50 text-foreground/80 rounded-lg text-sm font-medium"
-                      >
-                        <Tag className="w-3 h-3" />
-                        {tag}
+          <section className="container mx-auto px-4 py-12 sm:py-16">
+            <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-14">
+              <motion.article
+                ref={articleRef}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.08 }}
+                className="min-w-0"
+              >
+                {headings.length > 0 && (
+                  <details className="blog-mobile-toc mb-5 lg:hidden">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl border border-border/80 bg-card/60 px-4 py-3 [&::-webkit-details-marker]:hidden">
+                      <span>
+                        <span className="block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                          In this article
+                        </span>
+                        <span className="mt-1 block truncate text-sm font-semibold text-foreground">
+                          {currentHeading?.text || `${headings.length} sections`}
+                        </span>
                       </span>
+                      <span className="shrink-0 text-xs font-semibold text-primary">
+                        Browse sections
+                      </span>
+                    </summary>
+                    <nav aria-label="Article sections" className="mt-2">
+                      <ol
+                        ref={mobileTocRef}
+                        className="max-h-64 space-y-1 overflow-y-auto rounded-xl border border-border/80 bg-card/80 p-2"
+                      >
+                        {headings.map((heading) => (
+                          <li key={heading.id}>
+                            <a
+                              href={`#${heading.id}`}
+                              aria-current={activeHeading === heading.id ? "location" : undefined}
+                              onClick={(event) => {
+                                event.currentTarget.closest("details").open = false;
+                              }}
+                              className={`block rounded-lg px-3 py-2 text-sm leading-5 transition ${
+                                activeHeading === heading.id
+                                  ? "bg-primary/10 font-semibold text-primary"
+                                  : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                              }`}
+                            >
+                              {heading.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ol>
+                    </nav>
+                  </details>
+                )}
+
+                <div className="mb-5 flex items-center justify-between gap-4 rounded-xl border border-border/80 bg-card/60 px-4 py-3">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span className="shrink-0 text-xs font-medium text-muted-foreground">
+                      {post.readTime} · {wordCount.toLocaleString()} words
+                    </span>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleShare}
+                    aria-live="polite"
+                  >
+                    {shareState === "copied" || shareState === "shared" ? (
+                      <Check size={16} />
+                    ) : (
+                      <Share2 size={16} />
+                    )}
+                    {shareState === "copied"
+                      ? "Copied"
+                      : shareState === "shared"
+                        ? "Shared"
+                        : shareState === "error"
+                          ? "Share unavailable"
+                          : "Share"}
+                  </Button>
+                </div>
+
+                <div className="blog-article-content">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={createMarkdownComponents(headings)}
+                  >
+                    {post.content}
+                  </ReactMarkdown>
+                </div>
+
+                <div className="mt-10 rounded-2xl border border-primary/15 bg-primary/[0.04] p-6 sm:p-8">
+                  <p className="text-xs font-bold uppercase tracking-[0.17em] text-primary">
+                    Enjoyed this read?
+                  </p>
+                  <h2 className="mt-2 text-2xl font-bold tracking-tight">
+                    Keep the conversation going.
+                  </h2>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    Follow along for more practical development notes, or reach out to talk about a
+                    project.
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <Button asChild>
+                      <a href="/r/github" target="_blank" rel="noopener noreferrer">
+                        <Github size={16} />
+                        Follow on GitHub
+                        <ExternalLink size={14} />
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline">
+                      <Link to="/contact">Get in touch</Link>
+                    </Button>
+                  </div>
+                </div>
+              </motion.article>
+
+              {headings.length > 0 && (
+                <aside className="hidden self-start lg:sticky lg:top-28 lg:block">
+                  <nav
+                    ref={desktopTocRef}
+                    aria-label="On this page"
+                    className="max-h-[min(70vh,32rem)] overflow-y-auto rounded-2xl border border-border/80 bg-card/55 p-5 backdrop-blur"
+                  >
+                    <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                      On this page
+                    </p>
+                    <ol className="space-y-1.5">
+                      {headings.map((heading) => (
+                        <li key={heading.id}>
+                          <a
+                            href={`#${heading.id}`}
+                            aria-current={activeHeading === heading.id ? "location" : undefined}
+                            className={`block border-l-2 py-1 pl-3 text-xs leading-5 transition ${
+                              activeHeading === heading.id
+                                ? "border-primary font-semibold text-primary"
+                                : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
+                            }`}
+                          >
+                            {heading.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                    <div className="mt-5 border-t border-border/70 pt-4">
+                      <Button type="button" variant="outline" size="sm" onClick={handleShare}>
+                        <Share2 size={14} />
+                        Share article
+                      </Button>
+                    </div>
+                  </nav>
+                </aside>
+              )}
+            </div>
+          </section>
+
+          {relatedPosts.length > 0 && (
+            <section className="border-t border-border/70 bg-card/25">
+              <div className="container mx-auto px-4 py-14 sm:py-20">
+                <div className="mx-auto max-w-6xl">
+                  <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+                    <div>
+                      <p className="mb-2 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+                        <Sparkles size={14} />
+                        Keep exploring
+                      </p>
+                      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                        Related articles
+                      </h2>
+                      <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
+                        More guides connected by the topics in this article.
+                      </p>
+                    </div>
+                    <Link
+                      to="/blog/"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:gap-3"
+                    >
+                      Browse the journal <ArrowRight size={16} />
+                    </Link>
+                  </div>
+
+                  <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                    {relatedPosts.map((relatedPost, index) => (
+                      <RelatedArticle key={relatedPost.slug} post={relatedPost} index={index} />
                     ))}
                   </div>
                 </div>
-
-                {/* Article Content */}
-                <div className="glass-card p-8 rounded-2xl">
-                  <div className="prose prose-lg prose-invert max-w-none">
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        h1: ({ children }) => (
-                          <h1 className="text-3xl font-bold text-foreground mb-6 gradient-text">
-                            {children}
-                          </h1>
-                        ),
-
-                        h2: ({ children }) => (
-                          <h2 className="text-2xl font-bold text-foreground mb-4 mt-8">
-                            {children}
-                          </h2>
-                        ),
-
-                        h3: ({ children }) => (
-                          <h3 className="text-xl font-bold text-foreground mb-3 mt-6">
-                            {children}
-                          </h3>
-                        ),
-
-                        h4: ({ children }) => (
-                          <h4 className="text-lg font-bold text-foreground mb-3 mt-5">
-                            {children}
-                          </h4>
-                        ),
-
-                        h5: ({ children }) => (
-                          <h5 className="text-base font-bold text-foreground mb-2 mt-4">
-                            {children}
-                          </h5>
-                        ),
-
-                        h6: ({ children }) => (
-                          <h6 className="text-sm font-bold text-foreground mb-2 mt-4">
-                            {children}
-                          </h6>
-                        ),
-                        p: ({ children }) => (
-                          <p className="text-foreground/80 leading-relaxed mb-4">{children}</p>
-                        ),
-                        a: ({ href, children }) => (
-                          <a
-                            href={href}
-                            className="text-primary hover:underline underline-offset-4 transition-colors"
-                            target={href?.startsWith("http") ? "_blank" : undefined}
-                            rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
-                          >
-                            {children}
-                          </a>
-                        ),
-                        code: ({ className, children, node, ...props }) => (
-                          <code
-                            className={`bg-muted/40 px-1.5 py-0.5 rounded font-mono text-[length:inherit] text-inherit ${className || ""}`}
-                            {...props}
-                          >
-                            {children}
-                          </code>
-                        ),
-
-                        pre: ({ children }) => (
-                          <pre className="bg-muted/20 text-foreground p-4 rounded-lg overflow-x-auto mb-6 border border-border/50 [&>code]:block [&>code]:bg-transparent [&>code]:p-0 [&>code]:rounded-none [&>code]:text-inherit">
-                            {children}
-                          </pre>
-                        ),
-                        ul: ({ children }) => (
-                          <ul className="list-disc list-inside text-foreground/80 mb-4 space-y-2">
-                            {children}
-                          </ul>
-                        ),
-
-                        ol: ({ children }) => (
-                          <ol className="list-decimal list-inside text-foreground/80 mb-4 space-y-2">
-                            {children}
-                          </ol>
-                        ),
-
-                        li: ({ children, className, ...props }) => (
-                          <li className={`text-foreground/80 ${className || ""}`} {...props}>
-                            {children}
-                          </li>
-                        ),
-                        input: ({ type, checked, disabled, ...props }) => {
-                          if (type !== "checkbox") {
-                            return <input type={type} {...props} />;
-                          }
-
-                          return (
-                            <input
-                              type="checkbox"
-                              checked={checked}
-                              disabled={disabled}
-                              readOnly
-                              className="mr-2 h-4 w-4 accent-primary align-middle"
-                              {...props}
-                            />
-                          );
-                        },
-                        blockquote: ({ children }) => (
-                          <blockquote className="border-l-4 border-primary pl-4 my-6 italic text-foreground/70">
-                            {children}
-                          </blockquote>
-                        ),
-                        hr: () => <hr className="my-8 border-border" />,
-                        del: ({ children }) => (
-                          <del className="text-foreground/50 line-through">{children}</del>
-                        ),
-                        table: ({ children }) => (
-                          <div className="w-full overflow-x-auto mb-6 rounded-lg border border-border">
-                            <table className="w-full min-w-[600px] border-collapse text-sm">
-                              {children}
-                            </table>
-                          </div>
-                        ),
-
-                        thead: ({ children }) => <thead className="bg-muted/50">{children}</thead>,
-
-                        tbody: ({ children }) => (
-                          <tbody className="divide-y divide-border">{children}</tbody>
-                        ),
-
-                        tr: ({ children }) => (
-                          <tr className="border-b border-border last:border-b-0">{children}</tr>
-                        ),
-
-                        th: ({ children }) => (
-                          <th className="border-r border-border px-4 py-3 text-left font-semibold text-foreground whitespace-nowrap last:border-r-0">
-                            {children}
-                          </th>
-                        ),
-
-                        td: ({ children }) => (
-                          <td className="border-r border-border px-4 py-3 text-foreground/80 align-top last:border-r-0">
-                            {children}
-                          </td>
-                        ),
-                        img: ({ src, alt, title }) => (
-                          <img
-                            src={src}
-                            alt={alt || ""}
-                            title={title}
-                            loading="lazy"
-                            className="max-w-full h-auto rounded-lg my-6"
-                          />
-                        ),
-                        strong: ({ children }) => (
-                          <strong className="font-bold text-foreground">{children}</strong>
-                        ),
-
-                        em: ({ children }) => (
-                          <em className="italic text-foreground/90">{children}</em>
-                        ),
-                        br: () => <br />,
-                      }}
-                    >
-                      {post.content}
-                    </ReactMarkdown>
-                  </div>
-                </div>
-
-                {/* Call to Action */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="glass-card p-8 rounded-2xl mt-8 text-center"
-                >
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Found this helpful?</h3>
-
-                  <p className="text-foreground/70 mb-6">
-                    Follow me for more development insights and tutorials
-                  </p>
-
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button
-                      asChild
-                      className="bg-primary-gradient hover:shadow-primary text-foreground"
-                    >
-                      <a href="/r/github" target="_blank" rel="noopener noreferrer">
-                        <Github className="w-5 h-5 mr-2" />
-                        Follow on GitHub
-                      </a>
-                    </Button>
-
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="glass border-accent/50 hover:text-foreground/90 hover:bg-accent/50"
-                      aria-label="Get in Touch"
-                    >
-                      <a href="/contact">
-                        <ExternalLink className="w-5 h-5 mr-2" />
-                        Get in Touch
-                      </a>
-                    </Button>
-                  </div>
-                </motion.div>
-              </motion.article>
-            </div>
-          </section>
+              </div>
+            </section>
+          )}
         </main>
 
         <Footer />
@@ -455,5 +521,171 @@ const BlogPost = () => {
     </>
   );
 };
+
+const extractHeadings = (markdown) => {
+  const slugCounts = new Map();
+  const headings = [];
+  const headingPattern = /^#{1,6}\s+(.+?)\s*#*\s*$/gm;
+  let match;
+  const contentWithoutCodeBlocks = markdown.replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, "");
+
+  while ((match = headingPattern.exec(contentWithoutCodeBlocks))) {
+    const text = match[1].replace(/[`*_~[\]]/g, "").trim();
+    const baseId =
+      text
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}\s-]/gu, "")
+        .trim()
+        .replace(/\s+/g, "-") || "section";
+    const count = slugCounts.get(baseId) || 0;
+    slugCounts.set(baseId, count + 1);
+    headings.push({
+      text,
+      id: count ? `${baseId}-${count}` : baseId,
+    });
+  }
+
+  return headings;
+};
+
+const createMarkdownComponents = (headings) => {
+  let headingIndex = 0;
+  const renderHeading =
+    (TagName) =>
+    ({ children }) => {
+      const heading = headings[headingIndex];
+      headingIndex += 1;
+      const id = heading?.id;
+
+      return (
+        <TagName id={id} className="scroll-mt-28">
+          {children}
+        </TagName>
+      );
+    };
+
+  return {
+    h1: renderHeading("h2"),
+    h2: renderHeading("h2"),
+    h3: renderHeading("h3"),
+    h4: renderHeading("h4"),
+    h5: renderHeading("h5"),
+    h6: renderHeading("h6"),
+    p: ({ children }) => <p>{children}</p>,
+    a: ({ href, children }) => (
+      <a
+        href={href}
+        target={href?.startsWith("http") ? "_blank" : undefined}
+        rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+      >
+        {children}
+      </a>
+    ),
+    code: ({ className, children, ...props }) => (
+      <code className={className} {...props}>
+        {children}
+      </code>
+    ),
+    pre: ({ children }) => <pre>{children}</pre>,
+    ul: ({ children }) => <ul>{children}</ul>,
+    ol: ({ children }) => <ol>{children}</ol>,
+    li: ({ children, className, ...props }) => (
+      <li className={className} {...props}>
+        {children}
+      </li>
+    ),
+    input: ({ type, checked, disabled, ...props }) =>
+      type === "checkbox" ? (
+        <input
+          type="checkbox"
+          checked={checked}
+          disabled={disabled}
+          readOnly
+          className="mr-2 h-4 w-4 align-middle accent-primary"
+          {...props}
+        />
+      ) : (
+        <input type={type} {...props} />
+      ),
+    blockquote: ({ children }) => <blockquote>{children}</blockquote>,
+    hr: () => <hr />,
+    del: ({ children }) => <del>{children}</del>,
+    table: ({ children }) => (
+      <div className="blog-table-wrap">
+        <table>{children}</table>
+      </div>
+    ),
+    thead: ({ children }) => <thead>{children}</thead>,
+    tbody: ({ children }) => <tbody>{children}</tbody>,
+    tr: ({ children }) => <tr>{children}</tr>,
+    th: ({ children }) => <th>{children}</th>,
+    td: ({ children }) => <td>{children}</td>,
+    img: ({ src, alt, title }) => <img src={src} alt={alt || ""} title={title} loading="lazy" />,
+    strong: ({ children }) => <strong>{children}</strong>,
+    em: ({ children }) => <em>{children}</em>,
+  };
+};
+
+const absoluteImageUrl = (image) =>
+  image.startsWith("http") ? image : `${SITE_URL}${image.startsWith("/") ? "" : "/"}${image}`;
+
+const RelatedArticle = ({ post, index }) => (
+  <motion.article
+    initial={{ opacity: 0, y: 18 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.15 }}
+    transition={{ duration: 0.45, delay: index * 0.08 }}
+    whileHover={{ y: -5 }}
+    className="group overflow-hidden rounded-2xl border border-border/80 bg-card/70 shadow-sm transition-shadow hover:shadow-xl hover:shadow-primary/5"
+  >
+    <Link
+      to={`/blog/${post.slug}/`}
+      className="relative block aspect-[16/9] overflow-hidden bg-secondary/60"
+      aria-label={`Read ${post.title}`}
+    >
+      {post.image ? (
+        <img
+          src={post.image}
+          alt={`${post.title} article cover`}
+          loading="lazy"
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = DEFAULT_IMAGE;
+          }}
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-secondary to-accent/15" />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+      <span className="absolute bottom-3 left-4 rounded-full border border-white/20 bg-black/35 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
+        {post.tags?.[0] || "Article"}
+      </span>
+    </Link>
+
+    <div className="p-5">
+      <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+        <span className="inline-flex items-center gap-1.5">
+          <CalendarDays size={13} />
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <Clock3 size={13} />
+          {post.readTime}
+        </span>
+      </div>
+      <h3 className="text-lg font-bold leading-snug transition-colors group-hover:text-primary">
+        <Link to={`/blog/${post.slug}/`}>{post.title}</Link>
+      </h3>
+      <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">{post.excerpt}</p>
+      <Link
+        to={`/blog/${post.slug}/`}
+        className="mt-5 inline-flex items-center gap-2 border-t border-border/70 pt-4 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+      >
+        Read article <ArrowRight size={15} />
+      </Link>
+    </div>
+  </motion.article>
+);
 
 export default BlogPost;

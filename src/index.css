@@ -200,8 +200,7 @@
 
   html,
   body {
-    overflow-x: hidden; /* Hide horizontal scrolling */
-    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: clip;
   }
 
   input::placeholder,

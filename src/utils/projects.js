@@ -255,33 +255,30 @@ export const paginateProjects = (projects, page = 1, projectsPerPage = 9) => {
   };
 };
 
-// Get related projects (same category or technologies)
+// Rank related projects by shared category and technologies.
 export const getRelatedProjects = (currentProject, limit = 3) => {
   const allProjects = getAllProjects();
 
-  const relatedProjects = allProjects
-    .filter((project) => {
-      if (project.slug === currentProject.slug) return false;
+  return allProjects
+    .filter((project) => project.slug !== currentProject.slug)
+    .map((project) => {
+      const sharedTechnologies = (project.technologies || []).filter((technology) =>
+        (currentProject.technologies || []).includes(technology),
+      );
+      const sharesCategory =
+        Boolean(project.category) && project.category === currentProject.category;
 
-      // Check for same category
-      if (
-        project.category &&
-        currentProject.category &&
-        project.category === currentProject.category
-      ) {
-        return true;
-      }
-
-      // Check for shared technologies
-      if (project.technologies && currentProject.technologies) {
-        return project.technologies.some((tech) => currentProject.technologies.includes(tech));
-      }
-
-      return false;
+      return {
+        project,
+        relevance: (sharesCategory ? 2 : 0) + sharedTechnologies.length,
+      };
     })
-    .slice(0, limit);
-
-  return relatedProjects;
+    .filter(({ relevance }) => relevance > 0)
+    .sort(
+      (a, b) => b.relevance - a.relevance || new Date(b.project.date) - new Date(a.project.date),
+    )
+    .slice(0, limit)
+    .map(({ project }) => project);
 };
 
 // Get project statistics

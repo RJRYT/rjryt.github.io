@@ -1,8 +1,104 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { flushSync } from "react-dom";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+
+const ThemeToggle = ({ theme, onClick }) => {
+  const shouldReduceMotion = useReducedMotion();
+  const Icon = theme === "dark" ? Sun : Moon;
+  const nextTheme = theme === "dark" ? "light" : "dark";
+
+  const handleClick = (event) => {
+    if (shouldReduceMotion) {
+      onClick();
+      return;
+    }
+
+    const root = document.documentElement;
+    const startViewTransition = document.startViewTransition;
+
+    if (typeof startViewTransition === "function") {
+      const bounds = event.currentTarget.getBoundingClientRect();
+      const x = bounds.left + bounds.width / 2;
+      const y = bounds.top + bounds.height / 2;
+      const radius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y),
+      );
+
+      root.style.setProperty("--theme-transition-x", `${x}px`);
+      root.style.setProperty("--theme-transition-y", `${y}px`);
+      root.style.setProperty("--theme-transition-radius", `${radius}px`);
+
+      const transition = startViewTransition.call(document, () => flushSync(onClick));
+      transition.finished.then(
+        () => {
+          root.style.removeProperty("--theme-transition-x");
+          root.style.removeProperty("--theme-transition-y");
+          root.style.removeProperty("--theme-transition-radius");
+        },
+        () => {
+          root.style.removeProperty("--theme-transition-x");
+          root.style.removeProperty("--theme-transition-y");
+          root.style.removeProperty("--theme-transition-radius");
+        },
+      );
+      return;
+    }
+
+    root.classList.add("theme-transition-fallback");
+    onClick();
+    window.setTimeout(() => root.classList.remove("theme-transition-fallback"), 500);
+  };
+
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={handleClick}
+      className="text-foreground/80"
+      aria-label={`Switch to ${nextTheme} mode`}
+      title={`Switch to ${nextTheme} mode`}
+    >
+      <span className="relative flex h-5 w-5 items-center justify-center">
+        <AnimatePresence initial={false}>
+          <motion.span
+            key={`theme-burst-${theme}`}
+            initial={{ opacity: 0.65, scale: 0.4 }}
+            animate={{ opacity: 0, scale: 3.2 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.5, ease: "easeOut" }}
+            className="absolute inset-0 rounded-full bg-primary/35"
+            aria-hidden="true"
+          />
+        </AnimatePresence>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={theme}
+            initial={shouldReduceMotion ? false : { opacity: 0, rotate: -160, scale: 0.2 }}
+            animate={
+              shouldReduceMotion
+                ? { opacity: 1, rotate: 0, scale: 1 }
+                : { opacity: [0, 1, 1], rotate: [-160, 24, 0], scale: [0.2, 1.35, 1] }
+            }
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, rotate: 160, scale: 0.2 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.52, times: [0, 0.72, 1], ease: [0.16, 1, 0.3, 1] }
+            }
+            className="absolute drop-shadow-[0_0_8px_hsl(var(--primary)/0.65)]"
+            aria-hidden="true"
+          >
+            <Icon size={20} />
+          </motion.span>
+        </AnimatePresence>
+      </span>
+    </Button>
+  );
+};
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -100,32 +196,12 @@ const Navigation = () => {
               </motion.div>
             ))}
 
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="text-foreground/80"
-              role="button"
-              aria-label="Toggle Theme"
-              title="Toggle Theme"
-            >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </Button>
+            <ThemeToggle theme={theme} onClick={toggleTheme} />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="text-foreground/80"
-              role="button"
-              aria-label="Toggle Theme"
-              title="Toggle Theme"
-            >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </Button>
+            <ThemeToggle theme={theme} onClick={toggleTheme} />
 
             <Button
               variant="ghost"

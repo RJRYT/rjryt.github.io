@@ -162,21 +162,20 @@ export const paginatePosts = (posts, page = 1, postsPerPage = 6) => {
   };
 };
 
-// Get related posts (same tags)
+// Rank related posts by shared tags, using recency to break ties.
 export const getRelatedPosts = (currentPost, limit = 3) => {
-  if (!currentPost.tags || currentPost.tags.length === 0) {
-    return [];
-  }
-
   const allPosts = getAllPosts();
+  const currentTags = currentPost.tags || [];
   const relatedPosts = allPosts
-    .filter(
-      (post) =>
-        post.slug !== currentPost.slug &&
-        post.tags &&
-        post.tags.some((tag) => currentPost.tags.includes(tag)),
-    )
-    .slice(0, limit);
+    .filter((post) => post.slug !== currentPost.slug)
+    .map((post) => ({
+      post,
+      sharedTags: (post.tags || []).filter((tag) => currentTags.includes(tag)).length,
+    }))
+    .filter(({ sharedTags }) => sharedTags > 0)
+    .sort((a, b) => b.sharedTags - a.sharedTags || new Date(b.post.date) - new Date(a.post.date))
+    .slice(0, limit)
+    .map(({ post }) => post);
 
   return relatedPosts;
 };

@@ -10,8 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 // ======= Config =======
-const SITE_URL =
-  process.env.SITE_URL?.replace(/\/$/, "") || "https://rjryt.com";
+const SITE_URL = process.env.SITE_URL?.replace(/\/$/, "") || "https://rjryt.com";
 const DIST_DIR = path.resolve(process.cwd(), "dist");
 
 // Core routes shown on Home and also available as pages
@@ -76,7 +75,7 @@ function ensureDir(dir) {
 
 function urlXml({ loc, lastmod, changefreq, priority }) {
   return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority.toFixed(
-    1
+    1,
   )}</priority>\n  </url>`;
 }
 
@@ -94,15 +93,12 @@ const STATIC_SOURCE_FILES = {
 
 function collectStaticRoutes() {
   return STATIC_ROUTES.map((route) => {
-    const loc =
-      route === "/"
-        ? `${SITE_URL}/`
-        : `${SITE_URL}${route.replace(/\/+$/, "")}/`;
+    const loc = route === "/" ? `${SITE_URL}/` : `${SITE_URL}${route.replace(/\/+$/, "")}/`;
 
     return {
       loc,
       lastmod: getFileMtimeIso(
-        path.resolve(process.cwd(), STATIC_SOURCE_FILES[route] || "src/App.jsx")
+        path.resolve(process.cwd(), STATIC_SOURCE_FILES[route] || "src/App.jsx"),
       ),
       changefreq: FREQ.static,
       priority: PRIORITY[route] ?? PRIORITY.default,
@@ -111,9 +107,7 @@ function collectStaticRoutes() {
 }
 
 function collectMarkdownRoutes(dir, basePath, type) {
-  const entries = safeReadDir(dir).filter(
-    (d) => d.isFile() && /\.(md|markdown)$/i.test(d.name)
-  );
+  const entries = safeReadDir(dir).filter((d) => d.isFile() && /\.(md|markdown)$/i.test(d.name));
   return entries.map((d) => {
     const slug = slugFromFilename(d.name);
     const normalizedBasePath = `/${basePath.replace(/^\/+|\/+$/g, "")}`;
@@ -126,8 +120,6 @@ function collectMarkdownRoutes(dir, basePath, type) {
     return { loc, lastmod, changefreq, priority };
   });
 }
-
-
 
 // ======= Generate XML =======
 function generateSitemapXml(urls) {

@@ -22,11 +22,7 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import { Button } from "@/components/ui/button";
-import {
-  getProjectBySlug,
-  getRelatedProjects,
-  formatDate,
-} from "@/utils/projects";
+import { getProjectBySlug, getRelatedProjects, formatDate } from "@/utils/projects";
 import { SITE_URL, SITE_NAME, PERSON_ID, DEFAULT_IMAGE } from "@/components/SEO";
 
 const ProjectDetail = () => {
@@ -77,7 +73,7 @@ const ProjectDetail = () => {
         <meta
           name="keywords"
           content={`RJRYT, ${project.title}, ${project.technologies?.join(
-            ", "
+            ", ",
           )}, ${project.category}`}
         />
         <link rel="canonical" href={`https://rjryt.com/projects/${slug}/`} />
@@ -87,52 +83,28 @@ const ProjectDetail = () => {
         <meta property="og:locale" content="en_US" />
 
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content={`${project.title} - RJRYT Projects`}
-        />
+        <meta property="og:title" content={`${project.title} - RJRYT Projects`} />
         <meta property="og:description" content={project.description} />
         <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={`https://rjryt.com/projects/${slug}/`}
-        />
+        <meta property="og:url" content={`https://rjryt.com/projects/${slug}/`} />
         {project.image && (
           <>
-            <meta
-              property="og:image"
-              content={DEFAULT_IMAGE}
-            />
-            <meta
-              property="og:image:alt"
-              content={`${project.title} — RJRYT project`}
-            />
+            <meta property="og:image" content={DEFAULT_IMAGE} />
+            <meta property="og:image:alt" content={`${project.title} — RJRYT project`} />
           </>
         )}
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content={`${project.title} - RJRYT Projects`}
-        />
+        <meta name="twitter:title" content={`${project.title} - RJRYT Projects`} />
         <meta name="twitter:description" content={project.description} />
         {project.image && (
           <>
-            <meta
-              name="twitter:image"
-              content={DEFAULT_IMAGE}
-            />
-            <meta
-              name="twitter:image:alt"
-              content={`${project.title} — RJRYT project`}
-            />
+            <meta name="twitter:image" content={DEFAULT_IMAGE} />
+            <meta name="twitter:image:alt" content={`${project.title} — RJRYT project`} />
           </>
         )}
-        <meta
-          name="twitter:url"
-          content={`https://rjryt.com/projects/${slug}/`}
-        />
+        <meta name="twitter:url" content={`https://rjryt.com/projects/${slug}/`} />
 
         <script type="application/ld+json">
           {JSON.stringify([
@@ -146,11 +118,7 @@ const ProjectDetail = () => {
               },
               name: project.title,
               description: project.description,
-              keywords: [
-                "RJRYT",
-                ...(project.technologies || []),
-                project.category || "",
-              ],
+              keywords: ["RJRYT", ...(project.technologies || []), project.category || ""],
               codeRepository: project.github || undefined,
               programmingLanguage: project.technologies?.join(", "),
               author: {
@@ -236,7 +204,7 @@ const ProjectDetail = () => {
                   <div className="flex items-center gap-4 mb-6">
                     <span
                       className={`px-3 py-1 rounded-full text-sm font-medium text-white ${getStatusColor(
-                        project.status
+                        project.status,
                       )}`}
                     >
                       {project.status}
@@ -249,9 +217,7 @@ const ProjectDetail = () => {
                     )}
                   </div>
 
-                  <h1 className="text-fluid-4xl font-bold text-foreground mb-4">
-                    {project.title}
-                  </h1>
+                  <h1 className="text-fluid-4xl font-bold text-foreground mb-4">{project.title}</h1>
 
                   <p className="text-fluid-lg text-foreground/80 leading-relaxed mb-8">
                     {project.description}
@@ -262,12 +228,8 @@ const ProjectDetail = () => {
                     <div className="flex items-center gap-3">
                       <Tag className="w-5 h-5 text-primary" />
                       <div>
-                        <div className="text-sm text-foreground/60">
-                          Category
-                        </div>
-                        <div className="font-medium text-foreground">
-                          {project.category}
-                        </div>
+                        <div className="text-sm text-foreground/60">Category</div>
+                        <div className="font-medium text-foreground">{project.category}</div>
                       </div>
                     </div>
 
@@ -308,11 +270,7 @@ const ProjectDetail = () => {
                         size="lg"
                         className="bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300"
                       >
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href={project.live} target="_blank" rel="noopener noreferrer">
                           <Globe className="w-5 h-5 mr-2" />
                           Live Demo
                           <ExternalLink className="w-4 h-4 ml-2" />
@@ -327,11 +285,7 @@ const ProjectDetail = () => {
                         size="lg"
                         className="glass border-primary/50 text-foreground hover:text-foreground/90 hover:bg-primary/10"
                       >
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
                           <Github className="w-5 h-5 mr-2" />
                           View Code
                         </a>
@@ -362,10 +316,10 @@ const ProjectDetail = () => {
                     <div className="glass-card p-4 rounded-2xl">
                       <img
                         src={project.image}
-                            onError={(event) => {
-                              event.currentTarget.onerror = null;
-                              event.currentTarget.src = "/images/seo/rjryt-social-card.png";
-                            }}
+                        onError={(event) => {
+                          event.currentTarget.onerror = null;
+                          event.currentTarget.src = "/images/seo/rjryt-social-card.png";
+                        }}
                         alt={project.title}
                         className="w-full h-auto rounded-xl shadow-lg"
                       />
@@ -427,22 +381,14 @@ const ProjectDetail = () => {
                           </h6>
                         ),
                         p: ({ children }) => (
-                          <p className="text-foreground/80 leading-relaxed mb-4">
-                            {children}
-                          </p>
+                          <p className="text-foreground/80 leading-relaxed mb-4">{children}</p>
                         ),
                         a: ({ href, children }) => (
                           <a
                             href={href}
                             className="text-primary hover:underline underline-offset-4 transition-colors"
-                            target={
-                              href?.startsWith("http") ? "_blank" : undefined
-                            }
-                            rel={
-                              href?.startsWith("http")
-                                ? "noopener noreferrer"
-                                : undefined
-                            }
+                            target={href?.startsWith("http") ? "_blank" : undefined}
+                            rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
                           >
                             {children}
                           </a>
@@ -474,10 +420,7 @@ const ProjectDetail = () => {
                         ),
 
                         li: ({ children, className, ...props }) => (
-                          <li
-                            className={`text-foreground/80 ${className || ""}`}
-                            {...props}
-                          >
+                          <li className={`text-foreground/80 ${className || ""}`} {...props}>
                             {children}
                           </li>
                         ),
@@ -504,9 +447,7 @@ const ProjectDetail = () => {
                         ),
                         hr: () => <hr className="my-8 border-border" />,
                         del: ({ children }) => (
-                          <del className="text-foreground/50 line-through">
-                            {children}
-                          </del>
+                          <del className="text-foreground/50 line-through">{children}</del>
                         ),
                         table: ({ children }) => (
                           <div className="w-full overflow-x-auto mb-6 rounded-lg border border-border">
@@ -516,20 +457,14 @@ const ProjectDetail = () => {
                           </div>
                         ),
 
-                        thead: ({ children }) => (
-                          <thead className="bg-muted/50">{children}</thead>
-                        ),
+                        thead: ({ children }) => <thead className="bg-muted/50">{children}</thead>,
 
                         tbody: ({ children }) => (
-                          <tbody className="divide-y divide-border">
-                            {children}
-                          </tbody>
+                          <tbody className="divide-y divide-border">{children}</tbody>
                         ),
 
                         tr: ({ children }) => (
-                          <tr className="border-b border-border last:border-b-0">
-                            {children}
-                          </tr>
+                          <tr className="border-b border-border last:border-b-0">{children}</tr>
                         ),
 
                         th: ({ children }) => (
@@ -553,15 +488,11 @@ const ProjectDetail = () => {
                           />
                         ),
                         strong: ({ children }) => (
-                          <strong className="font-bold text-foreground">
-                            {children}
-                          </strong>
+                          <strong className="font-bold text-foreground">{children}</strong>
                         ),
 
                         em: ({ children }) => (
-                          <em className="italic text-foreground/90">
-                            {children}
-                          </em>
+                          <em className="italic text-foreground/90">{children}</em>
                         ),
                         br: () => <br />,
                       }}
@@ -585,12 +516,9 @@ const ProjectDetail = () => {
                   transition={{ duration: 0.8 }}
                   className="text-center mb-16"
                 >
-                  <h2 className="text-fluid-3xl font-bold gradient-text mb-4">
-                    Related Projects
-                  </h2>
+                  <h2 className="text-fluid-3xl font-bold gradient-text mb-4">Related Projects</h2>
                   <p className="text-foreground/70 max-w-2xl mx-auto">
-                    Discover more projects with similar technologies or
-                    categories.
+                    Discover more projects with similar technologies or categories.
                   </p>
                 </motion.div>
 
@@ -611,7 +539,7 @@ const ProjectDetail = () => {
                         </span>
                         <span
                           className={`px-2 py-1 rounded-full text-xs font-medium text-white ${getStatusColor(
-                            relatedProject.status
+                            relatedProject.status,
                           )}`}
                         >
                           {relatedProject.status}
@@ -627,16 +555,14 @@ const ProjectDetail = () => {
                       </p>
 
                       <div className="flex flex-wrap gap-1 mb-4">
-                        {relatedProject.technologies
-                          ?.slice(0, 2)
-                          .map((tech, i) => (
-                            <span
-                              key={i}
-                              className="px-2 py-1 bg-primary/10 text-primary text-xs rounded"
-                            >
-                              {tech}
-                            </span>
-                          ))}
+                        {relatedProject.technologies?.slice(0, 2).map((tech, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-1 bg-primary/10 text-primary text-xs rounded"
+                          >
+                            {tech}
+                          </span>
+                        ))}
                         {relatedProject.technologies?.length > 2 && (
                           <span className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded">
                             +{relatedProject.technologies.length - 2}

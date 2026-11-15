@@ -4,20 +4,20 @@ A modern, optimized, and production-ready personal portfolio to showcase skills,
 
 ## 🚀 Features
 
-* **React + Vite** — Super-fast development and optimized build.
-* **Tailwind CSS** — Clean, modern, and fully responsive UI.
-* **PWA Support** — Works offline and installable on devices.
-* **SEO Optimized** — Metadata, keywords, and descriptions for all pages.
-* **Dynamic Sections** — About Me, Skills, Blog, and Projects.
-* **Fast Hosting Ready** — Designed for GitHub Pages and static deployments.
+- **React + Vite** — Super-fast development and optimized build.
+- **Tailwind CSS** — Clean, modern, and fully responsive UI.
+- **PWA Support** — Works offline and installable on devices.
+- **SEO Optimized** — Metadata, keywords, and descriptions for all pages.
+- **Dynamic Sections** — About Me, Skills, Blog, and Projects.
+- **Fast Hosting Ready** — Designed for GitHub Pages and static deployments.
 
 ## 📖 Sections
 
-* **About Me** — A professional introduction highlighting expertise and journey.
-* **Skills** — Organized, categorized tech stack for quick overview.
-* **Projects** — Showcases real-world applications and experiments.
-* **Blog** — Thoughts, tutorials, and articles on development.
-* **Redirect** — Handles navigation seamlessly for custom routes.
+- **About Me** — A professional introduction highlighting expertise and journey.
+- **Skills** — Organized, categorized tech stack for quick overview.
+- **Projects** — Showcases real-world applications and experiments.
+- **Blog** — Thoughts, tutorials, and articles on development.
+- **Redirect** — Handles navigation seamlessly for custom routes.
 
 ## 🔧 Installation & Setup
 
@@ -47,8 +47,8 @@ A modern, optimized, and production-ready personal portfolio to showcase skills,
 
 ## 📦 Deployment
 
-* Optimized for **GitHub Pages** and other static hosting services.
-* Supports custom domains with ease.
+- Optimized for **GitHub Pages** and other static hosting services.
+- Supports custom domains with ease.
 
 ## 👤 Author
 

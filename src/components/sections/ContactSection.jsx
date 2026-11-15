@@ -1,27 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Mail, MapPin, User, MessageSquare, Send, CheckCircle, 
-  AlertCircle, Github, Youtube, Linkedin, Instagram, 
-  Heart, ExternalLink, ArrowUpRight
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
-import { trackEvent } from '@/lib/analytics';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
-  getRecaptchaToken,
-  isRecaptchaEnabled,
-  loadRecaptcha,
-} from '@/lib/recaptcha';
+  Mail,
+  MapPin,
+  User,
+  MessageSquare,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  Github,
+  Youtube,
+  Linkedin,
+  Instagram,
+  Heart,
+  ExternalLink,
+  ArrowUpRight,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/lib/analytics";
+import { getRecaptchaToken, isRecaptchaEnabled, loadRecaptcha } from "@/lib/recaptcha";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasStartedForm, setHasStartedForm] = useState(false);
@@ -30,7 +37,7 @@ const ContactSection = () => {
   useEffect(() => {
     if (isRecaptchaEnabled) {
       loadRecaptcha().catch(() => {
-        console.warn('reCAPTCHA could not be loaded.');
+        console.warn("reCAPTCHA could not be loaded.");
       });
     }
   }, []);
@@ -38,23 +45,23 @@ const ContactSection = () => {
   const contactInfo = [
     {
       icon: User,
-      label: 'Name',
-      value: 'Robin Jr',
-      color: 'from-blue-500 to-blue-600'
+      label: "Name",
+      value: "Robin Jr",
+      color: "from-blue-500 to-blue-600",
     },
     {
       icon: MapPin,
-      label: 'Address',
-      value: 'Thiruvananthapuram, Kerala',
-      color: 'from-green-500 to-green-600'
+      label: "Address",
+      value: "Thiruvananthapuram, Kerala",
+      color: "from-green-500 to-green-600",
     },
     {
       icon: Mail,
-      label: 'Email',
-      value: 'contact@rjryt.com',
-      color: 'from-purple-500 to-purple-600',
-      href: 'mailto:contact@rjryt.com'
-    }
+      label: "Email",
+      value: "contact@rjryt.com",
+      color: "from-purple-500 to-purple-600",
+      href: "mailto:contact@rjryt.com",
+    },
   ];
 
   const socialLinks = [
@@ -98,13 +105,13 @@ const ContactSection = () => {
 
   const handleInputChange = (e) => {
     if (!hasStartedForm) {
-      trackEvent('form_start', { form_id: 'contact' });
+      trackEvent("form_start", { form_id: "contact" });
       setHasStartedForm(true);
     }
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -117,7 +124,7 @@ const ContactSection = () => {
       toast({
         title: "Validation Error",
         description: "Please fill in all required fields.",
-        variant: "destructive"
+        variant: "destructive",
       });
       setIsSubmitting(false);
       return;
@@ -129,68 +136,71 @@ const ContactSection = () => {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email address.",
-        variant: "destructive"
+        variant: "destructive",
       });
       setIsSubmitting(false);
       return;
     }
 
     try {
-      const recaptchaToken = await getRecaptchaToken('contact_submit');
+      const recaptchaToken = await getRecaptchaToken("contact_submit");
 
       // Create form data for FormSubmit
       const form = new FormData();
-      form.append('name', formData.name);
-      form.append('email', formData.email);
-      form.append('subject', formData.subject || 'Contact from RJRYT Portfolio');
-      form.append('message', formData.message);
-      form.append('_captcha', 'false');
+      form.append("name", formData.name);
+      form.append("email", formData.email);
+      form.append("subject", formData.subject || "Contact from RJRYT Portfolio");
+      form.append("message", formData.message);
+      form.append("_captcha", "false");
       if (recaptchaToken) {
-        form.append('g-recaptcha-response', recaptchaToken);
+        form.append("g-recaptcha-response", recaptchaToken);
       }
-      form.append('_next', window.location.origin + '/?message=success'); // Redirect URL
-      form.append('_subject', "New message request from your website!");
-      form.append('_autoresponse', "Your request was send to the website owner. Wait for the response...🙂");
-      form.append('_template', "box");
-      form.append('_cc', "rjryt@outlook.com");
-      form.append('_honey', "");
-      
-      const response = await fetch('https://formsubmit.co/krr482002@gmail.com', {
-        method: 'POST',
-        body: form
+      form.append("_next", window.location.origin + "/?message=success"); // Redirect URL
+      form.append("_subject", "New message request from your website!");
+      form.append(
+        "_autoresponse",
+        "Your request was send to the website owner. Wait for the response...🙂",
+      );
+      form.append("_template", "box");
+      form.append("_cc", "rjryt@outlook.com");
+      form.append("_honey", "");
+
+      const response = await fetch("https://formsubmit.co/krr482002@gmail.com", {
+        method: "POST",
+        body: form,
       });
 
       if (response.ok) {
-        trackEvent('generate_lead', {
-          form_id: 'contact',
+        trackEvent("generate_lead", {
+          form_id: "contact",
           captcha_enabled: isRecaptchaEnabled,
         });
         toast({
           title: "Message Sent!",
           description: "Thank you for your message. I'll get back to you soon!",
-          variant: "default"
+          variant: "default",
         });
-        
+
         // Reset form
         setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
         });
       } else {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message");
       }
     } catch (error) {
-      console.error('Contact form error:', error);
-      trackEvent('form_submit_error', {
-        form_id: 'contact',
+      console.error("Contact form error:", error);
+      trackEvent("form_submit_error", {
+        form_id: "contact",
         captcha_enabled: isRecaptchaEnabled,
       });
       toast({
         title: "Error",
         description: "Failed to send message. Please try again or contact me directly.",
-        variant: "destructive"
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -208,13 +218,15 @@ const ContactSection = () => {
           transition={{ duration: 0.8 }}
           className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-primary">Have a good one in mind?</p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-primary">
+            Have a good one in mind?
+          </p>
           <h2 className="text-4xl font-black tracking-tight text-foreground md:text-5xl">
             Let’s make something useful.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-muted-foreground">
-            Get in Touch - If you need any help in developing, message me via
-            email or contact on Discord
+            Get in Touch - If you need any help in developing, message me via email or contact on
+            Discord
           </p>
         </motion.div>
 
@@ -228,14 +240,13 @@ const ContactSection = () => {
             className="space-y-7"
           >
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[.2em] text-accent">Start a conversation</p>
-              <h3 className="mb-4 text-2xl font-bold text-foreground">
-                Let's Work Together
-              </h3>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[.2em] text-accent">
+                Start a conversation
+              </p>
+              <h3 className="mb-4 text-2xl font-bold text-foreground">Let's Work Together</h3>
               <p className="mb-7 max-w-xl leading-relaxed text-muted-foreground">
-                I'm always excited to collaborate on new projects and help bring
-                your ideas to life. Whether you need a Discord bot, a website,
-                or SA-MP development, I'm here to help.
+                I'm always excited to collaborate on new projects and help bring your ideas to life.
+                Whether you need a Discord bot, a website, or SA-MP development, I'm here to help.
               </p>
             </div>
 
@@ -259,12 +270,8 @@ const ContactSection = () => {
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground">
-                        {info.label}
-                      </h4>
-                      <p className="text-muted-foreground text-sm">
-                        {info.value}
-                      </p>
+                      <h4 className="font-semibold text-foreground">{info.label}</h4>
+                      <p className="text-muted-foreground text-sm">{info.value}</p>
                     </div>
                   </motion.div>
                 );
@@ -281,9 +288,7 @@ const ContactSection = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="mb-4 text-lg font-bold text-foreground">
-                Connect With Me
-              </h4>
+              <h4 className="mb-4 text-lg font-bold text-foreground">Connect With Me</h4>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
@@ -291,7 +296,7 @@ const ContactSection = () => {
                     <motion.a
                       key={social.name}
                       href={social.url}
-                      target='_blank'
+                      target="_blank"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
@@ -318,9 +323,7 @@ const ContactSection = () => {
               className="rounded-2xl border border-rose-500/15 bg-gradient-to-r from-rose-500/[.07] to-card/50 p-6 text-center backdrop-blur-xl"
             >
               <Heart className="w-8 h-8 text-red-500 mx-auto mb-3" />
-              <h4 className="font-semibold text-foreground mb-2">
-                Support My Work
-              </h4>
+              <h4 className="font-semibold text-foreground mb-2">Support My Work</h4>
               <p className="text-muted-foreground text-sm mb-4">
                 If you like my projects, consider sponsoring me on GitHub
               </p>
@@ -348,12 +351,14 @@ const ContactSection = () => {
             <div className="rounded-[1.75rem] border border-border bg-card/60 p-6 shadow-2xl shadow-black/5 backdrop-blur-xl sm:p-8">
               <div className="mb-7 flex items-start justify-between gap-4">
                 <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-[.2em] text-primary">Project inquiry</p>
-                  <h3 className="text-2xl font-bold text-foreground">
-                Send Message
-                  </h3>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[.2em] text-primary">
+                    Project inquiry
+                  </p>
+                  <h3 className="text-2xl font-bold text-foreground">Send Message</h3>
                 </div>
-                <span className="hidden h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary sm:grid"><ArrowUpRight size={20} /></span>
+                <span className="hidden h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary sm:grid">
+                  <ArrowUpRight size={20} />
+                </span>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -434,10 +439,7 @@ const ContactSection = () => {
                   />
                 </div>
 
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button
                     type="submit"
                     disabled={isSubmitting}

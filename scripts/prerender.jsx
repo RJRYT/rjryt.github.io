@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { renderToString } from "react-dom/server";
-import App from "../src/App"; 
+import App from "../src/App";
 import { redirectsData } from "../src/utils/redirects.js";
 
 // Static routes shown on Home and also available as pages
@@ -36,9 +36,7 @@ function slugFromFilename(name) {
 
 // collectMarkdownRoutes: returns array of URLs from markdown files in dir
 function collectMarkdownRoutes(dir, basePath) {
-  const entries = safeReadDir(dir).filter(
-    (d) => d.isFile() && /\.(md|markdown)$/i.test(d.name)
-  );
+  const entries = safeReadDir(dir).filter((d) => d.isFile() && /\.(md|markdown)$/i.test(d.name));
   return entries.map((d) => {
     const slug = slugFromFilename(d.name);
     const loc = `${basePath}/${slug}`.replace(/\/+$/, "");
@@ -82,9 +80,9 @@ function collectRedirects() {
     try {
       const helmetContext = {};
       const appHtml = renderToString(
-        <App isServer={true} location={route} helmetContext={helmetContext} />
+        <App isServer={true} location={route} helmetContext={helmetContext} />,
       );
-      
+
       // Extract Helmet data (meta tags, title, etc.)
       const { helmet } = helmetContext;
       const headContent = `
@@ -114,10 +112,7 @@ function collectRedirects() {
 
   // Create 404.html for GitHub Pages SPA fallback
   try {
-    fs.copyFileSync(
-      path.join(outputDir, "index.html"),
-      path.join(outputDir, "404.html")
-    );
+    fs.copyFileSync(path.join(outputDir, "index.html"), path.join(outputDir, "404.html"));
     console.log("Created 404.html for SPA fallback");
   } catch (error) {
     console.error("Error creating 404.html:", error.message);

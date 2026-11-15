@@ -1,9 +1,9 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/layout/Navigation';
-import SkillsSection from '@/components/sections/SkillsSection';
-import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/layout/ScrollToTop';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import Navigation from "@/components/layout/Navigation";
+import SkillsSection from "@/components/sections/SkillsSection";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const Skills = () => {
   return (
@@ -22,10 +22,7 @@ const Skills = () => {
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="Skills | MERN Stack & Full Stack Expertise"
-        />
+        <meta property="og:title" content="Skills | MERN Stack & Full Stack Expertise" />
         <meta
           property="og:description"
           content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
@@ -33,27 +30,18 @@ const Skills = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.com/skills/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta
-          property="og:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta property="og:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta property="og:image:alt" content="RJRYT Skills page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
-        <meta
-          name="twitter:title"
-          content="Skills | MERN Stack & Full Stack Expertise"
-        />
+        <meta name="twitter:title" content="Skills | MERN Stack & Full Stack Expertise" />
         <meta
           name="twitter:description"
           content="Technical skills of RJRYT: React, Node.js, Express, MongoDB, JavaScript, Tailwind, and modern web development practices."
         />
         <meta name="twitter:url" content="https://rjryt.com/skills/" />
-        <meta
-          name="twitter:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta name="twitter:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta name="twitter:image:alt" content="RJRYT Skills page preview" />
 
         <script type="application/ld+json">

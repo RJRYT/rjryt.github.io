@@ -1,31 +1,28 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
-import { 
-  Search, Filter, ExternalLink, Github, 
-  Calendar, Tag, Eye, ArrowRight
-} from 'lucide-react';
-import Navigation from '@/components/layout/Navigation';
-import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/layout/ScrollToTop';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { 
-  getAllProjects, 
-  getAllCategories, 
+import { Search, Filter, ExternalLink, Github, Calendar, Tag, Eye, ArrowRight } from "lucide-react";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  getAllProjects,
+  getAllCategories,
   getAllTechnologies,
   getAllStatuses,
   searchProjects,
   filterProjects,
-  formatDate
-} from '@/utils/projects';
+  formatDate,
+} from "@/utils/projects";
 
 const ProjectsPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('');
-  const [selectedTech, setSelectedTech] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedTech, setSelectedTech] = useState("");
   const [searchParams] = useSearchParams();
 
   // Get all data
@@ -35,39 +32,43 @@ const ProjectsPage = () => {
   const statuses = getAllStatuses();
 
   useEffect(() => {
-      const query = searchParams.get("search") || "";
-      setSearchTerm(query);
-    }, [searchParams]);
+    const query = searchParams.get("search") || "";
+    setSearchTerm(query);
+  }, [searchParams]);
 
   // Filter and search projects
   const filteredProjects = useMemo(() => {
     let projects = searchTerm ? searchProjects(searchTerm) : allProjects;
-    
+
     const filters = {};
     if (selectedCategory) filters.category = selectedCategory;
     if (selectedStatus) filters.status = selectedStatus;
     if (selectedTech) filters.technology = selectedTech;
-    
+
     if (Object.keys(filters).length > 0) {
       projects = filterProjects(filters);
     }
-    
+
     return projects;
   }, [searchTerm, selectedCategory, selectedStatus, selectedTech, allProjects]);
 
   const clearFilters = () => {
-    setSearchTerm('');
-    setSelectedCategory('');
-    setSelectedStatus('');
-    setSelectedTech('');
+    setSearchTerm("");
+    setSelectedCategory("");
+    setSelectedStatus("");
+    setSelectedTech("");
   };
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
-      case 'completed': return 'bg-green-500';
-      case 'in progress': return 'bg-blue-500';
-      case 'planned': return 'bg-yellow-500';
-      default: return 'bg-gray-500';
+      case "completed":
+        return "bg-green-500";
+      case "in progress":
+        return "bg-blue-500";
+      case "planned":
+        return "bg-yellow-500";
+      default:
+        return "bg-gray-500";
     }
   };
 
@@ -87,10 +88,7 @@ const ProjectsPage = () => {
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="Projects by RJRYT | MERN Stack Creations"
-        />
+        <meta property="og:title" content="Projects by RJRYT | MERN Stack Creations" />
         <meta
           property="og:description"
           content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
@@ -98,27 +96,18 @@ const ProjectsPage = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.com/projects/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta
-          property="og:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta property="og:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta property="og:image:alt" content="RJRYT ProjectsPage page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Projects by RJRYT | MERN Stack Creations"
-        />
+        <meta name="twitter:title" content="Projects by RJRYT | MERN Stack Creations" />
         <meta
           name="twitter:description"
           content="Explore real-world projects built by RJRYT with React, Node.js, and MongoDB. View details, live demos, and case studies."
         />
         <meta name="twitter:url" content="https://rjryt.com/projects/" />
-        <meta
-          name="twitter:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta name="twitter:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta name="twitter:image:alt" content="RJRYT ProjectsPage page preview" />
 
         <script type="application/ld+json">
@@ -156,13 +145,11 @@ const ProjectsPage = () => {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-16"
               >
-                <h1 className="text-fluid-4xl font-bold gradient-text mb-6">
-                  My Projects
-                </h1>
+                <h1 className="text-fluid-4xl font-bold gradient-text mb-6">My Projects</h1>
                 <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-6"></div>
                 <p className="text-fluid-lg text-foreground/70 max-w-3xl mx-auto">
-                  A showcase of my development work, from full-stack web
-                  applications to real-time systems and modern PWAs.
+                  A showcase of my development work, from full-stack web applications to real-time
+                  systems and modern PWAs.
                 </p>
               </motion.div>
             </div>
@@ -227,10 +214,7 @@ const ProjectsPage = () => {
                     ))}
                   </select>
 
-                  {(searchTerm ||
-                    selectedCategory ||
-                    selectedStatus ||
-                    selectedTech) && (
+                  {(searchTerm || selectedCategory || selectedStatus || selectedTech) && (
                     <Button
                       onClick={clearFilters}
                       variant="outline"
@@ -245,8 +229,7 @@ const ProjectsPage = () => {
 
               {/* Results count */}
               <div className="mt-4 text-sm text-foreground/60">
-                Showing {filteredProjects.length} of {allProjects.length}{" "}
-                projects
+                Showing {filteredProjects.length} of {allProjects.length} projects
               </div>
             </div>
           </section>
@@ -284,7 +267,7 @@ const ProjectsPage = () => {
                           <div className="absolute top-4 right-4">
                             <span
                               className={`px-3 py-1 rounded-full text-xs font-medium text-white ${getStatusColor(
-                                project.status
+                                project.status,
                               )}`}
                             >
                               {project.status}
@@ -351,11 +334,7 @@ const ProjectsPage = () => {
                                 variant="outline"
                                 className="glass border-primary/50 text-primary hover:text-foreground hover:bg-primary/10"
                               >
-                                <a
-                                  href={project.github}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
+                                <a href={project.github} target="_blank" rel="noopener noreferrer">
                                   <Github className="w-4 h-4" />
                                 </a>
                               </Button>
@@ -368,11 +347,7 @@ const ProjectsPage = () => {
                                 variant="outline"
                                 className="glass border-accent/50 text-accent hover:text-foreground hover:bg-accent/50"
                               >
-                                <a
-                                  href={project.live}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
+                                <a href={project.live} target="_blank" rel="noopener noreferrer">
                                   <ExternalLink className="w-4 h-4" />
                                 </a>
                               </Button>
@@ -409,11 +384,7 @@ const ProjectsPage = () => {
                     <p className="text-foreground/70 mb-6">
                       Try adjusting your search terms or filters.
                     </p>
-                    <Button
-                      onClick={clearFilters}
-                      variant="outline"
-                      className="glass"
-                    >
+                    <Button onClick={clearFilters} variant="outline" className="glass">
                       Clear All Filters
                     </Button>
                   </div>

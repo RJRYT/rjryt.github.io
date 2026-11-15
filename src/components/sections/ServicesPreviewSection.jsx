@@ -36,19 +36,34 @@ const offerings = [
 
 const ServicesPreviewSection = () => (
   <section className="relative overflow-hidden py-24" aria-labelledby="home-services-title">
-    <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.04] via-transparent to-accent/[0.04]" aria-hidden="true" />
+    <div
+      className="absolute inset-0 bg-gradient-to-b from-primary/[0.04] via-transparent to-accent/[0.04]"
+      aria-hidden="true"
+    />
     <div className="container relative z-10 mx-auto px-4">
       <div className="mb-12 grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-primary">What I do</p>
-          <h2 id="home-services-title" className="max-w-2xl text-4xl font-black tracking-tight text-foreground md:text-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-primary">
+            What I do
+          </p>
+          <h2
+            id="home-services-title"
+            className="max-w-2xl text-4xl font-black tracking-tight text-foreground md:text-5xl"
+          >
             Thoughtful engineering, end to end.
           </h2>
           <p className="mt-4 max-w-xl text-muted-foreground">
             A practical mix of product-minded frontend work and dependable systems behind it.
           </p>
         </motion.div>
-        <Link to="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary">
+        <Link
+          to="/services"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+        >
           Explore services <ArrowUpRight size={17} />
         </Link>
       </div>
@@ -71,9 +86,18 @@ const ServicesPreviewSection = () => (
               <span className="font-mono text-xs text-muted-foreground/60">{number}</span>
             </div>
             <h3 className="text-lg font-bold text-foreground">{title}</h3>
-            <p className="mt-3 min-h-16 text-sm leading-relaxed text-muted-foreground">{description}</p>
+            <p className="mt-3 min-h-16 text-sm leading-relaxed text-muted-foreground">
+              {description}
+            </p>
             <div className="mt-5 flex flex-wrap gap-2">
-              {tags.map((tag) => <span key={tag} className="rounded-full border border-border bg-background/50 px-2.5 py-1 text-[0.68rem] text-muted-foreground">{tag}</span>)}
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-border bg-background/50 px-2.5 py-1 text-[0.68rem] text-muted-foreground"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </motion.article>
         ))}

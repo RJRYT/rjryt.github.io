@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
-import { Calendar, Clock, Tag, Search, ArrowLeft } from 'lucide-react';
-import Navigation from '@/components/layout/Navigation';
-import Footer from '@/components/layout/Footer';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Calendar, Clock, Tag, Search, ArrowLeft } from "lucide-react";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { getAllPosts } from "@/utils/blog";
 
 const BlogPage = () => {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTag, setSelectedTag] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTag, setSelectedTag] = useState("");
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
@@ -30,27 +30,28 @@ const BlogPage = () => {
     let filtered = posts;
 
     if (searchTerm) {
-      filtered = filtered.filter(post =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      filtered = filtered.filter(
+        (post) =>
+          post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          post.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
       );
     }
 
     if (selectedTag) {
-      filtered = filtered.filter(post => post.tags.includes(selectedTag));
+      filtered = filtered.filter((post) => post.tags.includes(selectedTag));
     }
 
     setFilteredPosts(filtered);
   }, [searchTerm, selectedTag, posts]);
 
-  const allTags = [...new Set(posts.flatMap(post => post.tags))];
+  const allTags = [...new Set(posts.flatMap((post) => post.tags))];
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -70,10 +71,7 @@ const BlogPage = () => {
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="Blog by RJRYT | Web Development Insights"
-        />
+        <meta property="og:title" content="Blog by RJRYT | Web Development Insights" />
         <meta
           property="og:description"
           content="Read blogs by RJRYT on web development, MERN stack tutorials, coding tips, and industry insights."
@@ -81,27 +79,18 @@ const BlogPage = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.com/blog/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta
-          property="og:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta property="og:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta property="og:image:alt" content="RJRYT BlogPage page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Blog by RJRYT | Web Development Insights"
-        />
+        <meta name="twitter:title" content="Blog by RJRYT | Web Development Insights" />
         <meta
           name="twitter:description"
           content="Read blogs by RJRYT on web development, MERN stack tutorials, coding tips, and industry insights."
         />
         <meta name="twitter:url" content="https://rjryt.com/blog/" />
-        <meta
-          name="twitter:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta name="twitter:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta name="twitter:image:alt" content="RJRYT BlogPage page preview" />
 
         {/* JSON-LD Structured Data */}
@@ -160,13 +149,10 @@ const BlogPage = () => {
                 transition={{ duration: 0.8 }}
                 className="text-center mb-12"
               >
-                <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-6">
-                  Blog
-                </h1>
+                <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-6">Blog</h1>
                 <div className="w-24 h-1 bg-primary-gradient mx-auto rounded-full mb-6"></div>
                 <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                  Insights, tutorials, and thoughts on development, bots, and
-                  technology
+                  Insights, tutorials, and thoughts on development, bots, and technology
                 </p>
               </motion.div>
 
@@ -196,9 +182,7 @@ const BlogPage = () => {
                       onClick={() => setSelectedTag("")}
                       aria-label="All"
                       className={
-                        selectedTag === ""
-                          ? "bg-primary-gradient"
-                          : "glass border-accent/30"
+                        selectedTag === "" ? "bg-primary-gradient" : "glass border-accent/30"
                       }
                     >
                       All
@@ -211,9 +195,7 @@ const BlogPage = () => {
                         aria-label={tag}
                         onClick={() => setSelectedTag(tag)}
                         className={
-                          selectedTag === tag
-                            ? "bg-primary-gradient"
-                            : "glass border-accent/30"
+                          selectedTag === tag ? "bg-primary-gradient" : "glass border-accent/30"
                         }
                       >
                         {tag}
@@ -234,9 +216,7 @@ const BlogPage = () => {
                   animate={{ opacity: 1 }}
                   className="text-center py-16"
                 >
-                  <p className="text-xl text-foreground/70">
-                    No articles found.
-                  </p>
+                  <p className="text-xl text-foreground/70">No articles found.</p>
                 </motion.div>
               ) : (
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
@@ -262,10 +242,10 @@ const BlogPage = () => {
                       <div className="relative overflow-hidden aspect-video">
                         <img
                           src={post.image}
-                            onError={(event) => {
-                              event.currentTarget.onerror = null;
-                              event.currentTarget.src = "/images/seo/rjryt-social-card.png";
-                            }}
+                          onError={(event) => {
+                            event.currentTarget.onerror = null;
+                            event.currentTarget.src = "/images/seo/rjryt-social-card.png";
+                          }}
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />

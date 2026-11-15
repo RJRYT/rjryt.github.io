@@ -1,15 +1,15 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/layout/Navigation';
-import HeroSection from '@/components/sections/HeroSection';
-import AboutSection from '@/components/sections/AboutSection';
-import SkillsSection from '@/components/sections/SkillsSection';
-import ContactSection from '@/components/sections/ContactSection';
-import FeaturedProjectsSection from '@/components/sections/FeaturedProjectsSection';
-import ServicesPreviewSection from '@/components/sections/ServicesPreviewSection';
-import FeaturedBlogSection from '@/components/sections/FeaturedBlogSection';
-import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/layout/ScrollToTop';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import Navigation from "@/components/layout/Navigation";
+import HeroSection from "@/components/sections/HeroSection";
+import AboutSection from "@/components/sections/AboutSection";
+import SkillsSection from "@/components/sections/SkillsSection";
+import ContactSection from "@/components/sections/ContactSection";
+import FeaturedProjectsSection from "@/components/sections/FeaturedProjectsSection";
+import ServicesPreviewSection from "@/components/sections/ServicesPreviewSection";
+import FeaturedBlogSection from "@/components/sections/FeaturedBlogSection";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const Index = () => {
   return (
@@ -28,10 +28,7 @@ const Index = () => {
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="RJRYT | MERN Stack Web Developer Portfolio"
-        />
+        <meta property="og:title" content="RJRYT | MERN Stack Web Developer Portfolio" />
         <meta
           property="og:description"
           content="Discover the portfolio of RJRYT, a MERN stack web developer building scalable and modern applications. Explore projects, blogs, and services."
@@ -39,27 +36,18 @@ const Index = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.com/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta
-          property="og:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta property="og:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta property="og:image:alt" content="RJRYT Index page preview" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="RJRYT | MERN Stack Web Developer Portfolio"
-        />
+        <meta name="twitter:title" content="RJRYT | MERN Stack Web Developer Portfolio" />
         <meta
           name="twitter:description"
           content="Discover the portfolio of RJRYT, a MERN stack web developer building scalable and modern applications. Explore projects, blogs, and services."
         />
         <meta name="twitter:url" content="https://rjryt.com/" />
-        <meta
-          name="twitter:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta name="twitter:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta name="twitter:image:alt" content="RJRYT Index page preview" />
 
         <script type="application/ld+json">

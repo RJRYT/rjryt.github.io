@@ -72,7 +72,11 @@ const CustomCursor = () => {
     };
     const handlePointerOver = (event) => setHoverState(event, true);
     const handlePointerOut = (event) => {
-      if (event.relatedTarget instanceof Element && event.relatedTarget.closest(interactiveSelector)) return;
+      if (
+        event.relatedTarget instanceof Element &&
+        event.relatedTarget.closest(interactiveSelector)
+      )
+        return;
       setHoverState(event, false);
     };
 

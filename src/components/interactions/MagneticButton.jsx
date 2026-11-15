@@ -8,12 +8,23 @@ const MagneticButton = ({ children, strength = 7, className = "" }) => {
   const handleMove = (event) => {
     if (event.pointerType !== "mouse") return;
     const bounds = event.currentTarget.getBoundingClientRect();
-    x.set(((event.clientX - bounds.left) / bounds.width - .5) * strength);
-    y.set(((event.clientY - bounds.top) / bounds.height - .5) * strength);
+    x.set(((event.clientX - bounds.left) / bounds.width - 0.5) * strength);
+    y.set(((event.clientY - bounds.top) / bounds.height - 0.5) * strength);
   };
-  const reset = () => { x.set(0); y.set(0); };
+  const reset = () => {
+    x.set(0);
+    y.set(0);
+  };
 
-  return <motion.div className={`inline-flex ${className}`} style={{ x, y }}
-    onPointerMove={handleMove} onPointerLeave={reset}>{children}</motion.div>;
+  return (
+    <motion.div
+      className={`inline-flex ${className}`}
+      style={{ x, y }}
+      onPointerMove={handleMove}
+      onPointerLeave={reset}
+    >
+      {children}
+    </motion.div>
+  );
 };
 export default MagneticButton;

@@ -57,7 +57,8 @@ const siteGraph = [
     url: `${SITE_URL}/`,
     name: SITE_NAME,
     alternateName: ["RJRYT", "RJRYT Portfolio"],
-    description: "Portfolio, projects, and technical writing by Robin Jr (RJRYT), a MERN stack and full-stack web developer.",
+    description:
+      "Portfolio, projects, and technical writing by Robin Jr (RJRYT), a MERN stack and full-stack web developer.",
     publisher: { "@id": PERSON_ID },
     inLanguage: "en",
   },
@@ -70,7 +71,8 @@ const siteGraph = [
     image: DEFAULT_IMAGE,
     mainEntityOfPage: `${SITE_URL}/`,
     jobTitle: "MERN Stack & Full-Stack Web Developer",
-    description: "Robin Jr, known online as RJRYT, is a full-stack web developer focused on React, Node.js, Express, MongoDB, secure APIs, real-time applications, and progressive web apps.",
+    description:
+      "Robin Jr, known online as RJRYT, is a full-stack web developer focused on React, Node.js, Express, MongoDB, secure APIs, real-time applications, and progressive web apps.",
     sameAs: [
       "https://github.com/RJRYT",
       "https://www.linkedin.com/in/robin-jr",
@@ -78,10 +80,22 @@ const siteGraph = [
       "https://replit.com/@somaliyo",
     ],
     knowsAbout: [
-      "MERN Stack Development", "React.js", "Node.js", "Express.js", "MongoDB",
-      "JavaScript", "TypeScript", "Tailwind CSS", "REST API Development",
-      "WebSockets", "Real-time Web Applications", "Progressive Web Apps",
-      "Web Application Security", "AWS", "Performance Optimization", "Technical SEO",
+      "MERN Stack Development",
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JavaScript",
+      "TypeScript",
+      "Tailwind CSS",
+      "REST API Development",
+      "WebSockets",
+      "Real-time Web Applications",
+      "Progressive Web Apps",
+      "Web Application Security",
+      "AWS",
+      "Performance Optimization",
+      "Technical SEO",
     ],
     knowsLanguage: ["English", "Malayalam"],
   },
@@ -91,7 +105,10 @@ const GlobalSEO = () => {
   const { pathname } = useLocation();
   const canonical = getCanonicalUrl(pathname);
   const indexable = isIndexablePath(pathname);
-  const pageName = pathname === "/" ? "RJRYT | MERN Stack & Full-Stack Web Developer" : `RJRYT ${pathname.split("/").filter(Boolean).join(" ")}`;
+  const pageName =
+    pathname === "/"
+      ? "RJRYT | MERN Stack & Full-Stack Web Developer"
+      : `RJRYT ${pathname.split("/").filter(Boolean).join(" ")}`;
   const pageGraph = {
     "@context": "https://schema.org",
     "@type": "WebPage",

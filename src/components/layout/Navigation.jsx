@@ -8,7 +8,11 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState(() => {
     if (typeof window === "undefined") return "dark";
-    try { return localStorage.getItem("theme") || "dark"; } catch { return "dark"; }
+    try {
+      return localStorage.getItem("theme") || "dark";
+    } catch {
+      return "dark";
+    }
   });
   const [scrolled, setScrolled] = useState(false);
 
@@ -16,7 +20,9 @@ const Navigation = () => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.classList.toggle("light", theme === "light");
 
-    try { localStorage.setItem("theme", theme); } catch {}
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {}
   }, [theme]);
 
   useEffect(() => {
@@ -61,9 +67,7 @@ const Navigation = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-card/80 backdrop-blur-sm border-b border-border p-2"
-          : "bg-transparent"
+        scrolled ? "bg-card/80 backdrop-blur-sm border-b border-border p-2" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">

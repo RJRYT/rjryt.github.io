@@ -2,15 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link, useParams, Navigate } from "react-router-dom";
-import {
-  Calendar,
-  Clock,
-  Tag,
-  ArrowLeft,
-  Share2,
-  Github,
-  ExternalLink,
-} from "lucide-react";
+import { Calendar, Clock, Tag, ArrowLeft, Share2, Github, ExternalLink } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Navigation from "@/components/layout/Navigation";
@@ -68,10 +60,7 @@ const BlogPost = () => {
 
         <meta name="description" content={post.excerpt} />
 
-        <meta
-          name="keywords"
-          content={`RJRYT, Blog, ${post.tags.join(", ")}, Web Development`}
-        />
+        <meta name="keywords" content={`RJRYT, Blog, ${post.tags.join(", ")}, Web Development`} />
 
         <link rel="canonical" href={`${SITE_URL}/blog/${slug}/`} />
 
@@ -95,15 +84,9 @@ const BlogPost = () => {
 
         {post.image && (
           <>
-            <meta
-              property="og:image"
-              content={DEFAULT_IMAGE}
-            />
+            <meta property="og:image" content={DEFAULT_IMAGE} />
 
-            <meta
-              property="og:image:alt"
-              content={`${post.title} — RJRYT Blog`}
-            />
+            <meta property="og:image:alt" content={`${post.title} — RJRYT Blog`} />
           </>
         )}
 
@@ -116,15 +99,9 @@ const BlogPost = () => {
 
         {post.image && (
           <>
-            <meta
-              name="twitter:image"
-              content={DEFAULT_IMAGE}
-            />
+            <meta name="twitter:image" content={DEFAULT_IMAGE} />
 
-            <meta
-              name="twitter:image:alt"
-              content={`${post.title} — RJRYT Blog`}
-            />
+            <meta name="twitter:image:alt" content={`${post.title} — RJRYT Blog`} />
           </>
         )}
 
@@ -212,10 +189,10 @@ const BlogPost = () => {
                 <div className="relative overflow-hidden rounded-2xl mb-8 aspect-video">
                   <img
                     src={post.image}
-                            onError={(event) => {
-                              event.currentTarget.onerror = null;
-                              event.currentTarget.src = "/images/seo/rjryt-social-card.png";
-                            }}
+                    onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = "/images/seo/rjryt-social-card.png";
+                    }}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />
@@ -252,9 +229,7 @@ const BlogPost = () => {
                     {post.title}
                   </h1>
 
-                  <p className="text-lg text-foreground/80 leading-relaxed mb-6">
-                    {post.excerpt}
-                  </p>
+                  <p className="text-lg text-foreground/80 leading-relaxed mb-6">{post.excerpt}</p>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2">
@@ -312,22 +287,14 @@ const BlogPost = () => {
                           </h6>
                         ),
                         p: ({ children }) => (
-                          <p className="text-foreground/80 leading-relaxed mb-4">
-                            {children}
-                          </p>
+                          <p className="text-foreground/80 leading-relaxed mb-4">{children}</p>
                         ),
                         a: ({ href, children }) => (
                           <a
                             href={href}
                             className="text-primary hover:underline underline-offset-4 transition-colors"
-                            target={
-                              href?.startsWith("http") ? "_blank" : undefined
-                            }
-                            rel={
-                              href?.startsWith("http")
-                                ? "noopener noreferrer"
-                                : undefined
-                            }
+                            target={href?.startsWith("http") ? "_blank" : undefined}
+                            rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
                           >
                             {children}
                           </a>
@@ -359,10 +326,7 @@ const BlogPost = () => {
                         ),
 
                         li: ({ children, className, ...props }) => (
-                          <li
-                            className={`text-foreground/80 ${className || ""}`}
-                            {...props}
-                          >
+                          <li className={`text-foreground/80 ${className || ""}`} {...props}>
                             {children}
                           </li>
                         ),
@@ -389,9 +353,7 @@ const BlogPost = () => {
                         ),
                         hr: () => <hr className="my-8 border-border" />,
                         del: ({ children }) => (
-                          <del className="text-foreground/50 line-through">
-                            {children}
-                          </del>
+                          <del className="text-foreground/50 line-through">{children}</del>
                         ),
                         table: ({ children }) => (
                           <div className="w-full overflow-x-auto mb-6 rounded-lg border border-border">
@@ -401,20 +363,14 @@ const BlogPost = () => {
                           </div>
                         ),
 
-                        thead: ({ children }) => (
-                          <thead className="bg-muted/50">{children}</thead>
-                        ),
+                        thead: ({ children }) => <thead className="bg-muted/50">{children}</thead>,
 
                         tbody: ({ children }) => (
-                          <tbody className="divide-y divide-border">
-                            {children}
-                          </tbody>
+                          <tbody className="divide-y divide-border">{children}</tbody>
                         ),
 
                         tr: ({ children }) => (
-                          <tr className="border-b border-border last:border-b-0">
-                            {children}
-                          </tr>
+                          <tr className="border-b border-border last:border-b-0">{children}</tr>
                         ),
 
                         th: ({ children }) => (
@@ -438,15 +394,11 @@ const BlogPost = () => {
                           />
                         ),
                         strong: ({ children }) => (
-                          <strong className="font-bold text-foreground">
-                            {children}
-                          </strong>
+                          <strong className="font-bold text-foreground">{children}</strong>
                         ),
 
                         em: ({ children }) => (
-                          <em className="italic text-foreground/90">
-                            {children}
-                          </em>
+                          <em className="italic text-foreground/90">{children}</em>
                         ),
                         br: () => <br />,
                       }}
@@ -463,9 +415,7 @@ const BlogPost = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="glass-card p-8 rounded-2xl mt-8 text-center"
                 >
-                  <h3 className="text-2xl font-bold text-foreground mb-4">
-                    Found this helpful?
-                  </h3>
+                  <h3 className="text-2xl font-bold text-foreground mb-4">Found this helpful?</h3>
 
                   <p className="text-foreground/70 mb-6">
                     Follow me for more development insights and tutorials
@@ -476,11 +426,7 @@ const BlogPost = () => {
                       asChild
                       className="bg-primary-gradient hover:shadow-primary text-foreground"
                     >
-                      <a
-                        href="/r/github"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="/r/github" target="_blank" rel="noopener noreferrer">
                         <Github className="w-5 h-5 mr-2" />
                         Follow on GitHub
                       </a>

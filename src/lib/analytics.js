@@ -1,8 +1,6 @@
 const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
-export const isAnalyticsEnabled = Boolean(
-  measurementId && /^G-[A-Z0-9]+$/i.test(measurementId),
-);
+export const isAnalyticsEnabled = Boolean(measurementId && /^G-[A-Z0-9]+$/i.test(measurementId));
 
 export const trackEvent = (name, parameters = {}) => {
   if (!isAnalyticsEnabled || typeof window === "undefined" || !window.gtag) {

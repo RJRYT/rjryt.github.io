@@ -8,14 +8,14 @@ const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 // Static routes shown on Home and also available as pages
 const STATIC_ROUTES = [
-    "/",
-    "/about",
-    "/services",
-    "/skills",
-    "/projects",
-    "/team",
-    "/contact",
-    "/blog",
+  "/",
+  "/about",
+  "/services",
+  "/skills",
+  "/projects",
+  "/team",
+  "/contact",
+  "/blog",
 ].map((route) => `https://${HOST}${route === "/" ? "/" : `${route}/`}`);
 
 // Content sources
@@ -38,9 +38,7 @@ function slugFromFilename(name) {
 
 // collectMarkdownRoutes: returns array of URLs from markdown files in dir
 function collectMarkdownRoutes(dir, basePath) {
-  const entries = safeReadDir(dir).filter(
-    (d) => d.isFile() && /\.(md|markdown)$/i.test(d.name)
-  );
+  const entries = safeReadDir(dir).filter((d) => d.isFile() && /\.(md|markdown)$/i.test(d.name));
   return entries.map((d) => {
     const slug = slugFromFilename(d.name);
     const loc = `https://${HOST}${basePath}/${slug}/`;
@@ -49,11 +47,11 @@ function collectMarkdownRoutes(dir, basePath) {
 }
 
 async function submitToIndexNow() {
-    const urls = [
-      ...STATIC_ROUTES,
-      ...collectMarkdownRoutes(BLOG_DIR, "/blog"),
-      ...collectMarkdownRoutes(PROJECTS_DIR, "/projects")
-    ];
+  const urls = [
+    ...STATIC_ROUTES,
+    ...collectMarkdownRoutes(BLOG_DIR, "/blog"),
+    ...collectMarkdownRoutes(PROJECTS_DIR, "/projects"),
+  ];
 
   if (urls.length === 0) {
     console.log("⚠️ No URLs found to submit");

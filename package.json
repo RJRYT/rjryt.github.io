@@ -5,11 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
-    "postbuild": "vite-node --mode production scripts/prerender.jsx && node scripts/seo-check.mjs",
+    "build": "vite build && npm run generate:sitemap && npm run generate:llms",
+    "postbuild": "npm run prerender && npm run check:seo",
     "indexnow": "node scripts/submitIndexNow.js",
     "build:dev": "vite build --mode development",
+    "generate:llms": "node scripts/generate-llms.mjs",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "prerender": "vite-node --mode production scripts/prerender.jsx",
+    "check:seo": "node scripts/seo-check.mjs",
     "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -83,6 +89,7 @@
     "globals": "^15.15.0",
     "lovable-tagger": "^1.1.9",
     "postcss": "^8.5.6",
+    "prettier": "^3.10.1",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",

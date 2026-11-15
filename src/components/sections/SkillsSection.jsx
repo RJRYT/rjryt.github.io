@@ -95,8 +95,12 @@ const SkillsSection = () => (
         transition={{ duration: 0.55 }}
         className="mb-12 max-w-3xl"
       >
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-primary">Technical skills</p>
-        <h2 className="text-4xl font-black tracking-tight text-foreground md:text-5xl">The tools behind the work</h2>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-primary">
+          Technical skills
+        </p>
+        <h2 className="text-4xl font-black tracking-tight text-foreground md:text-5xl">
+          The tools behind the work
+        </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
           A practical set of skills across the frontend, backend, data, and deployment layers.
         </p>
@@ -113,11 +117,15 @@ const SkillsSection = () => (
             className="rounded-[1.6rem] border border-border bg-card/55 p-6 backdrop-blur-xl sm:p-8"
           >
             <div className="mb-7 flex items-center gap-4">
-              <span className={`grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br ${color} text-white shadow-lg`}>
+              <span
+                className={`grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br ${color} text-white shadow-lg`}
+              >
                 <Icon size={21} />
               </span>
               <div>
-                <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[.18em] text-muted-foreground">Skill set 0{categoryIndex + 1}</p>
+                <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[.18em] text-muted-foreground">
+                  Skill set 0{categoryIndex + 1}
+                </p>
                 <h3 className="text-lg font-bold text-foreground sm:text-xl">{title}</h3>
               </div>
             </div>
@@ -160,16 +168,24 @@ const SkillsSection = () => (
           className="rounded-[1.6rem] border border-border bg-card/55 p-6 backdrop-blur-xl sm:p-8"
         >
           <div className="mb-6 flex items-center gap-4">
-            <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-rose-500 to-orange-400 text-white"><Shield size={21} /></span>
+            <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-rose-500 to-orange-400 text-white">
+              <Shield size={21} />
+            </span>
             <div>
-              <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[.18em] text-muted-foreground">Principles</p>
+              <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[.18em] text-muted-foreground">
+                Principles
+              </p>
               <h3 className="text-lg font-bold text-foreground sm:text-xl">Security expertise</h3>
             </div>
           </div>
           <div className="grid gap-2 sm:grid-cols-2">
             {securityFeatures.map((feature) => (
-              <div key={feature} className="flex items-center gap-2.5 rounded-xl border border-border/70 bg-background/45 px-3 py-3 text-sm text-foreground/85">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />{feature}
+              <div
+                key={feature}
+                className="flex items-center gap-2.5 rounded-xl border border-border/70 bg-background/45 px-3 py-3 text-sm text-foreground/85"
+              >
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {feature}
               </div>
             ))}
           </div>
@@ -183,24 +199,39 @@ const SkillsSection = () => (
           className="rounded-[1.6rem] border border-border bg-card/55 p-6 backdrop-blur-xl sm:p-8"
         >
           <div className="mb-6 flex items-center gap-4">
-            <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white"><Figma size={21} /></span>
+            <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white">
+              <Figma size={21} />
+            </span>
             <div>
-              <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[.18em] text-muted-foreground">Workflow</p>
+              <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[.18em] text-muted-foreground">
+                Workflow
+              </p>
               <h3 className="text-lg font-bold text-foreground sm:text-xl">Tools I reach for</h3>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             {tools.map(({ name, icon: Icon }) => (
-              <div key={name} className="flex items-center gap-3 rounded-xl border border-border/70 bg-background/45 p-3 text-sm font-medium text-foreground/85 transition-colors hover:border-primary/35">
-                <Icon size={17} className="text-primary" />{name}
+              <div
+                key={name}
+                className="flex items-center gap-3 rounded-xl border border-border/70 bg-background/45 p-3 text-sm font-medium text-foreground/85 transition-colors hover:border-primary/35"
+              >
+                <Icon size={17} className="text-primary" />
+                {name}
               </div>
             ))}
           </div>
           <div className="mt-5 rounded-xl border border-primary/15 bg-primary/[0.06] p-4">
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[.18em] text-primary">Development philosophy</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Clean code, scalable architecture, a security-first approach, and continuous learning.</p>
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[.18em] text-primary">
+              Development philosophy
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Clean code, scalable architecture, a security-first approach, and continuous learning.
+            </p>
           </div>
-          <Link to="/projects" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary">
+          <Link
+            to="/projects"
+            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+          >
             Put these skills to work <ArrowUpRight size={16} />
           </Link>
         </motion.article>

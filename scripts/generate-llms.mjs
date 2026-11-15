@@ -8,7 +8,8 @@ const BLOG_DIR = path.resolve("src/content/blog");
 
 function readMarkdownEntries(directory) {
   if (!fs.existsSync(directory)) return [];
-  return fs.readdirSync(directory, { withFileTypes: true })
+  return fs
+    .readdirSync(directory, { withFileTypes: true })
     .filter((entry) => entry.isFile() && /\.(md|markdown)$/i.test(entry.name))
     .map((entry) => {
       const filePath = path.join(directory, entry.name);
@@ -22,7 +23,11 @@ function readMarkdownEntries(directory) {
           const key = line.slice(0, separator).trim();
           let value = line.slice(separator + 1).trim();
           if (value.startsWith("[") && value.endsWith("]")) {
-            value = value.slice(1, -1).split(",").map((item) => item.trim().replace(/^['"]|['"]$/g, "")).filter(Boolean);
+            value = value
+              .slice(1, -1)
+              .split(",")
+              .map((item) => item.trim().replace(/^['"]|['"]$/g, ""))
+              .filter(Boolean);
           } else {
             value = value.replace(/^['"]|['"]$/g, "");
           }
@@ -32,7 +37,9 @@ function readMarkdownEntries(directory) {
       const slug = entry.name.replace(/\.(md|markdown)$/i, "");
       return { slug, frontmatter };
     })
-    .sort((a, b) => String(b.frontmatter.date || "").localeCompare(String(a.frontmatter.date || "")));
+    .sort((a, b) =>
+      String(b.frontmatter.date || "").localeCompare(String(a.frontmatter.date || "")),
+    );
 }
 
 const projects = readMarkdownEntries(PROJECTS_DIR);
@@ -73,8 +80,12 @@ for (const project of projects) {
   const data = project.frontmatter;
   const title = data.title || project.slug;
   const description = data.description || "Project details and implementation information.";
-  const technologies = Array.isArray(data.technologies) ? data.technologies.join(", ") : data.technologies;
-  lines.push(`- [${title}](${SITE_URL}/projects/${project.slug}/): ${description}${technologies ? ` Technologies: ${technologies}.` : ""}`);
+  const technologies = Array.isArray(data.technologies)
+    ? data.technologies.join(", ")
+    : data.technologies;
+  lines.push(
+    `- [${title}](${SITE_URL}/projects/${project.slug}/): ${description}${technologies ? ` Technologies: ${technologies}.` : ""}`,
+  );
 }
 
 lines.push("", `## Articles (${posts.length})`);
@@ -83,7 +94,9 @@ for (const post of posts) {
   const title = data.title || post.slug;
   const excerpt = data.excerpt || "Technical article by RJRYT.";
   const tags = Array.isArray(data.tags) ? data.tags.join(", ") : data.tags;
-  lines.push(`- [${title}](${SITE_URL}/blog/${post.slug}/): ${excerpt}${tags ? ` Topics: ${tags}.` : ""}`);
+  lines.push(
+    `- [${title}](${SITE_URL}/blog/${post.slug}/): ${excerpt}${tags ? ` Topics: ${tags}.` : ""}`,
+  );
 }
 
 lines.push(
@@ -95,9 +108,11 @@ lines.push(
   "",
   "## Attribution",
   "Project and article pages on this domain are the primary source for their descriptions, technologies, dates, and status. Attribute portfolio content to Robin Jr (RJRYT) and link to the canonical page when referencing it.",
-  ""
+  "",
 );
 
 fs.mkdirSync(DIST_DIR, { recursive: true });
 fs.writeFileSync(path.join(DIST_DIR, "llms.txt"), lines.join("\n"), "utf8");
-console.log(`[llms] Wrote ${projects.length} projects and ${posts.length} articles → dist/llms.txt`);
+console.log(
+  `[llms] Wrote ${projects.length} projects and ${posts.length} articles → dist/llms.txt`,
+);

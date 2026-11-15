@@ -68,11 +68,15 @@ const Footer = () => {
               <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/50 px-3 py-1.5 text-xs font-medium text-muted-foreground">
                 <Sparkles size={14} className="text-accent" /> Have an idea to build?
               </span>
-              <h2 id="footer-cta-title" className="text-3xl font-black tracking-tight text-foreground md:text-4xl">
+              <h2
+                id="footer-cta-title"
+                className="text-3xl font-black tracking-tight text-foreground md:text-4xl"
+              >
                 Let’s turn the next good idea into something real.
               </h2>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                Tell me what you’re working on. I’m always open to thoughtful collaborations and interesting projects.
+                Tell me what you’re working on. I’m always open to thoughtful collaborations and
+                interesting projects.
               </p>
             </div>
             <Link
@@ -91,16 +95,23 @@ const Footer = () => {
                 <Code2 size={21} />
               </span>
               <span>
-                <span className="block text-lg font-black tracking-[.16em] text-foreground">RJRYT</span>
-                <span className="block text-[0.62rem] uppercase tracking-[.2em] text-muted-foreground">Full-stack developer</span>
+                <span className="block text-lg font-black tracking-[.16em] text-foreground">
+                  RJRYT
+                </span>
+                <span className="block text-[0.62rem] uppercase tracking-[.2em] text-muted-foreground">
+                  Full-stack developer
+                </span>
               </span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Building scalable, secure, and thoughtful web applications—from polished interfaces to reliable backend systems.
+              Building scalable, secure, and thoughtful web applications—from polished interfaces to
+              reliable backend systems.
             </p>
             <p className="mt-5 inline-flex items-center gap-2 text-xs text-muted-foreground">
               <span className="relative flex h-2.5 w-2.5">
-                <span className={`absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-50 ${reduceMotion ? "" : "animate-ping"}`} />
+                <span
+                  className={`absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-50 ${reduceMotion ? "" : "animate-ping"}`}
+                />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
               </span>
               Open to meaningful projects
@@ -133,13 +144,21 @@ const Footer = () => {
 
           {linkGroups.map((group) => (
             <nav key={group.title} aria-label={group.title}>
-              <h3 className="mb-5 text-xs font-semibold uppercase tracking-[.2em] text-foreground">{group.title}</h3>
+              <h3 className="mb-5 text-xs font-semibold uppercase tracking-[.2em] text-foreground">
+                {group.title}
+              </h3>
               <ul className="space-y-3">
                 {group.links.map(({ name, href }) => (
                   <li key={name}>
-                    <Link to={href} className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-primary">
+                    <Link
+                      to={href}
+                      className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
                       {name}
-                      <ArrowUpRight size={13} className="opacity-0 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                      <ArrowUpRight
+                        size={13}
+                        className="opacity-0 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                      />
                     </Link>
                   </li>
                 ))}
@@ -150,13 +169,16 @@ const Footer = () => {
 
         <div className="flex flex-col gap-4 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p className="inline-flex items-center gap-1.5">
-            © {currentYear} RJRYT · Made with <Heart size={13} className="text-rose-500" /> in Kerala, India
+            © {currentYear} RJRYT · Made with <Heart size={13} className="text-rose-500" /> in
+            Kerala, India
           </p>
           <div className="flex items-center justify-between gap-5 sm:justify-end">
             <span>React · Vite · Tailwind</span>
             <button
               type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })}
+              onClick={() =>
+                window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })
+              }
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-2 font-medium transition-colors hover:border-primary/35 hover:text-primary"
               aria-label="Back to top"
             >

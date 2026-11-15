@@ -1,9 +1,9 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/layout/Navigation';
-import ContactSection from '@/components/sections/ContactSection';
-import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/layout/ScrollToTop';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import Navigation from "@/components/layout/Navigation";
+import ContactSection from "@/components/sections/ContactSection";
+import Footer from "@/components/layout/Footer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const Contact = () => {
   return (
@@ -14,10 +14,7 @@ const Contact = () => {
           name="description"
           content="Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection."
         />
-        <meta
-          name="keywords"
-          content="contact RJRYT, hire web developer, MERN developer contact"
-        />
+        <meta name="keywords" content="contact RJRYT, hire web developer, MERN developer contact" />
         <link rel="canonical" href="https://rjryt.com/contact/" />
         <meta name="author" content="RJRYT" />
 
@@ -30,10 +27,7 @@ const Contact = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rjryt.com/contact/" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
-        <meta
-          property="og:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta property="og:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta property="og:image:alt" content="RJRYT Contact page preview" />
 
         {/* Twitter Card */}
@@ -44,10 +38,7 @@ const Contact = () => {
           content="Contact RJRYT for collaborations, freelance projects, or inquiries. Secure form with validation and spam protection."
         />
         <meta name="twitter:url" content="https://rjryt.com/contact/" />
-        <meta
-          name="twitter:image"
-          content="https://rjryt.com/images/seo/rjryt-social-card.png"
-        />
+        <meta name="twitter:image" content="https://rjryt.com/images/seo/rjryt-social-card.png" />
         <meta name="twitter:image:alt" content="RJRYT Contact page preview" />
 
         {/* JSON-LD Structured Data */}

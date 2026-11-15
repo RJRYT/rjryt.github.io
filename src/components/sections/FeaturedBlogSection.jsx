@@ -13,7 +13,10 @@ const FeaturedBlogSection = () => {
 
   return (
     <section className="relative overflow-hidden py-24" aria-labelledby="featured-writing-title">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_50%,_hsl(var(--accent)/.10),_transparent_35%)]" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_50%,_hsl(var(--accent)/.10),_transparent_35%)]"
+        aria-hidden="true"
+      />
       <div className="container relative z-10 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
@@ -23,15 +26,23 @@ const FeaturedBlogSection = () => {
           className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
         >
           <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-accent">Field notes</p>
-            <h2 id="featured-writing-title" className="text-4xl font-black tracking-tight text-foreground md:text-5xl">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[.25em] text-accent">
+              Field notes
+            </p>
+            <h2
+              id="featured-writing-title"
+              className="text-4xl font-black tracking-tight text-foreground md:text-5xl"
+            >
               Ideas worth sharing
             </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">
               Practical guides and notes from building for the modern web.
             </p>
           </div>
-          <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-accent">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-accent"
+          >
             Browse the journal <ArrowUpRight size={17} />
           </Link>
         </motion.div>
@@ -60,15 +71,27 @@ const FeaturedBlogSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/5" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-9">
                   <div className="mb-4 flex flex-wrap items-center gap-4 text-xs text-foreground/70">
-                    <span className="inline-flex items-center gap-1.5"><CalendarDays size={14} />{formatDate(post.date)}</span>
-                    <span className="inline-flex items-center gap-1.5"><Clock3 size={14} />{post.readTime}</span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <CalendarDays size={14} />
+                      {formatDate(post.date)}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <Clock3 size={14} />
+                      {post.readTime}
+                    </span>
                   </div>
                   <h3 className="max-w-3xl text-2xl font-bold leading-tight text-foreground transition-colors group-hover:text-primary sm:text-3xl">
                     {post.title}
                   </h3>
-                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">{post.excerpt}</p>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    {post.excerpt}
+                  </p>
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground">
-                    <BookOpen size={16} /> Read the article <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    <BookOpen size={16} /> Read the article{" "}
+                    <ArrowUpRight
+                      size={16}
+                      className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
                   </span>
                 </div>
                 <span className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-background/70 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[.16em] text-foreground backdrop-blur-md">
@@ -91,16 +114,31 @@ const FeaturedBlogSection = () => {
                 <Link to={`/blog/${post.slug}/`} className="flex h-full min-h-44 gap-4 p-5">
                   {post.image && (
                     <div className="hidden w-28 shrink-0 overflow-hidden rounded-xl bg-muted sm:block">
-                      <img src={post.image} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <img
+                        src={post.image}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
                   )}
                   <div className="flex min-w-0 flex-col justify-center">
                     <div className="mb-2 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                      <span className="inline-flex items-center gap-1.5"><CalendarDays size={13} />{formatDate(post.date)}</span>
-                      <span className="inline-flex items-center gap-1.5"><Clock3 size={13} />{post.readTime}</span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <CalendarDays size={13} />
+                        {formatDate(post.date)}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock3 size={13} />
+                        {post.readTime}
+                      </span>
                     </div>
-                    <h3 className="line-clamp-2 text-lg font-bold leading-snug text-foreground transition-colors group-hover:text-primary">{post.title}</h3>
-                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+                    <h3 className="line-clamp-2 text-lg font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
+                      {post.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                      {post.excerpt}
+                    </p>
                   </div>
                 </Link>
               </motion.article>

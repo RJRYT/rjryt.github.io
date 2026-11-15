@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { ExternalLink, ArrowRight, Clock, Shield } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { ExternalLink, ArrowRight, Clock, Shield } from "lucide-react";
 import { performRedirect, getLinkInfoById } from "@/utils/redirects";
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 const RedirectPage = () => {
   const { key } = useParams();
@@ -16,7 +16,7 @@ const RedirectPage = () => {
 
   useEffect(() => {
     if (!key) {
-      setError('Invalid redirect key');
+      setError("Invalid redirect key");
       return;
     }
 
@@ -28,8 +28,8 @@ const RedirectPage = () => {
         key,
         targetUrl,
         title: `Redirecting to ${new URL(targetUrl).hostname}`,
-        description: 'You will be redirected automatically in a few seconds.',
-        linkInfo: { title, description }
+        description: "You will be redirected automatically in a few seconds.",
+        linkInfo: { title, description },
       });
     } catch (err) {
       setError(err.message);
@@ -83,23 +83,18 @@ const RedirectPage = () => {
           <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <Shield className="w-8 h-8 text-red-500" />
           </div>
-          
-          <h1 className="text-2xl font-bold text-foreground mb-4">
-            Redirect Not Found
-          </h1>
-          
+
+          <h1 className="text-2xl font-bold text-foreground mb-4">Redirect Not Found</h1>
+
           <p className="text-foreground/70 mb-6">
-            {error === 'Redirect not found' 
-              ? 'This redirect link does not exist or may have been removed.'
-              : error === 'Redirect is disabled'
-              ? 'This redirect link has been temporarily disabled.'
-              : error}
+            {error === "Redirect not found"
+              ? "This redirect link does not exist or may have been removed."
+              : error === "Redirect is disabled"
+                ? "This redirect link has been temporarily disabled."
+                : error}
           </p>
-          
-          <Button
-            onClick={() => navigate('/')}
-            className="bg-gradient-to-r from-primary to-accent"
-          >
+
+          <Button onClick={() => navigate("/")} className="bg-gradient-to-r from-primary to-accent">
             Return to Homepage
           </Button>
         </motion.div>
@@ -132,37 +127,24 @@ const RedirectPage = () => {
         <meta name="author" content="RJRYT" />
 
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="Redirecting… | Quick Links by RJRYT"
-        />
+        <meta property="og:title" content="Redirecting… | Quick Links by RJRYT" />
         <meta
           property="og:description"
-          content={`You are being redirected to ${
-            new URL(redirect.targetUrl).hostname
-          }.`}
+          content={`You are being redirected to ${new URL(redirect.targetUrl).hostname}.`}
         />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="RJRYT Portfolio" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary" />
-        <meta
-          name="twitter:title"
-          content="Redirecting… | Quick Links by RJRYT"
-        />
+        <meta name="twitter:title" content="Redirecting… | Quick Links by RJRYT" />
         <meta
           name="twitter:description"
-          content={`You are being redirected to ${
-            new URL(redirect.targetUrl).hostname
-          }.`}
+          content={`You are being redirected to ${new URL(redirect.targetUrl).hostname}.`}
         />
 
         {/* Automatic redirect meta tag as fallback */}
-        <meta
-          httpEquiv="refresh"
-          content={`${countdown};url=${redirect.targetUrl}`}
-        />
+        <meta httpEquiv="refresh" content={`${countdown};url=${redirect.targetUrl}`} />
 
         {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
@@ -172,9 +154,7 @@ const RedirectPage = () => {
             "@id": "https://rjryt.com/redirect",
             url: "https://rjryt.com/redirect",
             name: "Redirecting… | Quick Links by RJRYT",
-            description: `You are being redirected to ${
-              new URL(redirect.targetUrl).hostname
-            }.`,
+            description: `You are being redirected to ${new URL(redirect.targetUrl).hostname}.`,
             isPartOf: {
               "@type": "WebSite",
               "@id": "https://rjryt.com/#website",
@@ -223,14 +203,10 @@ const RedirectPage = () => {
 
           <p className="text-foreground/70 mb-2">
             Destination:{" "}
-            <strong className="text-foreground">
-              {new URL(redirect.targetUrl).hostname}
-            </strong>
+            <strong className="text-foreground">{new URL(redirect.targetUrl).hostname}</strong>
           </p>
 
-          <p className="text-foreground/60 text-sm mb-8 wrap-anywhere">
-            {redirect.targetUrl}
-          </p>
+          <p className="text-foreground/60 text-sm mb-8 wrap-anywhere">{redirect.targetUrl}</p>
 
           {!redirecting && (
             <>
@@ -288,12 +264,10 @@ const RedirectPage = () => {
                 <div className="flex items-start gap-3">
                   <Shield className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                   <div className="text-left">
-                    <h3 className="text-sm font-semibold text-accent mb-1">
-                      Safety Notice
-                    </h3>
+                    <h3 className="text-sm font-semibold text-accent mb-1">Safety Notice</h3>
                     <p className="text-xs text-foreground/60">
-                      You are being redirected to an external website. Please
-                      verify the URL before entering any personal information.
+                      You are being redirected to an external website. Please verify the URL before
+                      entering any personal information.
                     </p>
                   </div>
                 </div>

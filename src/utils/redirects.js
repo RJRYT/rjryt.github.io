@@ -131,9 +131,7 @@ const loadRedirects = () => {
 export const getRedirectByShortUrl = (shortUrl) => {
   const redirects = loadRedirects();
   // Handle both /r/key and key formats
-  const normalizedUrl = shortUrl.startsWith("/r/")
-    ? shortUrl
-    : `/r/${shortUrl}`;
+  const normalizedUrl = shortUrl.startsWith("/r/") ? shortUrl : `/r/${shortUrl}`;
   return redirects.find((redirect) => redirect.shortUrl === normalizedUrl);
 };
 

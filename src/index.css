@@ -198,9 +198,10 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  html, body {
-    overflow-x: hidden;   /* Hide horizontal scrolling */
-    overflow-y: auto;     /* Allow vertical scrolling */
+  html,
+  body {
+    overflow-x: hidden; /* Hide horizontal scrolling */
+    overflow-y: auto; /* Allow vertical scrolling */
   }
 
   input::placeholder,
@@ -214,22 +215,50 @@
   }
 
   /* Fluid Typography Classes */
-  .text-fluid-xs { font-size: var(--text-xs); }
-  .text-fluid-sm { font-size: var(--text-sm); }
-  .text-fluid-base { font-size: var(--text-base); }
-  .text-fluid-lg { font-size: var(--text-lg); }
-  .text-fluid-xl { font-size: var(--text-xl); }
-  .text-fluid-2xl { font-size: var(--text-2xl); }
-  .text-fluid-3xl { font-size: var(--text-3xl); }
-  .text-fluid-4xl { font-size: var(--text-4xl); }
+  .text-fluid-xs {
+    font-size: var(--text-xs);
+  }
+  .text-fluid-sm {
+    font-size: var(--text-sm);
+  }
+  .text-fluid-base {
+    font-size: var(--text-base);
+  }
+  .text-fluid-lg {
+    font-size: var(--text-lg);
+  }
+  .text-fluid-xl {
+    font-size: var(--text-xl);
+  }
+  .text-fluid-2xl {
+    font-size: var(--text-2xl);
+  }
+  .text-fluid-3xl {
+    font-size: var(--text-3xl);
+  }
+  .text-fluid-4xl {
+    font-size: var(--text-4xl);
+  }
 
   /* Fluid Spacing Classes */
-  .space-fluid-xs { gap: var(--space-xs); }
-  .space-fluid-sm { gap: var(--space-sm); }
-  .space-fluid-md { gap: var(--space-md); }
-  .space-fluid-lg { gap: var(--space-lg); }
-  .space-fluid-xl { gap: var(--space-xl); }
-  .space-fluid-2xl { gap: var(--space-2xl); }
+  .space-fluid-xs {
+    gap: var(--space-xs);
+  }
+  .space-fluid-sm {
+    gap: var(--space-sm);
+  }
+  .space-fluid-md {
+    gap: var(--space-md);
+  }
+  .space-fluid-lg {
+    gap: var(--space-lg);
+  }
+  .space-fluid-xl {
+    gap: var(--space-xl);
+  }
+  .space-fluid-2xl {
+    gap: var(--space-2xl);
+  }
 }
 
 @keyframes fade-in {
@@ -338,18 +367,16 @@
 }
 
 @utility neu-btn {
-  background: linear-gradient(
-    145deg,
-    hsl(var(--card)),
-    hsl(var(--muted))
-  );
-  box-shadow: 8px 8px 16px hsl(var(--foreground) / 0.1),
+  background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted)));
+  box-shadow:
+    8px 8px 16px hsl(var(--foreground) / 0.1),
     -8px -8px 16px hsl(var(--background) / 0.5);
   border: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @variant hover {
-    box-shadow: 12px 12px 24px hsl(var(--foreground) / 0.15),
+    box-shadow:
+      12px 12px 24px hsl(var(--foreground) / 0.15),
       -12px -12px 24px hsl(var(--background) / 0.7);
     transform: translateY(-1px);
   }
@@ -358,7 +385,7 @@
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 0; 
+  height: 0;
 }
 
 ::-webkit-scrollbar-track {
@@ -391,18 +418,27 @@
   }
 }
 
-
 /* RJRYT immersive interaction layer — consumes the existing theme tokens. */
 @layer base {
-  :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
-  a { text-underline-offset: .22em; }
-  img { max-width: 100%; }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+  a {
+    text-underline-offset: 0.22em;
+  }
+  img {
+    max-width: 100%;
+  }
 }
 @utility interactive-glow {
-  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
   @variant hover {
-    border-color: hsl(var(--primary) / .45);
-    box-shadow: 0 18px 44px hsl(var(--primary) / .10);
+    border-color: hsl(var(--primary) / 0.45);
+    box-shadow: 0 18px 44px hsl(var(--primary) / 0.1);
     transform: translateY(-3px);
   }
 }

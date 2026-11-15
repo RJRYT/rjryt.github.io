@@ -24,7 +24,7 @@ self.addEventListener("install", (event) => {
       .then(() => {
         // Force the waiting service worker to become the active service worker
         return self.skipWaiting();
-      })
+      }),
   );
 });
 
@@ -42,13 +42,13 @@ self.addEventListener("activate", (event) => {
               console.log("Deleting old cache:", cacheName);
               return caches.delete(cacheName);
             }
-          })
+          }),
         );
       })
       .then(() => {
         // Claim all clients to ensure the new SW is used immediately
         return self.clients.claim();
-      })
+      }),
   );
 });
 
@@ -63,7 +63,7 @@ self.addEventListener("fetch", (event) => {
       fetch(event.request).catch(() => {
         // If network fails, serve offline page
         return caches.match(OFFLINE_URL);
-      })
+      }),
     );
     return;
   }
@@ -89,7 +89,7 @@ self.addEventListener("fetch", (event) => {
 
         return response;
       });
-    })
+    }),
   );
 });
 

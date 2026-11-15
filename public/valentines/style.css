@@ -1,7 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 body {
   background-color: #ddd;
-  font-family: 'Poiret One', Segoe UI Light, cursive;
+  font-family:
+    "Poiret One",
+    Segoe UI Light,
+    cursive;
 }
 
 #card {
@@ -22,13 +25,14 @@ body {
   height: 130px;
   width: 130px;
   border-radius: 50%;
-  background-color: #D32F2F;
+  background-color: #d32f2f;
 }
-#card .heart #rec, #card .heart #rec2 {
+#card .heart #rec,
+#card .heart #rec2 {
   margin-top: -60px;
   width: 130px;
   height: 130px;
-  background-color: #D32F2F;
+  background-color: #d32f2f;
   border-radius: 35% 0 0 0;
 }
 #card .heart #half2 {
@@ -44,7 +48,8 @@ body {
   margin-top: -60px;
   margin-left: -130px;
 }
-#card #heart2 #circle, #card #heart2 #rec {
+#card #heart2 #circle,
+#card #heart2 #rec {
   background-color: #fff;
 }
 #card #heart2 #half2 #rec {
@@ -86,14 +91,14 @@ body {
 
 #card:hover #heart1 {
   -webkit-animation: openLeft 2s ease-in-out forwards;
-  -moz-animation: openLeft 2s ease-in-out  forwards;
-  -ms-animation: openLeft 2 ease-in-out  forwards;
-  animation: openLeft 2s ease-in-out  forwards;
+  -moz-animation: openLeft 2s ease-in-out forwards;
+  -ms-animation: openLeft 2 ease-in-out forwards;
+  animation: openLeft 2s ease-in-out forwards;
 }
 #card:hover #heart2 {
   -webkit-animation: openRight 2s ease-in-out forwards;
   -moz-animation: openRight 2s ease-in-out forwards;
-  -ms-animation: openRight 2 ease-in-out  forwards;
+  -ms-animation: openRight 2 ease-in-out forwards;
 }
 
 @-webkit-keyframes closeLeft {

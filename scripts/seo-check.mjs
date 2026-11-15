@@ -60,8 +60,7 @@ if (!fs.existsSync(DIST)) {
 function getAttributes(tag) {
   const attrs = {};
 
-  const attributeRegex =
-    /([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
+  const attributeRegex = /([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
 
   let match;
 
@@ -121,10 +120,7 @@ function getCanonical(html) {
   for (const tag of links) {
     const attrs = getAttributes(tag);
 
-    if (
-      attrs.rel &&
-      attrs.rel.toLowerCase().split(/\s+/).includes("canonical")
-    ) {
+    if (attrs.rel && attrs.rel.toLowerCase().split(/\s+/).includes("canonical")) {
       return attrs.href || "";
     }
   }
@@ -168,7 +164,7 @@ function getDuplicateKeys(keys) {
 function getJsonLd(html) {
   const scripts = [
     ...html.matchAll(
-      /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
+      /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
     ),
   ];
 
@@ -243,7 +239,7 @@ function checkRoute(route) {
     fail(
       `${normalizedRoute}: canonical mismatch\n` +
         `   expected: ${expectedCanonical}\n` +
-        `   found:    ${canonical}`
+        `   found:    ${canonical}`,
     );
   } else {
     pass(`${normalizedRoute}: canonical`);
@@ -328,7 +324,7 @@ function checkRoute(route) {
     for (const duplicate of duplicateMetaKeys) {
       fail(
         `${normalizedRoute}: duplicate meta tag ` +
-          `${duplicate.key} (${duplicate.count} occurrences)`
+          `${duplicate.key} (${duplicate.count} occurrences)`,
       );
     }
   } else {
@@ -341,9 +337,7 @@ function checkRoute(route) {
 
   const canonicalCount = getTags(html, "link")
     .map(getAttributes)
-    .filter((attrs) =>
-      attrs.rel?.toLowerCase().split(/\s+/).includes("canonical")
-    ).length;
+    .filter((attrs) => attrs.rel?.toLowerCase().split(/\s+/).includes("canonical")).length;
 
   if (canonicalCount > 1) {
     fail(`${normalizedRoute}: duplicate canonical tags (${canonicalCount})`);
@@ -394,16 +388,11 @@ function scanDynamicRoutes(directory, prefix) {
   return fs
     .readdirSync(directory, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
-    .filter((entry) =>
-      fs.existsSync(path.join(directory, entry.name, "index.html"))
-    )
+    .filter((entry) => fs.existsSync(path.join(directory, entry.name, "index.html")))
     .map((entry) => `${prefix}/${entry.name}`);
 }
 
-const projectRoutes = scanDynamicRoutes(
-  path.join(DIST, "projects"),
-  "/projects"
-);
+const projectRoutes = scanDynamicRoutes(path.join(DIST, "projects"), "/projects");
 
 const blogRoutes = scanDynamicRoutes(path.join(DIST, "blog"), "/blog");
 
@@ -434,14 +423,12 @@ if (!fs.existsSync(sitemapPath)) {
     fail("sitemap.xml: invalid urlset");
   }
 
-  const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/gi)].map(
-    (match) => match[1].trim()
-  );
+  const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/gi)].map((match) => match[1].trim());
 
   const expectedRoutes = [...indexableRoutes, ...projectRoutes, ...blogRoutes];
 
   const expectedUrls = expectedRoutes.map(
-    (route) => `${SITE_URL}${route === "/" ? "/" : normalizeRoute(route)}`
+    (route) => `${SITE_URL}${route === "/" ? "/" : normalizeRoute(route)}`,
   );
 
   // Check expected routes exist.
@@ -480,8 +467,6 @@ if (!fs.existsSync(robotsPath)) {
     pass("robots.txt");
   }
 }
-
-
 
 // ============================================================
 // GEO discovery resources
